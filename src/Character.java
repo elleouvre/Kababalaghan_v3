@@ -14,7 +14,7 @@ public abstract class Character {
     protected String skill2;
     protected String skill3;
 
-    public Character(String name, String type, int maxHp, int attack, int stamina, int maxStamina,
+    public Character(String name, int maxHp, int attack, int stamina, int maxStamina,
                      String skill1, String skill2, String skill3) {
         this.name = name;
         this.hp = maxHp;
@@ -27,6 +27,10 @@ public abstract class Character {
         this.skill2 = skill2;
         this.skill3 = skill3;
     }
+
+    public abstract void useSkill1(Character target);
+    public abstract void useSkill2(Character target);
+    public abstract void useSkill3(Character target);
 
     //Getters
     public String getName() {
