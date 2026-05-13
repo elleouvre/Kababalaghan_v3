@@ -32,6 +32,25 @@ public abstract class Character {
     public abstract void useSkill2(Character target);
     public abstract void useSkill3(Character target);
 
+
+    public void takeDamage(int damage){
+        hp = hp - damage;
+
+        // constraint
+        if (hp < 0) hp = 0;
+
+        System.out.println(name + " has taken damage!");
+
+        // check if dead
+
+        if (hp <= 0){
+            isAlive = false;
+            System.out.println(name + " has died!");
+        }
+    }
+
+
+
     //Getters
     public String getName() {
         return name;
