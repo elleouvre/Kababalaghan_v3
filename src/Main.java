@@ -18,31 +18,44 @@ public class Main {
             System.out.println("Exiting...");
         }
     }
-    public static void runBattleTest(){
+    public static void runBattleTest() {
         Scanner sc = new Scanner(System.in);
 
         TestDummy player = new TestDummy();
         EnemyDummy enemy = new EnemyDummy();
 
-        System.out.println("\n--- BATTLE TEST START---");
-        System.out.println("Player: "+player.getName() + " vs Enemy: " + enemy.getName());
-        int skillChoice = sc.nextInt();
+        while (player.getHp() > 0 && enemy.getHp() > 0) {
+            System.out.println(player.getName() + " HP: " + player.getHp());
+            System.out.println(enemy.getName() + " HP: " + player.getHp());
 
-        switch(skillChoice){
-            case 1:
-                player.useSkill1(enemy);
+            //Player Turn
+            System.out.println("Choose your move:");
+            System.out.println("1. " + player.skill1);
+            System.out.println("2. " + player.skill2);
+            System.out.println("3. " + player.skill3);
+            System.out.println();
+
+            int skillChoice = sc.nextInt();
+            if (skillChoice == 1) player.useSkill1(enemy);
+            else if (skillChoice == 2) player.useSkill2(enemy);
+            else if (skillChoice == 3) player.useSkill3(enemy);
+
+            //Check if enemy is defeated
+            if (enemy.getHp() <= 0) {
+                System.out.println("\n*** " + enemy.getName() + " has been defeated! ***");
                 break;
-            case 2:
-                player.useSkill2(enemy);
+            }
+
+            //Enemy Turn (basic attack for now)
+            System.out.println();
+            System.out.println("\n[ " + enemy.getName() + "'s turn! ]");
+            enemy.useSkill1(player);
+
+            if (player.getHp() <= 0) {
+                System.out.println("\n*** You have been defeated! ***");
                 break;
-            case 3:
-                player.useSkill3(enemy);
-                break;
-            default:
-                System.out.println("Exiting...");
+            }
         }
-
-        System.out.println("\n Final Enemy HP: " + enemy.getHp());
-        System.out.println("--- Test Complete ---");
+        System.out.println("\n--- BATTLE END ---");
     }
 }
