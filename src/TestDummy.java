@@ -1,6 +1,8 @@
-public class TestDummy extends Character{
+import Characters.Character;
+
+public class TestDummy extends Character {
     public TestDummy(){
-        super("Attacker", 100, 5, 5, 100,
+        super("Attacker", "Hero",100, 5, 5, 100,
                 "basic",
                 "special skill",
                 "ultimate"
@@ -9,25 +11,28 @@ public class TestDummy extends Character{
     }
 
     @Override
-    public void useSkill1(Character target){
+    public void basicAttack(Characters.Character target){
         int damage = attack + 5;
         System.out.println(name + " Uses basic attack");
         target.takeDamage(damage); // damage
+        System.out.println(target.getName()+" took '"+ damage+ "' dmg!");
     }
 
     @Override
-    public void useSkill2(Character target){
+    public void specialSkill(Characters.Character target){
         int damage = attack + 15;
         System.out.println(name + " Uses special skill");
 
         target.takeDamage(damage); // damage
+        System.out.println(target.getName()+" took '"+ damage+ "' dmg!");
     }
 
     @Override
-    public void useSkill3(Character target){
+    public void ultimateSkill(Character target){
         int damage = attack + 40;
         System.out.println(name + " Uses ultimate skill");
 
         target.takeDamage(damage); // damage
+        System.out.println(target.getName()+" took '"+ damage+ "' dmg!");
     }
 }

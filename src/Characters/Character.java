@@ -1,8 +1,11 @@
+package Characters;
+
 import java.util.Random;
 
 public abstract class Character {
     protected String name;
     protected int hp;
+    protected String type;
     protected int maxHp;
     protected int stamina;
     protected int maxStamina;
@@ -10,13 +13,14 @@ public abstract class Character {
     protected boolean isAlive = true;
     protected Random random = new Random();
 
-    protected String skill1;
+    public String skill1;
     protected String skill2;
     protected String skill3;
 
-    public Character(String name, int maxHp, int attack, int stamina, int maxStamina,
+    public Character(String name,String type,int maxHp, int attack, int stamina, int maxStamina,
                      String skill1, String skill2, String skill3) {
         this.name = name;
+        this.type = type;
         this.hp = maxHp;
         this.maxHp = maxHp;
         this.stamina = maxStamina;
@@ -28,22 +32,24 @@ public abstract class Character {
         this.skill3 = skill3;
     }
 
-    public abstract void useSkill1(Character target);
-    public abstract void useSkill2(Character target);
-    public abstract void useSkill3(Character target);
-
+    public abstract void basicAttack(Character target);
+    protected int basicAttackStaminaCost = 0;
+    public abstract void specialSkill(Character target);
+    protected int specialSkillStaminaCost = 20;
+    public abstract void ultimateSkill(Character target);
+    protected int ultimateSkillStaminaCost = 50;
 
     public void takeDamage(int damage){
-        hp = hp - damage;
+        this.hp -= damage;
 
         // constraint
         if (hp < 0) hp = 0;
 
-        System.out.println(name + " has taken damage!");
+        System.out.println(name + " has taken " + damage + " damage! HP: " + hp + "/" + maxHp);
 
         // check if dead
 
-        if (hp <= 0){
+        if (this.hp <= 0){
             isAlive = false;
             System.out.println(name + " has died!");
         }
@@ -70,4 +76,7 @@ public abstract class Character {
     public int getAttack() {
         return attack;
     }
+    public String getBasic() { return skill1; }
+    public String getSpecial() { return skill2; }
+    public String getUltimate() { return skill3; }
 }

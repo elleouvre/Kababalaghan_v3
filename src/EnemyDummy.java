@@ -1,21 +1,29 @@
-public class EnemyDummy extends Character{
+import Characters.Character;
+
+public class EnemyDummy extends Character {
     public EnemyDummy(){
-        super("Punching bag", 150, 5, 5, 100,
+        super("Punching bag", "Villian",150, 5, 5, 100,
                 "basic",
                 "special skill",
                 "ultimate"
         );
     }
-    public void useSkill1(Character target){
+    public void basicAttack(Characters.Character target){
         int damage = attack + 5;
-        System.out.println(name + "Uses basic attack");
+        System.out.println(name + " Uses basic attack");
+        target.takeDamage(damage);
+        System.out.println(target.getName()+" took '"+ damage+ "' dmg!");
     }
-    public void useSkill2(Character target){
+    public void specialSkill(Characters.Character target){
         int damage = attack + 15;
-        System.out.println(name + "Uses special skill");
+        System.out.println(name + " Uses special skill");
+        target.takeDamage(damage);
+        System.out.println(target.getName()+" took '"+ damage+ "' dmg!");
     }
-    public void useSkill3(Character target){
+    public void ultimateSkill(Character target){
         int damage = attack + 40;
-        System.out.println(name + "Uses ultimate skill");
+        System.out.println(name + " Uses ultimate skill");
+        target.takeDamage(damage);
+        System.out.println(target.getName()+" took '"+ damage+ "' dmg!");
     }
 }
