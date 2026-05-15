@@ -1,5 +1,10 @@
 package Characters;
 
+import Characters.heroes.Magwayen;
+import Characters.villains.Kapre;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public abstract class Character {
@@ -68,4 +73,25 @@ public abstract class Character {
     public String getBasic() { return skill1; }
     public String getSpecial() { return skill2; }
     public String getUltimate() { return skill3; }
+
+    //Characters
+    //heroes
+    public static ArrayList<Character> getAllHeroes() {
+        ArrayList<Character> heroes = new ArrayList<>();
+        heroes.add(new Magwayen());
+        //to add more
+
+        Collections.shuffle(heroes);
+        return heroes;
+    }
+
+    //villains
+    public static ArrayList<Character> getAllVillains() {
+        ArrayList<Character> villains = new ArrayList<>();
+        villains.add(new Kapre());
+        //to add more
+
+        Collections.shuffle(villains);
+        return villains;
+    }
 }
