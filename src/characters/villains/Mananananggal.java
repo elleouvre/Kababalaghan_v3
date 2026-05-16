@@ -26,7 +26,7 @@ public class Mananananggal extends Character {
         int damage = attack + random.nextInt(10);
 
         int flyingCost = isFlying ? 20 : 0;
-        if (flyingCost > 0 && !this.stamina.spend(flyingCost)) {
+        if (flyingCost > 0 && !getStamina().spend(flyingCost)) {
             System.out.println(name + " is too exhausted to maintain flight attack!");
             return;
         }
@@ -54,7 +54,7 @@ public class Mananananggal extends Character {
     @Override
     public void specialSkill(Character target) {
 
-        if (stamina.spend(specialSkillStaminaCost)) {
+        if (getStamina().spend(specialSkillStaminaCost)) {
             isFlying = !isFlying;
 
             if (isFlying) {
@@ -76,7 +76,7 @@ public class Mananananggal extends Character {
 
     @Override
     public void ultimateSkill(Character target) {
-        if (stamina.spend(ultimateSkillStaminaCost)) {
+        if (getStamina().spend(ultimateSkillStaminaCost)) {
             int damage = attack * 3 + random.nextInt(35);
 
             System.out.println(name + " uses " + skill3 + "!");

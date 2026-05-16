@@ -13,13 +13,13 @@ public class Magwayen extends Character {
         this.specialSkillStaminaCost = 20;
         this.ultimateSkillStaminaCost = 50;
 
-        stamina.setRegenRange(10, 25);
+        getStamina().setRegenRange(10, 25);
     }
 
     @Override
     public void basicAttack(Character target) {
 
-        if (stamina.spend(basicAttackStaminaCost)) {
+        if (getStamina().spend(basicAttackStaminaCost)) {
             int damage = attack + random.nextInt(8);
 
             System.out.println("Umuusbong ang malamlam na ulap mula sa kailaliman...");
@@ -34,7 +34,7 @@ public class Magwayen extends Character {
     @Override
     public void specialSkill(Character target) {
 
-        if (stamina.spend(specialSkillStaminaCost)) {
+        if (getStamina().spend(specialSkillStaminaCost)) {
             int damage = attack * 2 + random.nextInt(15);
 
             System.out.println(name + " uses " + skill2 + "!");
@@ -53,7 +53,7 @@ public class Magwayen extends Character {
     @Override
     public void ultimateSkill(Character target) {
 
-        if (stamina.spend(ultimateSkillStaminaCost)) {
+        if (getStamina().spend(ultimateSkillStaminaCost)) {
             int damage = attack * 3 + random.nextInt(25);
 
             System.out.println(name + " uses " + skill3 + "!");

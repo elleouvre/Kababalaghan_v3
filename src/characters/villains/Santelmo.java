@@ -29,7 +29,7 @@ public class Santelmo extends Character{
     //SKILL blaze
     @Override
     public void specialSkill(Character target){
-        if (stamina.spend(specialSkillStaminaCost)){
+        if (getStamina().spend(specialSkillStaminaCost)){
             int bonusDamage = heatLevel * 5;
             int damage = attack * 2 + random.nextInt(18) + bonusDamage;
             System.out.println(name + " uses " + skill2 + "!");
@@ -42,7 +42,7 @@ public class Santelmo extends Character{
     //SKILL fireball
     @Override
     public void ultimateSkill(Character target){
-        if (stamina.spend(ultimateSkillStaminaCost)) {
+        if (getStamina().spend(ultimateSkillStaminaCost)) {
             int damage = (attack * 3) + (heatLevel * 10) + random.nextInt(25);
             System.out.println(name + " unleashes a massive " + skill3 + "!");
             System.out.println("The air burns as the heat level reached " + heatLevel + "!");

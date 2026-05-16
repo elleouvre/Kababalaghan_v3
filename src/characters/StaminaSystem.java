@@ -13,6 +13,7 @@ public class StaminaSystem {
         this.max = max;
         this.regenMin = regenMin;
         this.regenMax = regenMax;
+        this.current = max; // Initialize current stamina to max
     }
 
     public boolean spend(int cost){

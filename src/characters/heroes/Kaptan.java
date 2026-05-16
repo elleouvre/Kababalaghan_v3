@@ -15,7 +15,7 @@ public class Kaptan extends Character{
         this.basicAttackStaminaCost = 0;
         this.specialSkillStaminaCost = 20;
         this.ultimateSkillStaminaCost = 60;
-        this.stamina.setRegenRange(20, 35);
+        getStamina().setRegenRange(20, 35);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class Kaptan extends Character{
 
     @Override
     public void specialSkill(Character target){
-       if (stamina.spend(basicAttackStaminaCost)){
+       if (getStamina().spend(basicAttackStaminaCost)){
            int damage = attack + random.nextInt(15);
            stormCharge++;
            System.out.print("Pinaulanan ka ng KIDLAT!");
@@ -40,7 +40,7 @@ public class Kaptan extends Character{
 
     @Override
     public void ultimateSkill(Character target){
-        if(stamina.spend(ultimateSkillStaminaCost)){
+        if(getStamina().spend(ultimateSkillStaminaCost)){
             int damage = attack + random.nextInt(15);
             // logic dire
             System.out.print(name + "uses HAMPAS LANGIT!");

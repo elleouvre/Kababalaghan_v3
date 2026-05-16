@@ -33,7 +33,7 @@ public class Apolaki extends Character {
     @Override
     public void specialSkill(Character target) {
 
-        if (stamina.spend(specialSkillStaminaCost)) {
+        if (getStamina().spend(specialSkillStaminaCost)) {
 
             int damage = attack + random.nextInt(20);
 
@@ -51,7 +51,7 @@ public class Apolaki extends Character {
     @Override
     public void ultimateSkill(Character target) {
 
-        if (stamina.spend(ultimateSkillStaminaCost)) {
+        if (getStamina().spend(ultimateSkillStaminaCost)) {
 
             int damage = attack * 3 + random.nextInt(35);
 
