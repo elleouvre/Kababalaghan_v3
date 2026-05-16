@@ -1,4 +1,4 @@
-import Characters.Character;
+import characters.Character;
 
 public class EnemyDummy extends Character {
     public EnemyDummy(){
@@ -8,13 +8,13 @@ public class EnemyDummy extends Character {
                 "ultimate"
         );
     }
-    public void basicAttack(Characters.Character target){
+    public void basicAttack(characters.Character target){
         int damage = attack + 5;
         System.out.println(name + " Uses basic attack");
         target.takeDamage(damage);
         System.out.println(target.getName()+" took '"+ damage+ "' dmg!");
     }
-    public void specialSkill(Characters.Character target){
+    public void specialSkill(characters.Character target){
         int damage = attack + 15;
         System.out.println(name + " Uses special skill");
         target.takeDamage(damage);

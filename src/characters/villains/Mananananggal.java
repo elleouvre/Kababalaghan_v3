@@ -1,6 +1,6 @@
-package Characters.villains;
+package characters.villains;
 
-import Characters.Character;
+import characters.Character;
 
 public class Mananananggal extends Character {
 

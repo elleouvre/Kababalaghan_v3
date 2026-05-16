@@ -1,5 +1,5 @@
-package Characters.villains;
-import Characters.Character;
+package characters.villains;
+import characters.Character;
 
 public class Aswang extends Character {
     public Aswang() {

@@ -1,5 +1,5 @@
-package Characters.heroes;
-import Characters.Character;
+package characters.heroes;
+import characters.Character;
 
 public class MariaMakiling extends Character {
     public MariaMakiling() {

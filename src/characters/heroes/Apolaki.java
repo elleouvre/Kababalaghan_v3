@@ -1,6 +1,6 @@
-package Characters.heroes;
+package characters.heroes;
 
-import Characters.Character;
+import characters.Character;
 
 public class Apolaki extends Character {
 
