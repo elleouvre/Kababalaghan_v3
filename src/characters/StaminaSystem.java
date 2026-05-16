@@ -1,4 +1,4 @@
-package Characters;
+package characters;
 import java.util.Random;
 
 public class StaminaSystem {
