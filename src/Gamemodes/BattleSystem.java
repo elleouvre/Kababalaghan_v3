@@ -20,7 +20,7 @@ public class BattleSystem {
     }
 
     //For multiplayer (Player vs Player) - Bea
-    public void startMultiplayer(Character player1, Character player2){
+    public Character startMultiplayer(Character player1, Character player2){
         System.out.println("\n[ PLAYER VS PLAYER BATTLE ]");
         System.out.println(player1.getName() + " VS " + player2.getName());
         System.out.println("Press Enter to start!");
@@ -55,6 +55,7 @@ public class BattleSystem {
 
             displayBattleResult();
         }
+        return player1;
     }
 
     //Player turn logic for both singleplayer and multiplayer - Bea
