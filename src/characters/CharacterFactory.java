@@ -35,43 +35,42 @@ public class CharacterFactory {
         return villains;
     }
 
-    public static void showAllCharacters() {
-        StaminaSystem stamina = new StaminaSystem();
-        System.out.println("\n===========================================");
-        System.out.println("              CHARACTERS");
-        System.out.println("===========================================");
+        public static void showAllCharacters() {
+            System.out.println("\n===========================================");
+            System.out.println("              CHARACTERS");
+            System.out.println("===========================================");
 
-        System.out.println("\n[ HEROES ]");
-        System.out.println("-------------------------------------------");
-        ArrayList<Character> heroes = getAllHeroes();
-        for (int i = 0; i < heroes.size(); i++) {
-            Character hero = heroes.get(i);
-            System.out.printf("%d. %-15s HP: %3d | ATK: %3d | STA: %3d%n",
-                    (i+1), hero.getName(), hero.getMaxHp(), hero.getAttack(), stamina.getMax());
-            System.out.printf("   Skills: %s, %s, %s%n",
-                    hero.getBasic(),
-                    hero.getSpecial(),
-                    hero.getUltimate());
-            System.out.printf("   Stamina Regen: %d-%d per round%n",
-                    stamina.getRegenMin(),
-                    stamina.getRegenMax());
-        }
+            System.out.println("\n[ HEROES ]");
+            System.out.println("-------------------------------------------");
+            ArrayList<Character> heroes = getAllHeroes();
+            for (int i = 0; i < heroes.size(); i++) {
+                Character hero = heroes.get(i);
+                System.out.printf("%d. %-15s HP: %3d | ATK: %3d | STA: %3d%n",
+                        (i+1), hero.getName(), hero.getMaxHp(), hero.getAttack(), hero.getStaminaMax());
+                System.out.printf("   Skills: %s, %s, %s%n",
+                        hero.getBasic(),
+                        hero.getSpecial(),
+                        hero.getUltimate());
+                System.out.printf("   Stamina Regen: %d-%d per round%n",
+                        hero.getStaminaRegenMin(),
+                        hero.getStaminaRegenMax());
+            }
 
-        System.out.println("\n[ VILLAINS ]");
-        System.out.println("-------------------------------------------");
-        ArrayList<Character> villains = getAllVillains();
-        for (int i = 0; i < villains.size(); i++) {
-            Character villain = villains.get(i);
-            System.out.printf("%d. %-15s HP: %3d | ATK: %3d | STA: %3d%n",
-                    (i+1), villain.getName(), villain.getMaxHp(), villain.getAttack(), stamina.getMax());
-            System.out.printf("   Skills: %s, %s, %s%n",
-                    villain.getBasic(),
-                    villain.getSpecial(),
-                    villain.getUltimate());
-            System.out.printf("   Stamina Regen: %d-%d per round%n",
-                    stamina.getRegenMin(),
-                    stamina.getRegenMax());
+            System.out.println("\n[ VILLAINS ]");
+            System.out.println("-------------------------------------------");
+            ArrayList<Character> villains = getAllVillains();
+            for (int i = 0; i < villains.size(); i++) {
+                Character villain = villains.get(i);
+                System.out.printf("%d. %-15s HP: %3d | ATK: %3d | STA: %3d%n",
+                        (i+1), villain.getName(), villain.getMaxHp(), villain.getAttack(), villain.getStaminaMax());
+                System.out.printf("   Skills: %s, %s, %s%n",
+                        villain.getBasic(),
+                        villain.getSpecial(),
+                        villain.getUltimate());
+                System.out.printf("   Stamina Regen: %d-%d per round%n",
+                        villain.getStaminaRegenMin(),
+                        villain.getStaminaRegenMax());
+            }
+            System.out.println("===========================================");
         }
-        System.out.println("===========================================");
-    }
 }
