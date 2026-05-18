@@ -36,6 +36,7 @@ public class CharacterFactory {
     }
 
     public static void showAllCharacters() {
+        StaminaSystem stamina = new StaminaSystem();
         System.out.println("\n===========================================");
         System.out.println("              CHARACTERS");
         System.out.println("===========================================");
@@ -46,14 +47,14 @@ public class CharacterFactory {
         for (int i = 0; i < heroes.size(); i++) {
             Character hero = heroes.get(i);
             System.out.printf("%d. %-15s HP: %3d | ATK: %3d | STA: %3d%n",
-                    (i+1), hero.getName(), hero.getMaxHp(), hero.getAttack(), hero.getMaxStamina());
+                    (i+1), hero.getName(), hero.getMaxHp(), hero.getAttack(), stamina.getMax());
             System.out.printf("   Skills: %s, %s, %s%n",
-                    hero.getBasicAttackName(),
-                    hero.getSpecialSkillName(),
-                    hero.getUltimateSkillName());
+                    hero.getBasic(),
+                    hero.getSpecial(),
+                    hero.getUltimate());
             System.out.printf("   Stamina Regen: %d-%d per round%n",
-                    hero.getStaminaRegenMin(),
-                    hero.getStaminaRegenMax());
+                    stamina.getRegenMin(),
+                    stamina.getRegenMax());
         }
 
         System.out.println("\n[ VILLAINS ]");
@@ -62,14 +63,14 @@ public class CharacterFactory {
         for (int i = 0; i < villains.size(); i++) {
             Character villain = villains.get(i);
             System.out.printf("%d. %-15s HP: %3d | ATK: %3d | STA: %3d%n",
-                    (i+1), villain.getName(), villain.getMaxHp(), villain.getAttack(), villain.getMaxStamina());
+                    (i+1), villain.getName(), villain.getMaxHp(), villain.getAttack(), stamina.getMax());
             System.out.printf("   Skills: %s, %s, %s%n",
-                    villain.getBasicAttackName(),
-                    villain.getSpecialSkillName(),
-                    villain.getUltimateSkillName());
+                    villain.getBasic(),
+                    villain.getSpecial(),
+                    villain.getUltimate());
             System.out.printf("   Stamina Regen: %d-%d per round%n",
-                    villain.getStaminaRegenMin(),
-                    villain.getStaminaRegenMax());
+                    stamina.getRegenMin(),
+                    stamina.getRegenMax());
         }
         System.out.println("===========================================");
     }
