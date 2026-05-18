@@ -52,6 +52,10 @@ public class StaminaSystem {
         this.regenMin = min;
         this.regenMax = max;
     }
+    public void setRegenRange(int min, int max){
+        this.regenMin = min;
+        this.regenMax = max;
+    }
     public int getRegenMin(){return regenMin; }
     public int getRegenMax(){return regenMax; }
 
