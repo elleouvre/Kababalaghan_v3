@@ -9,7 +9,7 @@ public abstract class Character {
     protected int maxHp;
 
     protected int attack;
-    public boolean isAlive = true;
+    private boolean isAlive = true;
     protected Random random = new Random();
 
     private StaminaSystem stamina;
@@ -50,6 +50,20 @@ public abstract class Character {
             System.out.println(name + " has died!");
         }
     }
+    //Reset Methods for new battles
+    public void resetHp() {
+        this.hp = this.maxHp;
+        this.isAlive = true;
+    }
+
+    public void resetStamina() {
+        this.stamina.reset();
+    }
+
+    public void resetAll() {
+        resetHp();
+        resetStamina();
+    }
 
 
     //Getters
@@ -80,5 +94,5 @@ public abstract class Character {
     public int getSpecialSkillStaminaCost() { return specialSkillStaminaCost; }
     public int getUltimateSkillStaminaCost() { return ultimateSkillStaminaCost; }
 
-    public boolean isAlive() {return isAlive; }
+    public boolean isAlive() { return isAlive; }
 }
