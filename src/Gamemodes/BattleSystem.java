@@ -1,0 +1,188 @@
+package Gamemodes;
+
+import characters.Character;
+import characters.StaminaSystem;
+
+import java.util.*;
+
+
+public class BattleSystem {
+    private Scanner scanner;
+
+
+    public BattleSystem(Scanner scanner){
+        this.scanner = scanner;
+    }
+
+    //For Singleplayer (Player vs AI) - Lou
+    public void startSingleplayer(Character player, Character ai){
+
+    }
+
+    //For multiplayer (Player vs Player) - Bea
+    public void startMultiplayer(Character player1, Character player2){
+        System.out.println("\n[ PLAYER VS PLAYER BATTLE ]");
+        System.out.println(player1.getName() + " VS " + player2.getName());
+        System.out.println("Press Enter to start!");
+        scanner.nextLine();
+
+        boolean player1Turn = true;
+
+        while(player1.isAlive() && player2.isAlive()){
+            displayStats(player1, player2);
+
+            if(player1Turn){
+                System.out.println("\n======================================");
+                System.out.println("PLAYER 1'S TURN (" + player1.getName() + ")");
+                System.out.println("======================================");
+                playerTurn(player1, player2);
+            }else{
+                System.out.println("\n======================================");
+                System.out.println("PLAYER 2'S TURN (" + player2.getName() + ")");
+                System.out.println("======================================");
+                playerTurn(player2, player1);
+            }
+            player1Turn = !player1Turn;
+            if(player1.isAlive()){
+                System.out.println("\n[Stamina Regeneration]");
+                player1.getStamina().regen();
+            }
+            if(player2.isAlive()){
+                player2.getStamina().regen();
+            }
+            System.out.println("\nPress Enter to continue to next round...");
+            scanner.nextLine();
+
+            displayBattleResult();
+        }
+    }
+
+    //Player turn logic for both singleplayer and multiplayer - Bea
+    private void playerTurn(Character attacker, Character defender){
+        displayStats(attacker, defender);
+        displaySkills(attacker);
+        System.out.print("\nChoose action: ");
+        int action = getValidAction();
+
+        switch (action) {
+            case 1:
+                if (attacker.getStamina().spend(attacker.getBasicAttackStaminaCost())) {
+                    attacker.basicAttack(defender);
+                } else {
+                    System.out.println("Not enough stamina!");
+                }
+                break;
+            case 2:
+                if(attacker.getStamina().spend(attacker.getSpecialSkillStaminaCost())){
+                    attacker.specialSkill(defender);
+                }else{
+                    System.out.println("Not enough stamina!");
+                }
+                break;
+            case 3:
+                if(attacker.getStamina().spend(attacker.getUltimateSkillStaminaCost())){
+                    attacker.ultimateSkill(defender);
+                }else{
+                    System.out.println("\n[WARNING] Not enough stamina! Need " + attacker.getUltimateSkillStaminaCost() + " stamina.");
+                    System.out.println("Performing basic attack instead!");
+                    attacker.basicAttack(defender);
+                }
+                break;
+        }
+        System.out.println("\n" + defender.getName() + " HP: " + defender.getHp() + "/" + defender.getMaxHp());
+
+    }
+
+    //Validate player action input - Bea
+    private int getValidAction() {
+        while(true){
+            System.out.println("Choose (1-3): ");
+            String in = scanner.nextLine();
+
+            switch(in){
+                case "1":
+                case "2":
+                case "3":
+                    return Integer.parseInt(in);
+                default:
+                    System.out.println("Invalid! Enter 1-3 only.");
+            }
+        }
+    }
+
+    //AI turn logic for singleplayer - Bea
+    private void aiTurn(Character ai, Character player){
+        int action = decideAIAction(ai);
+
+        switch (action){
+            case 1:
+                if(ai.getStamina().spend(ai.getBasicAttackStaminaCost())){
+                    ai.basicAttack(player);
+                }else{
+                    System.out.println("Not enough stamina!");
+                }
+                break;
+            case 2:
+                if(ai.getStamina().spend(ai.getSpecialSkillStaminaCost())){
+                    ai.specialSkill(player);
+                }else{
+                    System.out.println("Not enough stamina!");
+                }
+                break;
+            case 3:
+                if(ai.getStamina().spend(ai.getUltimateSkillStaminaCost())){
+                    ai.ultimateSkill(player);
+                }else{
+                    System.out.println("\n[WARNING] Not enough stamina! Need " + ai.getUltimateSkillStaminaCost() + " stamina.");
+                    System.out.println("Performing basic attack instead!");
+                    ai.basicAttack(player);
+                }
+                break;
+        }
+        System.out.println("\n" + player.getName() + " HP: " + player.getHp() + "/" + player.getMaxHp());
+    }
+
+    //AI decision-making logic - Bea
+    private int decideAIAction(Character ai){
+        int aiHPPercentage = (ai.getHp() * 100) / ai.getMaxHp();
+        StaminaSystem stamina = ai.getStamina();
+
+        int ultimateCost = ai.getUltimateSkillStaminaCost();
+        int specialCost = ai.getSpecialSkillStaminaCost();
+
+        // If low HP and enough stamina for ultimate
+        if (aiHPPercentage < 30 &&
+                stamina.getCurrent() >= ultimateCost &&
+                Math.random() < 0.5) {
+            return 3;
+        }
+
+        // If enough stamina for ultimate
+        if (stamina.getCurrent() >= ultimateCost &&
+                Math.random() < 0.3) {
+            return 3;
+        }
+
+        // If enough stamina for special
+        if (stamina.getCurrent() >= specialCost &&
+                Math.random() < 0.4) {
+            return 2;
+        }
+
+        // Default basic attack
+        return 1;
+    }
+
+    //Display HP and Stamina bars for both characters - Lou
+    private void displayStats(Character c1, Character c2){ }
+
+    //Display battle intro - Lou
+    private void displayBattleIntro(){ }
+
+    //Display battle result - Lou
+    private void displayBattleResult(){ }
+
+    //Display Skills or Action - Lou
+    private void displaySkills(Character character){ }
+
+}
