@@ -9,7 +9,7 @@ public abstract class Character {
     protected int maxHp;
 
     protected int attack;
-    protected boolean isAlive = true;
+    public boolean isAlive = true;
     protected Random random = new Random();
 
     private StaminaSystem stamina;
@@ -72,4 +72,9 @@ public abstract class Character {
         return stamina;
     }
 
+    public int getBasicAttackStaminaCost() { return basicAttackStaminaCost; }
+    public int getSpecialSkillStaminaCost() { return specialSkillStaminaCost; }
+    public int getUltimateSkillStaminaCost() { return ultimateSkillStaminaCost; }
+
+    public boolean isAlive() {return isAlive; }
 }
