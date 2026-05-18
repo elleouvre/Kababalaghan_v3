@@ -72,6 +72,10 @@ public abstract class Character {
         return stamina;
     }
 
+    public int getStaminaMax() { return stamina.getMax();}
+    public int getStaminaRegenMin() { return stamina.getRegenMin(); }
+    public int getStaminaRegenMax() { return stamina.getRegenMax(); }
+
     public int getBasicAttackStaminaCost() { return basicAttackStaminaCost; }
     public int getSpecialSkillStaminaCost() { return specialSkillStaminaCost; }
     public int getUltimateSkillStaminaCost() { return ultimateSkillStaminaCost; }
