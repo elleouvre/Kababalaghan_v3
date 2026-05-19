@@ -3,7 +3,6 @@ import characters.Character;
 import java.util.Random;
 
 public class Mayari extends Character {
-    private boolean isReadyToCounter = false;
     private Random random = new Random();
 
     public Mayari() {
@@ -15,7 +14,6 @@ public class Mayari extends Character {
         this.basicAttackStaminaCost = 5;
         this.specialSkillStaminaCost = 20;
         this.ultimateSkillStaminaCost = 45;
-
         getStamina().setRegenRange(20, 35);
     }
 
@@ -37,12 +35,15 @@ public class Mayari extends Character {
     @Override
     public void specialSkill(Character target) {
         if (getStamina().spend(specialSkillStaminaCost)) {
+            int damage = attack * 2 + random.nextInt(15);
             System.out.println(name + " uses " + skill2 + "!");
-            System.out.println("Pumasok si Mayari sa isang Counter Stance! 'Focus sa kung ano ang makikita mo...'");
-            this.isReadyToCounter = true;
+            System.out.println("Ang talim ng gasuklay ni Mayari ay tumatawid sa larangan ng digmaan!");
+            target.takeDamage(damage);
 
-            // Counter stance doesn't deal damage, just prepares for next hit
-            System.out.println("Handa nang kontrahin ang susunod na pag-atake!");
+            // Simple buff
+            int healAmount = 15;
+            this.hp = Math.min(maxHp, this.hp + healAmount);
+            System.out.println("Nagbabalik ang liwanag ng buwan " + healAmount + " HP kay " + name + "!");
         }
     }
 
@@ -61,21 +62,3 @@ public class Mayari extends Character {
             System.out.println("Nag-restore ang isang Silver Shield " + healAmount + " HP to " + name + "!");
         }
     }
-
-    @Override
-    public void takeDamage(int damage) {
-        // Counter stance logic
-        if (isReadyToCounter) {
-            System.out.println(name + " pinipigilan ang pag-atake! 0 pinsala ang nakuha at nabawi ang 20 HP!");
-            int healAmount = 20;
-            this.hp = Math.min(maxHp, this.hp + healAmount);
-            isReadyToCounter = false;
-            return;
-        }
-
-        // Permanent 20% damage reduction
-        int finalDamage = (int)(damage * 0.80);
-        super.takeDamage(finalDamage);
-        System.out.println(name + " binabawasan ang pinsala ng 20% dahil sa pagpapala ng buwan!");
-    }
-}
