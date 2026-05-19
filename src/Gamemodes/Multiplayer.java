@@ -113,15 +113,42 @@ public class Multiplayer {
         return selected;
     }
 
-    //Lou
     private void displayScore() {
+        System.out.println("\n======================================");
+        System.out.printf("SCORE:  Player 1 [%d]  -  [%d] Player 2%n", player1Wins, player2Wins);
+        System.out.println("======================================");
     }
 
-    //Lou
     private boolean playAgain() {
+        System.out.println("\nPlay another match?");
+        System.out.println("1. Yes");
+        System.out.println("2. No");
+        System.out.print("Choice: ");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        return choice == 1;
     }
 
-    //Lou
     private void displayFinalScore() {
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("\n======================================");
+        System.out.println("           FINAL RESULTS");
+        System.out.println("======================================");
+        System.out.println("Player 1 Wins: " + player1Wins);
+        System.out.println("Player 2 Wins: " + player2Wins);
+
+        if (player1Wins > player2Wins) {
+            System.out.println("\nPLAYER 1 IS THE CHAMPION!");
+        } else if (player2Wins > player1Wins) {
+            System.out.println("\nPLAYER 2 IS THE CHAMPION!");
+        } else {
+            System.out.println("\nIT'S A TIE!");
+        }
+
+        System.out.println("======================================");
     }
 }
