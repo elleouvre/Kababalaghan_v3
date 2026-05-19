@@ -6,6 +6,7 @@ public class Mananananggal extends Character {
 
     public Mananananggal() {
         super("Manananggal", "Villain", 100, 20, 150,
+                0.95,0.80,0.65,
                 "Kalas ng Laman",
                 "Hapdi ng Paglipad",
                 "Pagtipon ng Hating Katawan!");

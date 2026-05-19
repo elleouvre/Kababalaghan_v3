@@ -7,6 +7,7 @@ public class Tikbalang extends Character {
 
     public Tikbalang() {
         super("Tikbalang", "Villain", 120, 30, 100,
+                0.95,0.80,0.65,
                 "Hoof Stomp",
                 "Labyrinth of the Forest",
                 "Gingagayuma (Bewitched)");

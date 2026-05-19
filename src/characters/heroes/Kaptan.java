@@ -8,6 +8,7 @@ public class Kaptan extends Character{
 
     public Kaptan(){
         super("Kaptan", "Hero", 180, 30, 100,
+                0.95,0.80,0.65,
                 "KiDLAT",
                 "BAGYOH!",
                 "Hampas-Langit!");

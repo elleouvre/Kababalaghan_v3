@@ -7,7 +7,11 @@ public class Santelmo extends Character{
     // this is Santelmo specific
     private int heatLevel = 0;
     public Santelmo(){
-        super("Santelmo", "Villain", 150, 25, 100,  "SpARK!", "BlaZe", "FiREBALL!");
+        super("Santelmo", "Villain", 150, 25, 100,
+                0.95,0.80,0.65,
+                "SpARK!",
+                "BlaZe",
+                "FiREBALL!");
 
         this.basicAttackStaminaCost = 0;
         this.specialSkillStaminaCost = 15;

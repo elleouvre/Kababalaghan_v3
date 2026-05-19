@@ -6,6 +6,7 @@ public class Apolaki extends Character {
 
     public Apolaki() {
         super("Apolaki", "Hero", 150, 25, 100,
+                0.95,0.80,0.65,
                 "Banal ng Digmaan",
                 "Bagsik ng Araw",
                 "Paghampas ng Bathalang Mandirigma!");

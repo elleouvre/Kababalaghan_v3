@@ -7,6 +7,7 @@ public class Mayari extends Character {
 
     public Mayari() {
         super("Mayari", "Hero", 140, 28, 100,
+                0.95, 0.80, 0.65,
                 "Tumatagos ang Liwanag ng Buwan",
                 "Saplot ng One-Eyed Queen",
                 "Dekreto ng Celestial Divide");
@@ -62,3 +63,4 @@ public class Mayari extends Character {
             System.out.println("Nag-restore ang isang Silver Shield " + healAmount + " HP to " + name + "!");
         }
     }
+}

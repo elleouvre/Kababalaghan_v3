@@ -5,6 +5,7 @@ import characters.Character;
 public class Kapre extends Character {
     public Kapre() {
         super("Kapre", "Villain", 170, 17,100,
+                0.95,0.80,0.65,
                 "Suntok ng Higante",
                 "Usok ng Sigarilyo",
                 "Galit ng Bantay-Puno");
