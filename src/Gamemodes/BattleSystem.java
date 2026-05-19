@@ -90,10 +90,6 @@ public class BattleSystem {
         return player1;
     }
 
-    private boolean checkHit(double accuracyRate) {
-        return Math.random() <= accuracyRate;
-    }
-
     //Player turn logic for both singleplayer and multiplayer - Bea
     private void playerTurn(Character attacker, Character defender){
         displayStats(attacker, defender);
@@ -104,42 +100,25 @@ public class BattleSystem {
         switch (action) {
             case 1:
                 if (attacker.getStamina().spend(attacker.getBasicAttackStaminaCost())) {
-                    if(checkHit(attacker.getAccuracy().getBasicAccuracy())){
-                        attacker.basicAttack(defender);
-                    }else {
-                        System.out.println(attacker.getName()+" misses their basic attack! ");
-                    }
-                }else{
+                    attacker.basicAttack(defender);
+                } else {
                     System.out.println("Not enough stamina!");
-                    }
+                }
                 break;
             case 2:
                 if(attacker.getStamina().spend(attacker.getSpecialSkillStaminaCost())){
-                    if(checkHit(attacker.getAccuracy().getSpecialAccuracy())) {
-                        attacker.specialSkill(defender);
-                    }else{
-                        System.out.println(attacker.getName()+" misses their special attack! ");
-                    }
+                    attacker.specialSkill(defender);
                 }else{
                     System.out.println("Not enough stamina!");
-                 }
+                }
                 break;
             case 3:
                 if(attacker.getStamina().spend(attacker.getUltimateSkillStaminaCost())){
-                    if(checkHit(attacker.getAccuracy().getUltimateAccuracy())) {
-                        attacker.ultimateSkill(defender);
-                    }
-                    else{
-                        System.out.println(attacker.getName()+" misses their ultimate attack! ");
-                    }
+                    attacker.ultimateSkill(defender);
                 }else{
                     System.out.println("\n[WARNING] Not enough stamina! Need " + attacker.getUltimateSkillStaminaCost() + " stamina.");
                     System.out.println("Performing basic attack instead!");
-                    if (checkHit(attacker.getAccuracy().getBasicAccuracy())) {
-                        attacker.basicAttack(defender);
-                    }else{
-                        System.out.println("Basic attack also misses. Unlucky.");
-                    }
+                    attacker.basicAttack(defender);
                 }
                 break;
         }
@@ -170,44 +149,26 @@ public class BattleSystem {
 
         switch (action){
             case 1:
-                if(ai.getStamina().spend(ai.getBasicAttackStaminaCost())) {
-                    if (checkHit(ai.getAccuracy().getBasicAccuracy())) {
-                        ai.basicAttack(player);
-                    } else {
-                        System.out.println(ai.getName()+" misses their basic attack! ");
-                    }
+                if(ai.getStamina().spend(ai.getBasicAttackStaminaCost())){
+                    ai.basicAttack(player);
                 }else{
-                        System.out.println("Not enough stamina!");
-                    }
+                    System.out.println("Not enough stamina!");
+                }
                 break;
             case 2:
                 if(ai.getStamina().spend(ai.getSpecialSkillStaminaCost())){
-                    if (checkHit(ai.getAccuracy().getSpecialAccuracy())) {
-                        ai.specialSkill(player);
-                    }
-                    else{
-                        System.out.println(ai.getName()+" misses their special attack! ");
-                    }
+                    ai.specialSkill(player);
                 }else{
                     System.out.println("Not enough stamina!");
                 }
                 break;
             case 3:
                 if(ai.getStamina().spend(ai.getUltimateSkillStaminaCost())){
-                    if (checkHit(ai.getAccuracy().getUltimateAccuracy())) {
-                        ai.ultimateSkill(player);
-                    }
-                    else{
-                        System.out.println(ai.getName()+" misses their ultimate attack! ");
-                    }
+                    ai.ultimateSkill(player);
                 }else{
                     System.out.println("\n[WARNING] Not enough stamina! Need " + ai.getUltimateSkillStaminaCost() + " stamina.");
                     System.out.println("Performing basic attack instead!");
-                    if (checkHit(ai.getAccuracy().getBasicAccuracy())) {
-                        ai.basicAttack(player);
-                    }else{
-                        System.out.println("Basic attack also misses. Unlucky.");
-                    }
+                    ai.basicAttack(player);
                 }
                 break;
         }
