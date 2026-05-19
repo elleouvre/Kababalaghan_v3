@@ -224,10 +224,18 @@ public class BattleSystem {
     }
 
     //Display battle intro - Lou
-    private void displayBattleIntro(){ }
+    private void displayBattleIntro(){
+        System.out.println("\n======================================");
+        System.out.println("          BATTLE START");
+        System.out.println("======================================");
+    }
 
     //Display battle result - Lou
-    private void displayBattleResult(){ }
+    private void displayBattleResult(){
+        System.out.println("\n======================================");
+        System.out.println("         BATTLE FINISHED");
+        System.out.println("======================================");
+    }
 
     //Display Skills or Action - Lou
     private void displaySkills(Character character){
