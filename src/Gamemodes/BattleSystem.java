@@ -16,7 +16,39 @@ public class BattleSystem {
 
     //For Singleplayer (Player vs AI) - Lou
     public void startSingleplayer(Character player, Character ai){
+        System.out.println("[ PLAYER VS AI BATTLE ]");
+        System.out.println(player.getName() + " VS " + ai.getName());
+        System.out.println("Press Enter to start!");
+        scanner.nextLine();
 
+        while(player.isAlive() && ai.isAlive()){
+            displayStats(player, ai);
+
+            System.out.println("\n======================================");
+            System.out.println("YOUR TURN (" + player.getName() + ")");
+            System.out.println("======================================");
+            playerTurn(player, ai);
+
+            if(!ai.isAlive()){
+                break;
+            }
+            System.out.println("\n======================================");
+            System.out.println("ENEMY TURN (" + ai.getName() + ")");
+            System.out.println("======================================");
+            aiTurn(ai, player);
+
+            if(player.isAlive()){
+                System.out.println("\n[Stamina Regeneration]");
+                player.getStamina().regen();
+            }
+            if(ai.isAlive()){
+                ai.getStamina().regen();
+            }
+
+            System.out.println("\nPress Enter to continue...");
+            scanner.nextLine();
+        }
+        displayBattleResult();
     }
 
     //For multiplayer (Player vs Player) - Bea
