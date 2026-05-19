@@ -17,7 +17,12 @@ public class Multiplayer {
     }
 
     public void start(){
-        //add multiplayer mode display - Lou
+        //display multiplayer mode display
+        System.out.println();
+        System.out.println();
+        System.out.println("===========================================");
+        System.out.println("            MULTIPLAYER MODE");
+        System.out.println("===========================================");
 
         boolean playing = true;
         while(playing){
@@ -29,7 +34,13 @@ public class Multiplayer {
             System.out.println("\n[PLAYER 2'S TURN]");
             Character player2 = chooseCharacter("Player 2");
 
-            //add battle intro - lou
+            //display battle intro
+            System.out.println("\n===========================================");
+            System.out.println("              FINAL BATTLE");
+            System.out.println("===========================================");
+            System.out.println(player1.getName() + " VS " + player2.getName());
+            System.out.println("Press Enter to start the battle!");
+            scanner.nextLine();
 
             Character winner = battleSystem.startMultiplayer(player1, player2);
             if(winner == player1){
