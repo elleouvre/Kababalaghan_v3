@@ -5,7 +5,7 @@ import characters.Character;
 public class Magwayen extends Character {
     public Magwayen() {
         super("Magwayen", "Hero", 140, 15, 120,
-                0.95,0.80,0.65,
+                0.80,0.60,0.30,
                 "Ulap ng Kalaliman",
                 "Luha ng Karagatan",
                 "Pagtawid sa Dagat ng mga Yumao");
