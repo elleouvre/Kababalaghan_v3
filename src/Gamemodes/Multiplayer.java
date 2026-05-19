@@ -81,8 +81,22 @@ public class Multiplayer {
         }
     }
 
-    //Lou
     private Character selectCharacter(ArrayList<Character> characters, String playerName) {
+        System.out.println("\n" + playerName + ", choose your character:");
+        System.out.println("--------------------------------------");
+
+        for (int i = 0; i < characters.size(); i++) {
+            Character c = characters.get(i);
+            System.out.printf("%d. %-15s HP: %3d | ATK: %3d | STA: %3d%n",
+                    (i + 1),
+                    c.getName(),
+                    c.getMaxHp(),
+                    c.getAttack(),
+                    c.getStaminaMax());
+            System.out.printf("   Skills: %s, %s, %s%n",
+                    c.getBasic(),
+                    c.getSpecial(),
+                    c.getUltimate());
     }
 
     //Lou
