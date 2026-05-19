@@ -97,6 +97,20 @@ public class Multiplayer {
                     c.getBasic(),
                     c.getSpecial(),
                     c.getUltimate());
+        }
+
+        System.out.print("\nChoice: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        if (choice < 1 || choice > characters.size()) {
+            System.out.println("Invalid choice! Defaulting to first character.");
+            return characters.get(0);
+        }
+
+        Character selected = characters.get(choice - 1);
+        System.out.println("\n[" + playerName + " chose: " + selected.getName() + "]");
+        return selected;
     }
 
     //Lou
