@@ -207,7 +207,21 @@ public class BattleSystem {
     }
 
     //Display HP and Stamina bars for both characters - Lou
-    private void displayStats(Character c1, Character c2){ }
+    private void displayStats(Character c1, Character c2){
+        System.out.println("\n======================================");
+        System.out.printf("%-15s VS %-15s%n", c1.getName(), c2.getName());
+        System.out.println("--------------------------------------");
+
+        System.out.println(c1.getName());
+        System.out.println("HP: " + c1.getHp() + "/" + c1.getMaxHp());
+        System.out.println("STA: " + c1.getStamina().getCurrent() + "/" + c1.getStaminaMax());
+        System.out.println();
+
+        System.out.println(c2.getName());
+        System.out.println("HP: " + c2.getHp() + "/" + c2.getMaxHp());
+        System.out.println("STA: " + c2.getStamina().getCurrent() + "/" + c2.getStaminaMax());
+        System.out.println("======================================");
+    }
 
     //Display battle intro - Lou
     private void displayBattleIntro(){ }
@@ -216,6 +230,11 @@ public class BattleSystem {
     private void displayBattleResult(){ }
 
     //Display Skills or Action - Lou
-    private void displaySkills(Character character){ }
+    private void displaySkills(Character character){
+        System.out.println("\nAvailable Skills:");
+        System.out.println("1. " + character.getBasic() + " (Cost: " + character.getBasicAttackStaminaCost() + ")");
+        System.out.println("2. " + character.getSpecial() + " (Cost: " + character.getSpecialSkillStaminaCost() + ")");
+        System.out.println("3. " + character.getUltimate() + " (Cost: " + character.getUltimateSkillStaminaCost() + ")");
+    }
 
 }
