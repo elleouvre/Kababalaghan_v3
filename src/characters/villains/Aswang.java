@@ -2,9 +2,10 @@ package characters.villains;
 import characters.Character;
 
 public class Aswang extends Character {
+
     public Aswang() {
         super("Aswang", "Villain", 150, 15,100,
-                0.95,0.80,0.65,
+                0.50,0.75,0.80,
                 "Kagat ng Dilim",
                 "Anino Lurker",
                 "Sigaw ng Kadiliman");
@@ -16,11 +17,15 @@ public class Aswang extends Character {
     @Override
     public void basicAttack(Character target){
         if(getStamina().spend(basicAttackStaminaCost)){
-            int damage = attack + random.nextInt(5);
 
             System.out.println(name + " uses " + skill1 + "!");
-            System.out.println("Sumuko ka sa gutom ng dilim!");
+            if(random.nextDouble() >= getAccuracy().getBasicAccuracy()) {
+                System.out.println(name + "'s attack missed in the darkness!");
+                return;
+            }
 
+            int damage = attack + random.nextInt(5);
+            System.out.println("Sumuko ka sa gutom ng dilim!");
             target.takeDamage(damage);
         }
     }
@@ -28,11 +33,15 @@ public class Aswang extends Character {
     @Override
     public void specialSkill(Character target){
         if(getStamina().spend(specialSkillStaminaCost)){
-            int damage = attack * 2 + random.nextInt(10);
-
             System.out.println(name + " uses " + skill2 + "!");
-            System.out.println("Hindi mo ako makikita sa dilim!");
 
+            if(random.nextDouble() > getAccuracy().getSpecialAccuracy()){
+
+                System.out.println("Hindi mo ako makikita sa dilim!");
+            }
+
+            int damage = attack * 2 + random.nextInt(10);
+            System.out.println("Hindi mo ako makikita sa dilim!");
             target.takeDamage(damage);
             System.out.println(target.getName() + " is struck from the shadows!");
         }
@@ -41,11 +50,15 @@ public class Aswang extends Character {
     @Override
     public void ultimateSkill(Character target){
         if(getStamina().spend(ultimateSkillStaminaCost)){
-            int damage = attack * 3 + random.nextInt(20);
-
             System.out.println(name + " uses " + skill3 + "!");
-            System.out.println("Lulunukin kayo ng kadiliman!");
 
+            if(random.nextDouble() >= getAccuracy().getUltimateAccuracy()) {
+                System.out.println("The darkness consumed the attack! It missed!");
+                return;
+            }
+
+            int damage = attack * 3 + random.nextInt(20);
+            System.out.println("Lulunukin kayo ng kadiliman!");
             target.takeDamage(damage);
             System.out.println("A massive wave of darkness engulfs the battlefield!");
         }
