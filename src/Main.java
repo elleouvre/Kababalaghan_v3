@@ -40,10 +40,16 @@ public class Main {
 
             } else if (choice == 2) {
                 CharacterFactory.showAllCharacters();
+                sc.nextLine();
             } else if (choice==3){
                 System.out.println("Exiting...");
                 sc.close();
             }
+            System.out.println();
+            showDisplayMenu();
+            System.out.print("Choose Option: ");
+            choice = sc.nextInt();
+            sc.nextLine();
         }
     }
     public static void showDisplayMenu(){
