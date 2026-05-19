@@ -7,7 +7,7 @@ public class Mayari extends Character {
 
     public Mayari() {
         super("Mayari", "Hero", 140, 28, 100,
-                0.95, 0.80, 0.65,
+                0.90, 0.88, 0.84,
                 "Tumatagos ang Liwanag ng Buwan",
                 "Saplot ng One-Eyed Queen",
                 "Dekreto ng Celestial Divide");
@@ -37,7 +37,7 @@ public class Mayari extends Character {
     public void specialSkill(Character target) {
         if (getStamina().spend(specialSkillStaminaCost)) {
             int damage = attack * 2 + random.nextInt(15);
-            System.out.println(name + " uses " + skill2 + "!");
+            System.out.println(name + " uses " + skill2 + " !");
             System.out.println("Ang talim ng gasuklay ni Mayari ay tumatawid sa larangan ng digmaan!");
             target.takeDamage(damage);
 
@@ -52,7 +52,7 @@ public class Mayari extends Character {
     public void ultimateSkill(Character target) {
         if (getStamina().spend(ultimateSkillStaminaCost)) {
             int damage = attack * 3 + 20 + random.nextInt(15);
-            System.out.println(name + " uses " + skill3 + "!");
+            System.out.println(name + " uses " + skill3 + " !");
             System.out.println("Nahati ang langit! 'Ako ang tunay na panginoon ng langit!'");
 
             target.takeDamage(damage);

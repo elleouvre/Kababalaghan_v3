@@ -7,7 +7,7 @@ public class Tikbalang extends Character {
 
     public Tikbalang() {
         super("Tikbalang", "Villain", 120, 30, 100,
-                0.95,0.80,0.65,
+                0.88,0.85,0.82,
                 "Hoof Stomp",
                 "Labyrinth of the Forest",
                 "Gingagayuma (Bewitched)");
@@ -38,7 +38,7 @@ public class Tikbalang extends Character {
             target.takeDamage(damage);
 
             // In a real battle manager, you'd add a "Confused" status here
-            System.out.println(target.getName() + "'s accuracy has dropped!");
+            System.out.println("bumaba ang accuracy ni" + target.getName() + " !");
         }
     }
 
@@ -54,16 +54,5 @@ public class Tikbalang extends Character {
             getStamina().add(20);  //
             System.out.println(name + " gumagalaw nang may supernatural na bilis, na nagbabalik ng 20 stamina!");
         }
-    }
-
-    @Override
-    public void takeDamage(int damage) {
-        // Passive: "Trickster's Haze"
-        // 20% chance to take 0 damage by "vanishing" into the forest
-        if (random.nextInt(100) < 20) {
-            System.out.println(name + " nawala sa mga puno! Hindi nakuha ang pag-atake!");
-            return;
-        }
-        super.takeDamage(damage);
     }
 }
