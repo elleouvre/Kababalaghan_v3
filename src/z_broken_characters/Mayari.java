@@ -1,4 +1,5 @@
-package characters.heroes;
+/*
+package z_broken_characters;
 import characters.Character;
 
 public class Mayari extends Character {
@@ -63,3 +64,4 @@ public class Mayari extends Character {
         super.takeDamage(finalDamage);
     }
 }
+*/

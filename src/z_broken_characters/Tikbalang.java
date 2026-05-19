@@ -1,4 +1,5 @@
-package characters.villains;
+/*
+package z_broken_characters;
 import characters.Character;
 
 public class Tikbalang extends Character {
@@ -61,3 +62,4 @@ public class Tikbalang extends Character {
         super.takeDamage(damage);
     }
 }
+*/
