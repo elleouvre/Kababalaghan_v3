@@ -2,18 +2,15 @@ package Gamemodes;
 
 import characters.Character;
 import characters.StaminaSystem;
-
 import java.util.*;
 
 
 public class BattleSystem {
     private Scanner scanner;
 
-
     public BattleSystem(Scanner scanner){
         this.scanner = scanner;
     }
-
 
 
     //For Singleplayer (Player vs AI) - Lou
@@ -25,7 +22,7 @@ public class BattleSystem {
 
         while(player.isAlive() && ai.isAlive()){
             displayStats(player, ai);
-
+            System.out.println();
             System.out.println("\n======================================");
             System.out.println("YOUR TURN (" + player.getName() + ")");
             System.out.println("======================================");
@@ -34,33 +31,39 @@ public class BattleSystem {
             if(!ai.isAlive()){
                 break;
             }
+
+            System.out.println("\nPress Enter for the enemy's turn...\n");
+            scanner.nextLine();
+
             System.out.println("\n======================================");
             System.out.println("ENEMY TURN (" + ai.getName() + ")");
             System.out.println("======================================");
             aiTurn(ai, player);
 
+            System.out.println("\n[Stamina Regeneration]");
             if(player.isAlive()){
-                System.out.println("\n[Stamina Regeneration]");
+                System.out.print(player.getName() + " (You) ");
                 player.getStamina().regen();
             }
             if(ai.isAlive()){
+                System.out.print(ai.getName() + " ");
                 ai.getStamina().regen();
             }
 
-            System.out.println("\nPress Enter to continue...");
+            System.out.println("\nPress Enter to continue...\n");
             scanner.nextLine();
         }
         displayBattleResult();
     }
 
     //For multiplayer (Player vs Player) - Bea
-    public Character startMultiplayer(Character player1, Character player2){
+    public Character startMultiplayer(Character player1, Character player2, boolean player1GoesFirst){
         System.out.println("\n[ PLAYER VS PLAYER BATTLE ]");
         System.out.println(player1.getName() + " VS " + player2.getName());
         System.out.println("Press Enter to start!");
         scanner.nextLine();
 
-        boolean player1Turn = true;
+        boolean player1Turn = player1GoesFirst;
 
         while(player1.isAlive() && player2.isAlive()){
             displayStats(player1, player2);
@@ -76,20 +79,27 @@ public class BattleSystem {
                 System.out.println("======================================");
                 playerTurn(player2, player1);
             }
+
+            if (!player1.isAlive() || !player2.isAlive()) {
+                break;
+            }
+
             player1Turn = !player1Turn;
+            System.out.println("\n[Stamina Regeneration]");
             if(player1.isAlive()){
-                System.out.println("\n[Stamina Regeneration]");
+                System.out.print(player1.getName() + " (P1) ");
                 player1.getStamina().regen();
             }
             if(player2.isAlive()){
+                System.out.print(player2.getName() + " (P2) ");
                 player2.getStamina().regen();
             }
-            System.out.println("\nPress Enter to continue to next round...");
+            System.out.println("\nPress Enter to continue to next round...\n");
             scanner.nextLine();
-
-            displayBattleResult();
         }
-        return player1;
+
+        displayBattleResult();
+        return player1.isAlive() ? player1 : player2;
     }
 
     //Player turn logic for both singleplayer and multiplayer - Bea
@@ -149,17 +159,18 @@ public class BattleSystem {
 
     //Validate player action input - Bea
     private int getValidAction() {
-        while(true){
-            System.out.println("Choose (1-3): ");
-            String in = scanner.nextLine();
-
-            switch(in){
-                case "1":
-                case "2":
-                case "3":
-                    return Integer.parseInt(in);
-                default:
-                    System.out.println("Invalid! Enter 1-3 only.");
+        while (true) {
+            try {
+                int action = scanner.nextInt();
+                scanner.nextLine();
+                if (action >= 1 && action <= 3) {
+                    return action;
+                } else {
+                    System.out.print("Invalid choice! Please enter 1, 2, or 3: ");
+                }
+            } catch (InputMismatchException e) {
+                System.out.print("Please enter a valid number (1-3): ");
+                scanner.nextLine();
             }
         }
     }
@@ -249,6 +260,10 @@ public class BattleSystem {
 
     //Display HP and Stamina bars for both characters - Lou
     private void displayStats(Character c1, Character c2){
+        boolean isSinglePlayer = true;
+        String p1Label = isSinglePlayer ? " (You)" : " (P1)";
+        String p2Label = isSinglePlayer ? "" : " (P2)";
+
         System.out.println("\n======================================");
         System.out.printf("%-15s VS %-15s%n", c1.getName(), c2.getName());
         System.out.println("--------------------------------------");
