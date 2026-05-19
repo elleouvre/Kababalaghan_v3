@@ -34,6 +34,9 @@ public class Multiplayer {
             System.out.println("\n[PLAYER 2'S TURN]");
             Character player2 = chooseCharacter("Player 2");
 
+            //coin flip to decide who goes first
+            boolean player1GoesFirst = coinFlip();
+
             //display battle intro
             System.out.println("\n===========================================");
             System.out.println("              FINAL BATTLE");
@@ -42,7 +45,7 @@ public class Multiplayer {
             System.out.println("Press Enter to start the battle!");
             scanner.nextLine();
 
-            Character winner = battleSystem.startMultiplayer(player1, player2);
+            Character winner = battleSystem.startMultiplayer(player1, player2, player1GoesFirst);
             if(winner == player1){
                 player1Wins++;
                 System.out.println("\n[PLAYER 1 WINS THE MATCH!]");
@@ -59,6 +62,46 @@ public class Multiplayer {
         displayFinalScore();
     }
 
+    //determines which player goes first
+    private boolean coinFlip() {
+        System.out.println("\n===========================================");
+        System.out.println("             COIN FLIP!");
+        System.out.println("===========================================");
+        System.out.println("Flipping a coin to decide who goes first...");
+        System.out.println("\nPlayer 1, call it!");
+        System.out.println(" 1. Heads");
+        System.out.println(" 2. Tails");
+        System.out.print("Choice: ");
+
+        int call;
+        try {
+            call = scanner.nextInt();
+            scanner.nextLine();
+            if (call < 1 || call > 2) call = 1;
+        } catch (InputMismatchException e) {
+            scanner.nextLine();
+            call = 1;
+        }
+
+        String playerCall = (call == 1) ? "Heads" : "Tails";
+
+        //flip the coin
+        boolean landedHeads = new Random().nextBoolean();
+        String result = landedHeads ? "Heads" : "Tails";
+
+        System.out.println("\nThe coin is in the air...");
+        System.out.println("It landed on... " + result + "!");
+
+        boolean player1Wins = (call == 1 && landedHeads) || (call == 2 && !landedHeads);
+
+        if(player1Wins) {
+            System.out.println("Player 1 called " + playerCall + " — CORRECT! Player 1 goes first!");
+        } else {
+            System.out.println("Player 1 called " + playerCall + " — WRONG! Player 2 goes first!");
+        }
+
+        return player1Wins;
+    }
 
     private Character chooseCharacter(String playerName) {
         System.out.println("\n" + playerName + ", choose your side:");
@@ -69,7 +112,7 @@ public class Multiplayer {
         int side = scanner.nextInt();
         scanner.nextLine();
 
-        if (side == 1) {
+        if(side == 1) {
             ArrayList<Character> heroes = CharacterFactory.getAllHeroes();
             return selectCharacter(heroes, playerName);
         } else if (side == 2) {
