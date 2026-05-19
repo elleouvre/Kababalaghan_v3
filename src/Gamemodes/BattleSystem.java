@@ -14,6 +14,8 @@ public class BattleSystem {
         this.scanner = scanner;
     }
 
+
+
     //For Singleplayer (Player vs AI) - Lou
     public void startSingleplayer(Character player, Character ai){
         System.out.println("[ PLAYER VS AI BATTLE ]");
@@ -22,7 +24,7 @@ public class BattleSystem {
         scanner.nextLine();
 
         while(player.isAlive() && ai.isAlive()){
-            displayStats(player, ai, true); // Pass true for single-player
+            displayStats(player, ai);
 
             System.out.println("\n======================================");
             System.out.println("YOUR TURN (" + player.getName() + ")");
@@ -32,22 +34,16 @@ public class BattleSystem {
             if(!ai.isAlive()){
                 break;
             }
-            
-            System.out.println("\nPress Enter for the enemy's turn...");
-            scanner.nextLine();
-
             System.out.println("\n======================================");
             System.out.println("ENEMY TURN (" + ai.getName() + ")");
             System.out.println("======================================");
             aiTurn(ai, player);
 
-            System.out.println("\n[Stamina Regeneration]");
             if(player.isAlive()){
-                System.out.print(player.getName() + " (You) ");
+                System.out.println("\n[Stamina Regeneration]");
                 player.getStamina().regen();
             }
             if(ai.isAlive()){
-                System.out.print(ai.getName() + " ");
                 ai.getStamina().regen();
             }
 
@@ -67,7 +63,7 @@ public class BattleSystem {
         boolean player1Turn = true;
 
         while(player1.isAlive() && player2.isAlive()){
-            displayStats(player1, player2, false); // Pass false for multiplayer
+            displayStats(player1, player2);
 
             if(player1Turn){
                 System.out.println("\n======================================");
@@ -80,31 +76,25 @@ public class BattleSystem {
                 System.out.println("======================================");
                 playerTurn(player2, player1);
             }
-            
-            if (!player1.isAlive() || !player2.isAlive()) {
-                break;
-            }
-
             player1Turn = !player1Turn;
-            System.out.println("\n[Stamina Regeneration]");
             if(player1.isAlive()){
-                System.out.print(player1.getName() + " (P1) ");
+                System.out.println("\n[Stamina Regeneration]");
                 player1.getStamina().regen();
             }
             if(player2.isAlive()){
-                System.out.print(player2.getName() + " (P2) ");
                 player2.getStamina().regen();
             }
             System.out.println("\nPress Enter to continue to next round...");
             scanner.nextLine();
+
+            displayBattleResult();
         }
-        
-        displayBattleResult();
-        return player1.isAlive() ? player1 : player2;
+        return player1;
     }
 
     //Player turn logic for both singleplayer and multiplayer - Bea
     private void playerTurn(Character attacker, Character defender){
+        displayStats(attacker, defender);
         displaySkills(attacker);
         System.out.print("\nChoose action: ");
         int action = getValidAction();
@@ -112,28 +102,43 @@ public class BattleSystem {
         switch (action) {
             case 1:
                 if (attacker.getStamina().spend(attacker.getBasicAttackStaminaCost())) {
-                    attacker.basicAttack(defender);
+                    if(checkHit(attacker.getAccuracy().getBasicAccuracy())) {
+                        attacker.basicAttack(defender);
+                    }
+                    else{
+                        System.out.println(attacker.getName()+" misses their basic attack!");
+                    }
                 } else {
                     System.out.println("Not enough stamina!");
                 }
                 break;
             case 2:
                 if(attacker.getStamina().spend(attacker.getSpecialSkillStaminaCost())){
-                    attacker.specialSkill(defender);
+                    if(checkHit(attacker.getAccuracy().getSpecialAccuracy())) {
+                        attacker.specialSkill(defender);
+                    }
+                    else{
+                        System.out.println(attacker.getName()+" misses their special skill!");
+                    }
                 }else{
                     System.out.println("Not enough stamina!");
                 }
                 break;
             case 3:
                 if(attacker.getStamina().spend(attacker.getUltimateSkillStaminaCost())){
-                    attacker.ultimateSkill(defender);
+                    if(checkHit(attacker.getAccuracy().getUltimateAccuracy())) {
+                        attacker.ultimateSkill(defender);
+                    }
+                    else {
+                            System.out.println(attacker.getName() + " misses their ultimate skill!");
+                    }
                 }else{
                     System.out.println("\n[WARNING] Not enough stamina! Need " + attacker.getUltimateSkillStaminaCost() + " stamina.");
                     System.out.println("Performing basic attack instead!");
-                    if (attacker.getStamina().spend(attacker.getBasicAttackStaminaCost())) {
+                    if(checkHit(attacker.getAccuracy().getBasicAccuracy())) {
                         attacker.basicAttack(defender);
-                    } else {
-                        System.out.println("Not enough stamina for a basic attack either!");
+                    }else{
+                        System.out.println("Basic attack also misses... Unlucky.. ");
                     }
                 }
                 break;
@@ -145,7 +150,7 @@ public class BattleSystem {
     //Validate player action input - Bea
     private int getValidAction() {
         while(true){
-            System.out.print("Choose (1-3): ");
+            System.out.println("Choose (1-3): ");
             String in = scanner.nextLine();
 
             switch(in){
@@ -166,28 +171,44 @@ public class BattleSystem {
         switch (action){
             case 1:
                 if(ai.getStamina().spend(ai.getBasicAttackStaminaCost())){
-                    ai.basicAttack(player);
+                    if(checkHit(ai.getAccuracy().getBasicAccuracy())) {
+                        ai.basicAttack(player);
+                    }
+                    else{
+                        System.out.println(ai.getName()+" misses their basic attack!");
+                    }
                 }else{
                     System.out.println("Not enough stamina!");
                 }
                 break;
             case 2:
                 if(ai.getStamina().spend(ai.getSpecialSkillStaminaCost())){
-                    ai.specialSkill(player);
+                    if(checkHit(ai.getAccuracy().getSpecialAccuracy())) {
+                        ai.specialSkill(player);
+                    }
+                    else{
+                        System.out.println(ai.getName()+" misses their special skill!");
+                    }
                 }else{
                     System.out.println("Not enough stamina!");
                 }
                 break;
             case 3:
                 if(ai.getStamina().spend(ai.getUltimateSkillStaminaCost())){
-                    ai.ultimateSkill(player);
+                    if(checkHit(ai.getAccuracy().getUltimateAccuracy())){
+                        ai.ultimateSkill(player);
+                    }
+                    else{
+                        System.out.println(ai.getName() + " misses their ultimate skill!");
+                    }
                 }else{
                     System.out.println("\n[WARNING] Not enough stamina! Need " + ai.getUltimateSkillStaminaCost() + " stamina.");
                     System.out.println("Performing basic attack instead!");
-                    if (ai.getStamina().spend(ai.getBasicAttackStaminaCost())) {
+                    if(checkHit(ai.getAccuracy().getBasicAccuracy())) {
                         ai.basicAttack(player);
-                    } else {
-                        System.out.println("Not enough stamina for a basic attack either!");
+                    }
+                    else{
+                        System.out.println("Basic attack also misses... Unlucky.. ");
                     }
                 }
                 break;
@@ -227,20 +248,17 @@ public class BattleSystem {
     }
 
     //Display HP and Stamina bars for both characters - Lou
-    private void displayStats(Character c1, Character c2, boolean isSinglePlayer){
-        String p1Label = isSinglePlayer ? " (You)" : " (P1)";
-        String p2Label = isSinglePlayer ? "" : " (P2)";
-
+    private void displayStats(Character c1, Character c2){
         System.out.println("\n======================================");
-        System.out.printf("%-15s VS %-15s%n", c1.getName() + p1Label, c2.getName() + p2Label);
+        System.out.printf("%-15s VS %-15s%n", c1.getName(), c2.getName());
         System.out.println("--------------------------------------");
 
-        System.out.println(c1.getName() + p1Label);
+        System.out.println(c1.getName());
         System.out.println("HP: " + c1.getHp() + "/" + c1.getMaxHp());
         System.out.println("STA: " + c1.getStamina().getCurrent() + "/" + c1.getStaminaMax());
         System.out.println();
 
-        System.out.println(c2.getName() + p2Label);
+        System.out.println(c2.getName());
         System.out.println("HP: " + c2.getHp() + "/" + c2.getMaxHp());
         System.out.println("STA: " + c2.getStamina().getCurrent() + "/" + c2.getStaminaMax());
         System.out.println("======================================");
@@ -267,5 +285,7 @@ public class BattleSystem {
         System.out.println("2. " + character.getSpecial() + " (Cost: " + character.getSpecialSkillStaminaCost() + ")");
         System.out.println("3. " + character.getUltimate() + " (Cost: " + character.getUltimateSkillStaminaCost() + ")");
     }
-
+    private boolean checkHit(double accuracyRate) {
+        return Math.random() <= accuracyRate;
+    }
 }

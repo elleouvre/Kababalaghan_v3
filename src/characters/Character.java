@@ -13,7 +13,7 @@ public abstract class Character {
     protected Random random = new Random();
 
     private StaminaSystem stamina;
-
+    private AccuracySystem accuracy;
     // attack/skills
     protected String skill1;
     protected String skill2;
@@ -24,13 +24,15 @@ public abstract class Character {
     protected int specialSkillStaminaCost = 20;
     protected int ultimateSkillStaminaCost = 50;
 
-    public Character(String name,String type,int maxHp, int attack, int maxStamina,
+    public Character(String name,String type,int maxHp, int attack, int maxStamina,//basic stats
+                     double basicAcc, double specialAcc, double ultAcc,
                      String skill1, String skill2, String skill3) {
         this.name = name;
         this.type = type;
         this.hp = maxHp;
         this.maxHp = maxHp;
         this.stamina = new StaminaSystem(maxStamina, 15, 25); // Default regen between 15-25
+        this.accuracy = new AccuracySystem(basicAcc, specialAcc, ultAcc);
         this.attack = attack;
         this.skill1 = skill1;
         this.skill2 = skill2;
@@ -85,6 +87,7 @@ public abstract class Character {
     public StaminaSystem getStamina() {
         return stamina;
     }
+    public AccuracySystem getAccuracy(){return accuracy;}
 
     public int getStaminaMax() { return stamina.getMax();}
     public int getStaminaRegenMin() { return stamina.getRegenMin(); }
