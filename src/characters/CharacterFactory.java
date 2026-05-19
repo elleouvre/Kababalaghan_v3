@@ -15,7 +15,7 @@ public class CharacterFactory {
         heroes.add(new Kaptan());
         heroes.add(new Magwayen());
         heroes.add(new MariaMakiling());
-        heroes.add(new Mayari());
+        //heroes.add(new Mayari());
         //to add more
         Collections.shuffle(heroes);
         return heroes;
@@ -28,7 +28,7 @@ public class CharacterFactory {
         villains.add(new Kapre());
         villains.add(new Mananananggal());
         villains.add(new Santelmo());
-        villains.add(new Tikbalang());
+        //villains.add(new Tikbalang());
         //to add more
 
         Collections.shuffle(villains);
