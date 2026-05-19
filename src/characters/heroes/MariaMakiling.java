@@ -24,7 +24,6 @@ public class MariaMakiling extends Character {
             System.out.println("Humahampas ng mahiwagang baging para magdulot ng damage sa kalaban.");
 
             target.takeDamage(damage);
-            System.out.println(target.getName() + " took " + damage + " damage.");
         }
     }
 
@@ -38,11 +37,9 @@ public class MariaMakiling extends Character {
             System.out.println("Tumatawag siya ng malalakas na hangin at gumagaling ang katawan sa kapangyarihan ng kalikasan.");
 
             target.takeDamage(damage);
-            System.out.println(target.getName() + " took " + damage + " damage.");
 
-            int heal = 10;
-            hp = Math.min(maxHp, this.hp + heal);
-            System.out.println(name + " restored " + heal + " HP using Lunas ng Kalikasan.");
+            hp = Math.min(maxHp, this.hp + healAmount);
+            System.out.println(name + " restored " + healAmount + " HP using Lunas ng Kalikasan.");
         }
     }
 
@@ -54,7 +51,6 @@ public class MariaMakiling extends Character {
             System.out.println("Inilalabas ang buong kapangyarihan ng kalikasan para sa napakalakas na area attack!");
 
             target.takeDamage(damage);
-            System.out.println(target.getName() + " took " + damage + " damage.");
         }
     }
 }

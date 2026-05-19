@@ -3,7 +3,7 @@ import characters.Character;
 
 public class Aswang extends Character {
     public Aswang() {
-        super("Aswang", "Hero", 150, 15,100,
+        super("Aswang", "Villain", 150, 15,100,
                 "Kagat ng Dilim",
                 "Anino Lurker",
                 "Sigaw ng Kadiliman");
@@ -21,7 +21,6 @@ public class Aswang extends Character {
             System.out.println("Sumuko ka sa gutom ng dilim!");
 
             target.takeDamage(damage);
-            System.out.println(target.getName() + " took " + damage + " damage.");
         }
     }
 
