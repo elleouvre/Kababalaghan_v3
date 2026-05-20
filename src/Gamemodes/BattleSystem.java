@@ -15,19 +15,19 @@ public class BattleSystem {
 
     //For Singleplayer (Player vs AI) - Lou
     public void startSingleplayer(Character player, Character ai){
-        System.out.println();
+        displayBattleIntro();
         System.out.println("[ PLAYER VS AI BATTLE ]");
         System.out.println(player.getName() + " VS " + ai.getName());
         System.out.println("Press Enter to start!");
         scanner.nextLine();
 
         while(player.isAlive() && ai.isAlive()){
-            displayStats(player, ai);
+           // displayStats(player, ai, 1);  // mode 1 = singleplayer
             System.out.println();
             System.out.println("\n======================================");
             System.out.println("YOUR TURN (" + player.getName() + ")");
             System.out.println("======================================");
-            playerTurn(player, ai);
+            playerTurn(player, ai,1);
 
             if(!ai.isAlive()){
                 break;
@@ -36,6 +36,7 @@ public class BattleSystem {
             System.out.println("\nPress Enter for the enemy's turn...\n");
             scanner.nextLine();
 
+            //displayStats(player, ai, 1);
             System.out.println("\n======================================");
             System.out.println("ENEMY TURN (" + ai.getName() + ")");
             System.out.println("======================================");
@@ -59,6 +60,7 @@ public class BattleSystem {
 
     //For multiplayer (Player vs Player) - Bea
     public Character startMultiplayer(Character player1, Character player2, boolean player1GoesFirst){
+        displayBattleIntro();
         System.out.println("\n[ PLAYER VS PLAYER BATTLE ]");
         System.out.println(player1.getName() + " VS " + player2.getName());
         System.out.println("Press Enter to start!");
@@ -67,23 +69,19 @@ public class BattleSystem {
         boolean player1Turn = player1GoesFirst;
 
         while(player1.isAlive() && player2.isAlive()){
-            displayStats(player1, player2);
-
             if(player1Turn){
                 System.out.println("\n======================================");
                 System.out.println("PLAYER 1'S TURN (" + player1.getName() + ")");
                 System.out.println("======================================");
-                playerTurn(player1, player2);
+                playerTurn(player1, player2, 2);
             }else{
                 System.out.println("\n======================================");
                 System.out.println("PLAYER 2'S TURN (" + player2.getName() + ")");
                 System.out.println("======================================");
-                playerTurn(player2, player1);
+                playerTurn(player2, player1, 2);
             }
 
-            if (!player1.isAlive() || !player2.isAlive()) {
-                break;
-            }
+            if (!player1.isAlive() || !player2.isAlive()) { break; }
 
             player1Turn = !player1Turn;
             System.out.println("\n[Stamina Regeneration]");
@@ -104,8 +102,8 @@ public class BattleSystem {
     }
 
     //Player turn logic for both singleplayer and multiplayer - Bea
-    private void playerTurn(Character attacker, Character defender){
-        displayStats(attacker, defender);
+    private void playerTurn(Character attacker, Character defender, int mode){
+        displayStats(attacker, defender, mode);
         displaySkills(attacker);
         System.out.print("\nChoose action: ");
         int action = getValidAction();
@@ -154,8 +152,6 @@ public class BattleSystem {
                 }
                 break;
         }
-        System.out.println("\n" + defender.getName() + " HP: " + defender.getHp() + "/" + defender.getMaxHp());
-
     }
 
     //Validate player action input - Bea
@@ -225,7 +221,6 @@ public class BattleSystem {
                 }
                 break;
         }
-        System.out.println("\n" + player.getName() + " HP: " + player.getHp() + "/" + player.getMaxHp());
     }
 
     //AI decision-making logic - Bea
@@ -237,46 +232,36 @@ public class BattleSystem {
         int specialCost = ai.getSpecialSkillStaminaCost();
 
         // If low HP and enough stamina for ultimate
-        if (aiHPPercentage < 30 &&
-                stamina.getCurrent() >= ultimateCost &&
-                Math.random() < 0.5) {
-            return 3;
-        }
+        if (aiHPPercentage < 30 && stamina.getCurrent() >= ultimateCost && Math.random() < 0.5) { return 3; }
 
         // If enough stamina for ultimate
-        if (stamina.getCurrent() >= ultimateCost &&
-                Math.random() < 0.3) {
-            return 3;
-        }
+        if (stamina.getCurrent() >= ultimateCost && Math.random() < 0.3) { return 3; }
 
         // If enough stamina for special
-        if (stamina.getCurrent() >= specialCost &&
-                Math.random() < 0.4) {
-            return 2;
-        }
-
-        // Default basic attack
+        if (stamina.getCurrent() >= specialCost && Math.random() < 0.4) {return 2;}
         return 1;
     }
 
     //Display HP and Stamina bars for both characters - Lou
-    private void displayStats(Character c1, Character c2){
-        boolean isSinglePlayer = true;
-        String p1Label = isSinglePlayer ? " (You)" : " (P1)";
-        String p2Label = isSinglePlayer ? "" : " (P2)";
-
+    private void displayStats(Character c1, Character c2, int mode) {
+        // mode: 1 = singleplayer, 2 = multiplayer
         System.out.println("\n======================================");
-        System.out.printf("%-15s VS %-15s%n", c1.getName(), c2.getName());
+
+        if (mode == 1) {
+            System.out.printf("%-15s VS %-15s%n", c1.getName() + " (You)", c2.getName() + " (Enemy)");
+        } else {
+            System.out.printf("%-15s VS %-15s%n", c1.getName() + " (P1)", c2.getName() + " (P2)");
+        }
         System.out.println("--------------------------------------");
 
-        System.out.println(c1.getName());
-        System.out.println("HP: " + c1.getHp() + "/" + c1.getMaxHp());
-        System.out.println("STA: " + c1.getStamina().getCurrent() + "/" + c1.getStaminaMax());
-        System.out.println();
+        System.out.printf("HP: %3d/%-3d      |      HP: %3d/%-3d%n",
+                c1.getHp(), c1.getMaxHp(),
+                c2.getHp(), c2.getMaxHp());
 
-        System.out.println(c2.getName());
-        System.out.println("HP: " + c2.getHp() + "/" + c2.getMaxHp());
-        System.out.println("STA: " + c2.getStamina().getCurrent() + "/" + c2.getStaminaMax());
+        System.out.printf("STA: %3d/%-3d     |      STA: %3d/%-3d%n",
+                c1.getStamina().getCurrent(), c1.getStaminaMax(),
+                c2.getStamina().getCurrent(), c2.getStaminaMax());
+
         System.out.println("======================================");
     }
 
