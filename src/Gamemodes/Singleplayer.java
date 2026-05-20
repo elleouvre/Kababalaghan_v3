@@ -22,7 +22,7 @@ public class Singleplayer {
 
         //Choose your character (true = Hero, false = Villain)
         boolean[] isHero = new boolean[1];
-        Character player = chooseCharacter(isHero);
+        Character player = Character.chooseCharacter(scanner, isHero);
 
         //Generates random enemy
         Character enemy = generateRandomEnemy(isHero[0]);
@@ -34,62 +34,6 @@ public class Singleplayer {
 
         System.out.println("\nPress Enter to return to menu...");
         scanner.nextLine();
-    }
-
-    private Character chooseCharacter(boolean[] isHero) {
-        System.out.println("\nChoose your side:");
-        System.out.println("1. Hero");
-        System.out.println("2. Villain");
-        System.out.print("Choice: ");
-
-        int side = scanner.nextInt();
-        scanner.nextLine();
-
-        if(side == 1) {
-            isHero[0] = true;
-            ArrayList<Character> heroes = CharacterFactory.getAllHeroes();
-            return selectCharacter(heroes, "Hero");
-        } else if(side == 2) {
-            isHero[0] = false;
-            ArrayList<Character> villains = CharacterFactory.getAllVillains();
-            return selectCharacter(villains, "Villain");
-        } else {
-            System.out.println("Invalid choice! Defaulting to Hero.");
-            isHero[0] = true;
-            return CharacterFactory.getAllHeroes().get(0);
-        }
-    }
-
-    private Character selectCharacter(ArrayList<Character> characters, String type) {
-        System.out.println("\nChoose your " + type + ":");
-        System.out.println("--------------------------------------");
-
-        for(int i = 0; i < characters.size(); i++) {
-            Character c = characters.get(i);
-            System.out.printf("%d. %-15s HP: %3d | ATK: %3d | STA: %3d%n",
-                    (i + 1),
-                    c.getName(),
-                    c.getMaxHp(),
-                    c.getAttack(),
-                    c.getStaminaMax());
-            System.out.printf("   Skills: %s, %s, %s%n",
-                    c.getBasic(),
-                    c.getSpecial(),
-                    c.getUltimate());
-        }
-
-        System.out.print("\nChoice: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-
-        if(choice < 1 || choice > characters.size()) {
-            System.out.println("Invalid choice! Defaulting to first character.");
-            return characters.get(0);
-        }
-
-        Character selected = characters.get(choice - 1);
-        System.out.println("\n[You chose: " + selected.getName() + "]");
-        return selected;
     }
 
     private Character generateRandomEnemy(boolean isHero) {
