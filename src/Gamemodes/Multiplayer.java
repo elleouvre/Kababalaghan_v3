@@ -37,14 +37,6 @@ public class Multiplayer {
             //coin flip to decide who goes first
             boolean player1GoesFirst = coinFlip();
 
-            //display battle intro
-            System.out.println("\n===========================================");
-            System.out.println("              FINAL BATTLE");
-            System.out.println("===========================================");
-            System.out.println(player1.getName() + " VS " + player2.getName());
-            System.out.println("Press Enter to start the battle!");
-            scanner.nextLine();
-
             Character winner = battleSystem.startMultiplayer(player1, player2, player1GoesFirst);
             if(winner == player1){
                 player1Wins++;
