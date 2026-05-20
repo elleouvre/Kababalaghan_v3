@@ -69,11 +69,7 @@ public class Main {
 
             switch(choice) {
                 case 1:
-                    System.out.println("\n===========================================");
-                    System.out.println("     ARCADE CAMPAIGN MODE -- Coming Soon");
-                    System.out.println("===========================================");
-                    System.out.println("\n Enter to go back...");
-                    sc.nextLine();
+                    new Gamemodes.Campaign.Act1(sc).start();
                     break;
                 case 2:
                     new Singleplayer(sc).start();
