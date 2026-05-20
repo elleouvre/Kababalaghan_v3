@@ -15,6 +15,7 @@ public class BattleSystem {
 
     //For Singleplayer (Player vs AI) - Lou
     public void startSingleplayer(Character player, Character ai){
+        System.out.println();
         System.out.println("[ PLAYER VS AI BATTLE ]");
         System.out.println(player.getName() + " VS " + ai.getName());
         System.out.println("Press Enter to start!");
@@ -111,7 +112,7 @@ public class BattleSystem {
 
         switch (action) {
             case 1:
-                if (attacker.getStamina().spend(attacker.getBasicAttackStaminaCost())) {
+                if (attacker.getStamina().getCurrent() >= attacker.getBasicAttackStaminaCost()) {
                     if(checkHit(attacker.getAccuracy().getBasicAccuracy())) {
                         attacker.basicAttack(defender);
                     }
@@ -123,7 +124,7 @@ public class BattleSystem {
                 }
                 break;
             case 2:
-                if(attacker.getStamina().spend(attacker.getSpecialSkillStaminaCost())){
+                if (attacker.getStamina().getCurrent() >= attacker.getSpecialSkillStaminaCost()) {
                     if(checkHit(attacker.getAccuracy().getSpecialAccuracy())) {
                         attacker.specialSkill(defender);
                     }
@@ -135,7 +136,7 @@ public class BattleSystem {
                 }
                 break;
             case 3:
-                if(attacker.getStamina().spend(attacker.getUltimateSkillStaminaCost())){
+                if(attacker.getStamina().getCurrent() >= attacker.getUltimateSkillStaminaCost()){
                     if(checkHit(attacker.getAccuracy().getUltimateAccuracy())) {
                         attacker.ultimateSkill(defender);
                     }
@@ -181,7 +182,7 @@ public class BattleSystem {
 
         switch (action){
             case 1:
-                if(ai.getStamina().spend(ai.getBasicAttackStaminaCost())){
+                if(ai.getStamina().getCurrent() >= ai.getBasicAttackStaminaCost()){
                     if(checkHit(ai.getAccuracy().getBasicAccuracy())) {
                         ai.basicAttack(player);
                     }
@@ -193,7 +194,7 @@ public class BattleSystem {
                 }
                 break;
             case 2:
-                if(ai.getStamina().spend(ai.getSpecialSkillStaminaCost())){
+                if(ai.getStamina().getCurrent() >= ai.getSpecialSkillStaminaCost()){
                     if(checkHit(ai.getAccuracy().getSpecialAccuracy())) {
                         ai.specialSkill(player);
                     }
@@ -205,7 +206,7 @@ public class BattleSystem {
                 }
                 break;
             case 3:
-                if(ai.getStamina().spend(ai.getUltimateSkillStaminaCost())){
+                if(ai.getStamina().getCurrent() >= ai.getUltimateSkillStaminaCost()){
                     if(checkHit(ai.getAccuracy().getUltimateAccuracy())){
                         ai.ultimateSkill(player);
                     }
