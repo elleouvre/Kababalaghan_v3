@@ -1,6 +1,11 @@
 package characters;
 
 import java.util.Random;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+import static characters.CharacterFactory.getAllHeroes;
+import static characters.CharacterFactory.getAllVillains;
 
 public abstract class Character {
     protected String name;
@@ -67,6 +72,64 @@ public abstract class Character {
         resetStamina();
     }
 
+    public static Character chooseCharacter(Scanner scanner, boolean[] isHero) {
+        System.out.println("\nChoose your side:");
+        System.out.println("1. Hero");
+        System.out.println("2. Villain");
+        System.out.print("Choice: ");
+        int side = scanner.nextInt();
+        scanner.nextLine();
+
+        ArrayList<Character> characters;
+        String type;
+
+        switch(side) {
+            case 1:
+                characters = getAllHeroes();
+                type = "Hero";
+                isHero[0] = true;
+                break;
+            case 2:
+                characters = getAllVillains();
+                type = "Villain";
+                isHero[0] = false;
+                break;
+            default:
+                System.out.println("Invalid choice! Defaulting to Hero.");
+                isHero[0] = true;
+                return getAllHeroes().get(0);
+        }
+
+        System.out.println("\nChoose your " + type + ":");
+        System.out.println("--------------------------------------");
+
+        for(int i = 0; i < characters.size(); i++) {
+            Character c = characters.get(i);
+            System.out.printf("%d. %-15s HP: %3d | ATK: %3d | STA: %3d%n",
+                    (i + 1), c.getName(), c.getMaxHp(), c.getAttack(), c.getStaminaMax());
+            System.out.printf("   Skills: %s, %s, %s%n",
+                    c.getBasic(), c.getSpecial(), c.getUltimate());
+        }
+
+        System.out.print("\nChoice: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        Character selected;
+
+        if (choice >= 1 && choice <= characters.size()) {
+            selected = characters.get(choice - 1);
+        } else {
+            selected = characters.get(0);
+        }
+
+        if(choice < 1 || choice > characters.size()) {
+            System.out.println("Invalid choice! Defaulting to first character.");
+        }
+
+        System.out.println("\n[You chose: " + selected.getName() + "]");
+        return selected;
+    }
 
     //Getters
     public String getName() {
@@ -81,12 +144,11 @@ public abstract class Character {
     public int getAttack() {
         return attack;
     }
+
     public String getBasic() { return skill1; }
     public String getSpecial() { return skill2; }
     public String getUltimate() { return skill3; }
-    public StaminaSystem getStamina() {
-        return stamina;
-    }
+    public StaminaSystem getStamina() { return stamina; }
     public AccuracySystem getAccuracy(){return accuracy;}
 
     public int getStaminaMax() { return stamina.getMax();}
