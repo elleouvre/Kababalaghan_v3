@@ -6,14 +6,14 @@ public class Mananananggal extends Character {
 
     public Mananananggal() {
         super("Manananggal", "Villain", 100, 20, 150,
-                0.95,0.80,0.65,
+                0.85,1,0.65,
                 "Kalas ng Laman",
                 "Hapdi ng Paglipad",
                 "Pagtipon ng Hating Katawan!");
 
-        this.basicAttackStaminaCost = 0;
-        this.specialSkillStaminaCost = 15;
-        this.ultimateSkillStaminaCost = 50;
+        this.basicAttackStaminaCost = 25;
+        this.specialSkillStaminaCost = 0;
+        this.ultimateSkillStaminaCost = 60;
 
     }
 

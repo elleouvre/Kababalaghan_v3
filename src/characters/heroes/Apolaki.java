@@ -6,7 +6,7 @@ public class Apolaki extends Character {
 
     public Apolaki() {
         super("Apolaki", "Hero", 150, 25, 100,
-                0.95,0.80,0.65,
+                0.95,0.80,0.50,
                 "Banal ng Digmaan",
                 "Bagsik ng Araw",
                 "Paghampas ng Bathalang Mandirigma!");
@@ -54,7 +54,7 @@ public class Apolaki extends Character {
 
         if (getStamina().spend(ultimateSkillStaminaCost)) {
 
-            int damage = attack * 3 + random.nextInt(35);
+            int damage = attack * 2 + random.nextInt(35);
 
             int chance = burstStacks * 10;
 
@@ -63,8 +63,8 @@ public class Apolaki extends Character {
 
             if (random.nextInt(100) < chance) {
 
-                damage *= 4;
-                System.out.println("🔥 BURST x4! PAGHUKOM NI APOLAKI!");
+                damage *= 2;
+                System.out.println("🔥 BURST x2! PAGHUKOM NI APOLAKI!");
 
             }
 
