@@ -7,6 +7,7 @@ import java.util.*;
 
 public class BattleSystem {
     private Scanner scanner;
+    private boolean forceExit = false;
 
     public BattleSystem(Scanner scanner){
         this.scanner = scanner;
@@ -20,30 +21,30 @@ public class BattleSystem {
         System.out.println(player.getName() + " VS " + ai.getName());
         System.out.println("Press Enter to start!");
         scanner.nextLine();
+        
+        forceExit = false;
 
-        while(player.isAlive() && ai.isAlive()){
-           // displayStats(player, ai, 1);  // mode 1 = singleplayer
+        while(player.isAlive() && ai.isAlive() && !forceExit){
             System.out.println();
             System.out.println("\n======================================");
             System.out.println("YOUR TURN (" + player.getName() + ")");
             System.out.println("======================================");
             playerTurn(player, ai,1);
 
-            if(!ai.isAlive()){
+            if(!ai.isAlive() || forceExit){
                 break;
             }
 
             System.out.println("\nPress Enter for the enemy's turn...\n");
             scanner.nextLine();
 
-            //displayStats(player, ai, 1);
             System.out.println("\n======================================");
             System.out.println("ENEMY TURN (" + ai.getName() + ")");
             System.out.println("======================================");
             aiTurn(ai, player);
 
-            System.out.println("\n[Stamina Regeneration]");
             if(player.isAlive()){
+                System.out.println("\n[Stamina Regeneration]");
                 System.out.print(player.getName() + " (You) ");
                 player.getStamina().regen();
             }
@@ -52,10 +53,16 @@ public class BattleSystem {
                 ai.getStamina().regen();
             }
 
-            System.out.println("\nPress Enter to continue...\n");
-            scanner.nextLine();
+            if (!forceExit && player.isAlive() && ai.isAlive()) {
+                System.out.println("\nPress Enter to continue...\n");
+                scanner.nextLine();
+            }
         }
-        displayBattleResult();
+        if (!forceExit) {
+            displayBattleResult();
+        } else {
+            System.out.println("\n[ BATTLE ABORTED ]");
+        }
     }
 
     //For multiplayer (Player vs Player) - Bea
@@ -67,8 +74,9 @@ public class BattleSystem {
         scanner.nextLine();
 
         boolean player1Turn = player1GoesFirst;
+        forceExit = false;
 
-        while(player1.isAlive() && player2.isAlive()){
+        while(player1.isAlive() && player2.isAlive() && !forceExit){
             if(player1Turn){
                 System.out.println("\n======================================");
                 System.out.println("PLAYER 1'S TURN (" + player1.getName() + ")");
@@ -81,7 +89,7 @@ public class BattleSystem {
                 playerTurn(player2, player1, 2);
             }
 
-            if (!player1.isAlive() || !player2.isAlive()) { break; }
+            if (!player1.isAlive() || !player2.isAlive() || forceExit) { break; }
 
             player1Turn = !player1Turn;
             System.out.println("\n[Stamina Regeneration]");
@@ -97,7 +105,11 @@ public class BattleSystem {
             scanner.nextLine();
         }
 
-        displayBattleResult();
+        if (!forceExit) {
+            displayBattleResult();
+        } else {
+             System.out.println("\n[ BATTLE ABORTED ]");
+        }
         return player1.isAlive() ? player1 : player2;
     }
 
@@ -107,6 +119,11 @@ public class BattleSystem {
         displaySkills(attacker);
         System.out.print("\nChoose action: ");
         int action = getValidAction();
+        
+        if (action == 0) {
+            forceExit = true;
+            return;
+        }
 
         switch (action) {
             case 1:
@@ -157,17 +174,21 @@ public class BattleSystem {
     //Validate player action input - Bea
     private int getValidAction() {
         while (true) {
+            String input = scanner.nextLine().trim().toUpperCase();
+            
+            if (input.equals("X")) {
+                return 0; // 0 signals an exit
+            }
+            
             try {
-                int action = scanner.nextInt();
-                scanner.nextLine();
+                int action = Integer.parseInt(input);
                 if (action >= 1 && action <= 3) {
                     return action;
                 } else {
-                    System.out.print("Invalid choice! Please enter 1, 2, or 3: ");
+                    System.out.print("Invalid choice! Please enter 1, 2, 3, or X: ");
                 }
-            } catch (InputMismatchException e) {
-                System.out.print("Please enter a valid number (1-3): ");
-                scanner.nextLine();
+            } catch (NumberFormatException e) {
+                System.out.print("Please enter a valid number (1-3) or X to exit: ");
             }
         }
     }
@@ -282,9 +303,10 @@ public class BattleSystem {
     //Display Skills or Action - Lou
     private void displaySkills(Character character){
         System.out.println("\nAvailable Skills:");
-        System.out.println("1. " + character.getBasic() + " (Cost: " + character.getBasicAttackStaminaCost() + ")");
-        System.out.println("2. " + character.getSpecial() + " (Cost: " + character.getSpecialSkillStaminaCost() + ")");
-        System.out.println("3. " + character.getUltimate() + " (Cost: " + character.getUltimateSkillStaminaCost() + ")");
+        System.out.println("[1] (S1) " + character.getBasic() + " (Cost: " + character.getBasicAttackStaminaCost() + ")");
+        System.out.println("[2] (S2) " + character.getSpecial() + " (Cost: " + character.getSpecialSkillStaminaCost() + ")");
+        System.out.println("[3] (S3) " + character.getUltimate() + " (Cost: " + character.getUltimateSkillStaminaCost() + ")");
+        System.out.println("[X] Exit to Menu");
     }
     private boolean checkHit(double accuracyRate) {
         return Math.random() <= accuracyRate;
