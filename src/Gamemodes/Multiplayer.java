@@ -63,8 +63,8 @@ public class Multiplayer {
         System.out.println("===========================================");
         System.out.println("Flipping a coin to decide who goes first...");
         System.out.println("\nPlayer 1, call it!");
-        System.out.println(" 1. Heads");
-        System.out.println(" 2. Tails");
+        System.out.println(" [1] Heads");
+        System.out.println(" [2] Tails");
         System.out.print("Choice: ");
 
         int call;
@@ -104,8 +104,8 @@ public class Multiplayer {
 
     private boolean playAgain() {
         System.out.println("\nPlay another match?");
-        System.out.println("1. Yes");
-        System.out.println("2. No");
+        System.out.println("[1] Yes");
+        System.out.println("[2] No");
         System.out.print("Choice: ");
 
         int choice = scanner.nextInt();

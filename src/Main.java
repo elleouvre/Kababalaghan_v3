@@ -20,7 +20,7 @@ public class Main {
                     break;
                 case "2":
                     CharacterFactory.showAllCharacters();
-                    System.out.println("\nPress Enter to return to the main menu...");
+                    System.out.println("\nPress [ENTER] to return to the main menu...");
                     sc.nextLine();
                     break;
                 case "X":

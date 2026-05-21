@@ -35,7 +35,7 @@ public class BattleSystem {
                 break;
             }
 
-            System.out.println("\nPress Enter for the enemy's turn...\n");
+            System.out.println("\nPress [ENTER] for the enemy's turn...\n");
             scanner.nextLine();
 
             System.out.println("\n======================================");
@@ -54,7 +54,7 @@ public class BattleSystem {
             }
 
             if (!forceExit && player.isAlive() && ai.isAlive()) {
-                System.out.println("\nPress Enter to continue...\n");
+                System.out.println("\nPress [ENTER] to continue...\n");
                 scanner.nextLine();
             }
         }
@@ -70,7 +70,7 @@ public class BattleSystem {
         displayBattleIntro();
         System.out.println("\n[ PLAYER VS PLAYER BATTLE ]");
         System.out.println(player1.getName() + " VS " + player2.getName());
-        System.out.println("Press Enter to start!");
+        System.out.println("Press [ENTER] to start!");
         scanner.nextLine();
 
         boolean player1Turn = player1GoesFirst;
@@ -101,7 +101,7 @@ public class BattleSystem {
                 System.out.print(player2.getName() + " (P2) ");
                 player2.getStamina().regen();
             }
-            System.out.println("\nPress Enter to continue to next round...\n");
+            System.out.println("\nPress [ENTER] to continue to next round...\n");
             scanner.nextLine();
         }
 
@@ -185,10 +185,10 @@ public class BattleSystem {
                 if (action >= 1 && action <= 3) {
                     return action;
                 } else {
-                    System.out.print("Invalid choice! Please enter 1, 2, 3, or X: ");
+                    System.out.print("Invalid choice! Please enter [1], [2], [3], or [X]: ");
                 }
             } catch (NumberFormatException e) {
-                System.out.print("Please enter a valid number (1-3) or X to exit: ");
+                System.out.print("Please enter a valid number [1], [2], [3], or [X] to exit: ");
             }
         }
     }
