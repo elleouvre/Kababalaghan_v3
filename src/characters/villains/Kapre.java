@@ -4,8 +4,8 @@ import characters.Character;
 
 public class Kapre extends Character {
     public Kapre() {
-        super("Kapre", "Villain", 170, 17,100,
-                0.96,0.74,0.41,
+        super("Kapre", "Villain", 220 * 20, 18 * 10, 100,
+                0.96, 0.74, 0.41,
                 "Suntok ng Higante",
                 "Usok ng Sigarilyo",
                 "Galit ng Bantay-Puno");
@@ -19,8 +19,8 @@ public class Kapre extends Character {
 
     @Override
     public void basicAttack(Character target) {
-        if(getStamina().spend(basicAttackStaminaCost)) {
-            int damage = attack + random.nextInt(8);
+        if (getStamina().spend(basicAttackStaminaCost)) {
+            int damage = attack + random.nextInt(8 * 5);
 
             System.out.println("Umuuga ang lupa sa lakas ng suntok ng Kapre!");
 
@@ -33,7 +33,7 @@ public class Kapre extends Character {
     public void specialSkill(Character target) {
 
         if (getStamina().spend(specialSkillStaminaCost)) {
-            int damage = attack * 2 + random.nextInt(12);
+            int damage = attack * 2 + random.nextInt(12 * 5);
 
             System.out.println(name + " uses " + skill2 + "!");
             System.out.println("Bumabalot ang makapal na usok... naliligaw ang diwa ng kalaban!");
@@ -51,7 +51,7 @@ public class Kapre extends Character {
     public void ultimateSkill(Character target) {
 
         if (getStamina().spend(ultimateSkillStaminaCost)) {
-            int damage = attack * 3 + random.nextInt(25) + 10;
+            int damage = attack * 3 + random.nextInt((int) (25 * 5.7));
 
             System.out.println(name + " uses " + skill3 + "!");
             System.out.println("Nagngangalit ang Kapre sa sinumang lumalapastangan sa kanyang punong binabantayan!");
