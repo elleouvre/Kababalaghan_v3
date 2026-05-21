@@ -2,6 +2,8 @@ package Gamemodes;
 
 import characters.Character;
 import characters.CharacterFactory;
+import util.Colors;
+
 import java.util.*;
 
 public class Singleplayer {
@@ -16,9 +18,9 @@ public class Singleplayer {
     public void start() {
         System.out.println();
         System.out.println();
-        System.out.println("===========================================");
-        System.out.println("            SINGLEPLAYER MODE");
-        System.out.println("===========================================");
+        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Colors.CYAN + "║               SINGLEPLAYER MODE                   ║" + Colors.RESET);
+        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
 
         //Choose your character (true = Hero, false = Villain)
         boolean[] isHero = new boolean[1];

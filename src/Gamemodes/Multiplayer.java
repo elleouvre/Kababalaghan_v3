@@ -2,6 +2,7 @@ package Gamemodes;
 
 import characters.Character;
 import characters.CharacterFactory;
+import util.Colors;
 
 import java.util.*;
 
@@ -20,9 +21,9 @@ public class Multiplayer {
         //display multiplayer mode display
         System.out.println();
         System.out.println();
-        System.out.println("===========================================");
-        System.out.println("            MULTIPLAYER MODE");
-        System.out.println("===========================================");
+        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Colors.CYAN + "║               MULTIPLAYER MODE                    ║" + Colors.RESET);
+        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
 
         boolean playing = true;
         while(playing){
@@ -58,9 +59,9 @@ public class Multiplayer {
 
     //determines which player goes first
     private boolean coinFlip(String player1Name, String player2Name) {
-        System.out.println("\n===========================================");
-        System.out.println("             COIN FLIP!");
-        System.out.println("===========================================");
+        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Colors.CYAN + "║               COIN FLIP                           ║" + Colors.RESET);
+        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
         System.out.println("Flipping a coin to decide who goes first...");
         System.out.println("\nPlayer 1, call it!");
         System.out.println(" [1] Heads");
@@ -97,9 +98,12 @@ public class Multiplayer {
 
 
     private void displayScore() {
-        System.out.println("\n======================================");
-        System.out.printf("SCORE:  Player 1 [%d]  -  [%d] Player 2%n", player1Wins, player2Wins);
-        System.out.println("======================================");
+        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.printf("║     SCORE:  Player 1 [%d]  -  [%d] Player 2                ║", player1Wins, player2Wins);
+        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
+        //System.out.println("\n======================================");
+        //System.out.printf("SCORE:  Player 1 [%d]  -  [%d] Player 2%n", player1Wins, player2Wins);
+        //System.out.println("======================================");
     }
 
     private boolean playAgain() {
@@ -118,9 +122,9 @@ public class Multiplayer {
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println("\n======================================");
-        System.out.println("           FINAL RESULTS");
-        System.out.println("======================================");
+        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Colors.CYAN + "║               FINAL RESULTS:                      ║" + Colors.RESET);
+        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
         System.out.println("Player 1 Wins: " + player1Wins);
         System.out.println("Player 2 Wins: " + player2Wins);
 
@@ -132,6 +136,6 @@ public class Multiplayer {
             System.out.println("\nIT'S A TIE!");
         }
 
-        System.out.println("======================================");
+        System.out.println(Colors.GREEN + "═══════════════════════════════════════════════════" + Colors.RESET);
     }
 }
