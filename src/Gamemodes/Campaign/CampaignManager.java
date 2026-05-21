@@ -2,6 +2,7 @@ package Gamemodes.Campaign;
 
 import characters.Character;
 import util.Colors;
+import util.Utils;
 import java.util.Scanner;
 
 public class CampaignManager {
@@ -39,7 +40,9 @@ public class CampaignManager {
             if (!act2Completed) {
                 if (!askToContinue("Act 2")) {
                     System.out.println(Colors.CYAN + "\n[SAVED] Ang iyong paglalakbay ay pansamantalang tumigil." + Colors.RESET);
+                    Utils.delay(900);
                     System.out.println("Balik ka muli upang ipagpatuloy ang laban!");
+                    Utils.delay(900);
                     System.out.print("\nPress Enter to return to menu...");
                     scanner.nextLine();
                     return;
@@ -59,7 +62,9 @@ public class CampaignManager {
             // Ask to continue to Act 3
             if (!askToContinue("Act 3")) {
                 System.out.println(Colors.CYAN + "\n[SAVED] Ang iyong paglalakbay ay pansamantalang tumigil." + Colors.RESET);
+                Utils.delay(900);
                 System.out.println("Balik ka muli upang ipagpatuloy ang laban!");
+                Utils.delay(900);
                 System.out.print("\nPress Enter to return to menu...");
                 scanner.nextLine();
                 return;
@@ -106,6 +111,7 @@ public class CampaignManager {
 
         if (savedPlayer == null) {
             System.out.println(Colors.RED + "\n[ERROR] Walang nakitang karakter!" + Colors.RESET);
+            Utils.delay(900);
             return false;
         }
 
@@ -127,6 +133,7 @@ public class CampaignManager {
 
         if (savedPlayer == null) {
             System.out.println(Colors.RED + "\n[ERROR] Walang nakitang karakter!" + Colors.RESET);
+            Utils.delay(900);
             return false;
         }
 
@@ -142,7 +149,9 @@ public class CampaignManager {
 
     private boolean askToContinue(String actName) {
         System.out.println(Colors.GREEN + "\n✓ NAKUMULETO MO ANG ACT 1!" + Colors.RESET);
+        Utils.delay(900);
         System.out.print(Colors.YELLOW + "Gusto mo bang magpatuloy sa " + actName + "? (1=Oo / 2=Hindi): " + Colors.RESET);
+        Utils.delay(900);
         String choice = scanner.nextLine().trim();
         return choice.equals("1");
     }
