@@ -7,7 +7,7 @@ public class Santelmo extends Character{
     // this is Santelmo specific
     private int heatLevel = 0;
     public Santelmo(){
-        super("Santelmo", "Villain", 150, 25, 100,
+        super("Santelmo", "Villain", 150 * 20, 25 * 10, 100,
                 0.95,0.80,0.65,
                 "SpARK!",
                 "BlaZe",
@@ -22,7 +22,7 @@ public class Santelmo extends Character{
     //spark
     @Override
     public void basicAttack(Character target) {
-        int damage = attack + random.nextInt(12);
+        int damage = attack + random.nextInt(12 * 5);
         heatLevel++;
         System.out.println(name + " uses " + skill1 + "!");
         System.out.println("Nagbabaga! Santelmo's heat rises to " + heatLevel + "!");
@@ -35,7 +35,7 @@ public class Santelmo extends Character{
     public void specialSkill(Character target){
         if (getStamina().spend(specialSkillStaminaCost)){
             int bonusDamage = heatLevel * 5;
-            int damage = attack * 2 + random.nextInt(18) + bonusDamage;
+            int damage = attack * 2 + random.nextInt(18 * 5) + bonusDamage;
             System.out.println(name + " uses " + skill2 + "!");
             System.out.println("Damhin mo ang init! (Bonus Heat Damage: " + bonusDamage + ")");
             target.takeDamage(damage);
@@ -47,7 +47,7 @@ public class Santelmo extends Character{
     @Override
     public void ultimateSkill(Character target){
         if (getStamina().spend(ultimateSkillStaminaCost)) {
-            int damage = (attack * 3) + (heatLevel * 10) + random.nextInt(25);
+            int damage = (attack * 3) + (heatLevel * 10) + random.nextInt((int) (25 * 5.7));
             System.out.println(name + " unleashes a massive " + skill3 + "!");
             System.out.println("The air burns as the heat level reached " + heatLevel + "!");
             target.takeDamage(damage);
@@ -58,4 +58,3 @@ public class Santelmo extends Character{
         }
     }
 }
-

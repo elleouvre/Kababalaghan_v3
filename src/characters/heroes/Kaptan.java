@@ -7,7 +7,7 @@ public class Kaptan extends Character{
     private int stormCharge = 0;
 
     public Kaptan(){
-        super("Kaptan", "Hero", 180, 30, 100,
+        super("Kaptan", "Hero", 180 * 20, 30 * 10, 100,
                 0.95,0.80,0.65,
                 "KiDLAT",
                 "BAGYOH!",
@@ -21,7 +21,7 @@ public class Kaptan extends Character{
 
     @Override
     public void basicAttack(Character target){
-        int damage = attack + random.nextInt(15);
+        int damage = attack + random.nextInt(15 * 5);
         stormCharge++;
 
         System.out.println("Umaatake ang KIDLAT!");
@@ -32,7 +32,7 @@ public class Kaptan extends Character{
     @Override
     public void specialSkill(Character target){
        if (getStamina().spend(basicAttackStaminaCost)){
-           int damage = attack + random.nextInt(15);
+           int damage = attack + random.nextInt(15 * 5);
            stormCharge++;
            System.out.print("Pinaulanan ka ng KIDLAT!");
            target.takeDamage(damage);
@@ -42,7 +42,7 @@ public class Kaptan extends Character{
     @Override
     public void ultimateSkill(Character target){
         if(getStamina().spend(ultimateSkillStaminaCost)){
-            int damage = attack + random.nextInt(15);
+            int damage = attack + random.nextInt((int) (15 * 5.7));
             // logic dire
             System.out.print(name + "uses HAMPAS LANGIT!");
             target.takeDamage(damage);
