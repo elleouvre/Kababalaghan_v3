@@ -51,7 +51,7 @@ public class Mayari extends Character {
     @Override
     public void ultimateSkill(Character target) {
         if (getStamina().spend(ultimateSkillStaminaCost)) {
-            int damage = attack * 3 + random.nextInt(85.5);
+            int damage = attack * 3 + random.nextInt(85);
             System.out.println(name + " uses " + skill3 + " !");
             System.out.println("Nahati ang langit! 'Ako ang tunay na panginoon ng langit!'");
 
