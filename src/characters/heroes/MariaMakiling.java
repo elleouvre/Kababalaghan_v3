@@ -3,7 +3,7 @@ import characters.Character;
 
 public class MariaMakiling extends Character {
     public MariaMakiling() {
-        super("Maria Makiling", "Hero", 150, 15, 110,
+        super("Maria Makiling", "Hero", 3000, 150, 110,
                 0.80,0.90,0.70,
                 "Hampas ng Baging",
                 "Lunas ng Kalikasan",
@@ -26,7 +26,7 @@ public class MariaMakiling extends Character {
                 return;
             }
 
-            int damage = attack + random.nextInt(8);
+            int damage = attack + random.nextInt(40);
             System.out.println("Humahampas ng mahiwagang baging para magdulot ng damage sa kalaban.");
             target.takeDamage(damage);
         }
@@ -39,7 +39,7 @@ public class MariaMakiling extends Character {
             System.out.println("Tumatawag siya ng malalakas na hangin at gumagaling ang katawan sa kapangyarihan ng kalikasan.");
 
             // Heal happens regardless (support theme)
-            int healAmount = attack + random.nextInt(10);
+            int healAmount = attack + random.nextInt(50);
             hp = Math.min(maxHp, this.hp + healAmount);
             System.out.println(name + " restored " + healAmount + " HP using Lunas ng Kalikasan.");
 
@@ -48,7 +48,7 @@ public class MariaMakiling extends Character {
                 return;
             }
 
-            int damage = attack * 2 + random.nextInt(15);
+            int damage = (int)(attack * 2 * 5.7) + random.nextInt(85);
             target.takeDamage(damage);
         }
     }
@@ -63,7 +63,7 @@ public class MariaMakiling extends Character {
                 return;
             }
 
-            int damage = attack * 3 + random.nextInt(25);
+            int damage = (int)(attack * 3 * 5.7) + random.nextInt(25);
             System.out.println("Inilalabas ang buong kapangyarihan ng kalikasan para sa napakalakas na area attack!");
             target.takeDamage(damage);
         }

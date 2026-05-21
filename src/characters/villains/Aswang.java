@@ -4,7 +4,7 @@ import characters.Character;
 public class Aswang extends Character {
 
     public Aswang() {
-        super("Aswang", "Villain", 150, 15,100,
+        super("Aswang", "Villain", 3000, 150, 100,
                 0.85,0.80,0.75,
                 "Kagat ng Dilim",
                 "Anino Lurker",
@@ -12,6 +12,7 @@ public class Aswang extends Character {
         this.basicAttackStaminaCost = 0;
         this.specialSkillStaminaCost = 20;
         this.ultimateSkillStaminaCost = 45;
+        getStamina().setRegenRange(10, 20);
     }
 
     @Override
@@ -24,7 +25,7 @@ public class Aswang extends Character {
                 return;
             }
 
-            int damage = attack + random.nextInt(5);
+            int damage = attack + random.nextInt(40);
             System.out.println("Sumuko ka sa gutom ng dilim!");
             target.takeDamage(damage);
         }
@@ -40,7 +41,7 @@ public class Aswang extends Character {
                 System.out.println("Hindi mo ako makikita sa dilim!");
             }
 
-            int damage = attack * 2 + random.nextInt(10);
+            int damage = (int)(attack * 2 * 5.7) + random.nextInt(85);
             System.out.println("Hindi mo ako makikita sa dilim!");
             target.takeDamage(damage);
             System.out.println(target.getName() + " is struck from the shadows!");
@@ -57,7 +58,7 @@ public class Aswang extends Character {
                 return;
             }
 
-            int damage = attack * 3 + random.nextInt(20);
+            int damage = (int)(attack * 3 * 5.7) + random.nextInt(25);
             System.out.println("Lulunukin kayo ng kadiliman!");
             target.takeDamage(damage);
             System.out.println("A massive wave of darkness engulfs the battlefield!");
