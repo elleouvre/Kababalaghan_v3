@@ -6,8 +6,8 @@ public class Mayari extends Character {
     private Random random = new Random();
 
     public Mayari() {
-        super("Mayari", "Hero", 2850, 235, 100,
-                0.88, 0.84, 0.82,
+        super("Mayari", "Hero", 3550, 288, 100,
+                0.92, 0.87, 0.82,
                 "Tumatagos ang Liwanag ng Buwan",
                 "Saplot ng One-Eyed Queen",
                 "Dekreto ng Celestial Divide");
@@ -51,7 +51,7 @@ public class Mayari extends Character {
     @Override
     public void ultimateSkill(Character target) {
         if (getStamina().spend(ultimateSkillStaminaCost)) {
-            int damage = attack * 3 + random.nextInt(85);
+            int damage = attack * 3 + random.nextInt(95);
             System.out.println(name + " uses " + skill3 + " !");
             System.out.println("Nahati ang langit! 'Ako ang tunay na panginoon ng langit!'");
 

@@ -6,7 +6,7 @@ public class Tikbalang extends Character {
     private Random random = new Random();
 
     public Tikbalang() {
-        super("Tikbalang", "Villain", 2640, 275, 110,
+        super("Tikbalang", "Villain", 3385, 285, 110,
                 0.90,0.85,0.82,
                 "Hoof Stomp",
                 "Labyrinth of the Forest",

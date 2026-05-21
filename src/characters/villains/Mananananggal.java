@@ -5,7 +5,7 @@ import characters.Character;
 public class Mananananggal extends Character {
 
     public Mananananggal() {
-        super("Manananggal", "Villain", 100, 20, 150,
+        super("Manananggal", "Villain", 3120, 289, 150,
                 0.85,1,0.65,
                 "Kalas ng Laman",
                 "Hapdi ng Paglipad",
@@ -24,7 +24,7 @@ public class Mananananggal extends Character {
     @Override
     public void basicAttack(Character target) {
 
-        int damage = attack + random.nextInt(10);
+        int damage = attack + random.nextInt(50);
 
         int flyingCost = isFlying ? 20 : 0;
         if (flyingCost > 0 && !getStamina().spend(flyingCost)) {
@@ -78,7 +78,7 @@ public class Mananananggal extends Character {
     @Override
     public void ultimateSkill(Character target) {
         if (getStamina().spend(ultimateSkillStaminaCost)) {
-            int damage = attack * 3 + random.nextInt(35);
+            int damage = attack * 3 + random.nextInt(175);
 
             System.out.println(name + " uses " + skill3 + "!");
             System.out.println("Ang hiwalay na laman ay nagtatagpo sa isang pagputok ng dilim.");

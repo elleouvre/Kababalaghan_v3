@@ -5,8 +5,8 @@ import characters.Character;
 public class Bakunawa extends Character {
 
     public Bakunawa() {
-        super("Bakunawa", "Boss", 500, 45, 200,
-                0.95, 1.0, 0.8, // accuracy (Basic, Special, Ultimate)
+        super("Bakunawa", "Boss", 5000, 310, 200,
+                0.95, 1.0, 0.80, // accuracy (Basic, Special, Ultimate)
                 "Sakmal ng Karimlan",
                 "Poot ng Karagatan",
                 "Lagim ng Lahong Buwan");
@@ -21,7 +21,7 @@ public class Bakunawa extends Character {
     @Override
     public void basicAttack(Character target) {
         if (getStamina().spend(basicAttackStaminaCost)) {
-            int damage = attack + random.nextInt(15); // chooses a value between 0-15
+            int damage = attack + random.nextInt(75); // chooses a value between 0-15
             System.out.println("Bumuka ang panga ng Bakunawa... isang mabilis at mabigat na atake mula sa dilim!");
             target.takeDamage(damage);
         }
@@ -30,7 +30,7 @@ public class Bakunawa extends Character {
     @Override
     public void specialSkill(Character target) {
         if (getStamina().spend(specialSkillStaminaCost)) {
-            int damage = attack * 2 + random.nextInt(20);
+            int damage = attack * 2 + random.nextInt(75);
             System.out.println(name + " uses " + skill2 + "!");
             System.out.println("Nagyumiyugyog ang lupa at dagat. Isang malagim na alon ang babagsak sa kalaban!");
             target.takeDamage(damage);
@@ -40,7 +40,7 @@ public class Bakunawa extends Character {
     @Override
     public void ultimateSkill(Character target) {
         if (getStamina().spend(ultimateSkillStaminaCost)) {
-            int damage = attack * 4 + random.nextInt(30);
+            int damage = attack * 4 + random.nextInt(171);
             System.out.println(name + " unleashes its ultimate: " + skill3 + "!");
             System.out.println("Ang buwan ay naglaho. Binalot ng purong takot at kadiliman ang buong paligid!");
             target.takeDamage(damage);

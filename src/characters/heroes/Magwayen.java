@@ -4,8 +4,8 @@ import characters.Character;
 
 public class Magwayen extends Character {
     public Magwayen() {
-        super("Magwayen", "Hero", 180 * 20, 30 * 10, 120,
-                0.80, 0.60, 0.30,
+        super("Magwayen", "Hero", 3600, 230, 120,
+                0.90, 0.83, 0.68,
                 "Ulap ng Kalaliman",
                 "Luha ng Karagatan",
                 "Pagtawid sa Dagat ng mga Yumao");
@@ -21,7 +21,7 @@ public class Magwayen extends Character {
     public void basicAttack(Character target) {
 
         if (getStamina().spend(basicAttackStaminaCost)) {
-            int damage = attack + random.nextInt(8 * 5);
+            int damage = attack + random.nextInt(40);
 
             System.out.println("Umuusbong ang malamlam na ulap mula sa kailaliman...");
             System.out.println("Naliligaw ang diwa ng kalaban sa hamog nga mga yumao!");
@@ -36,7 +36,7 @@ public class Magwayen extends Character {
     public void specialSkill(Character target) {
 
         if (getStamina().spend(specialSkillStaminaCost)) {
-            int damage = attack * 2 + random.nextInt(15 * 5);
+            int damage = attack * 2 + random.nextInt(75);
 
             System.out.println(name + " uses " + skill2 + "!");
             System.out.println("Isang matalim na agos ng tubig ang sumasalpok sa kalaban!");
@@ -55,7 +55,7 @@ public class Magwayen extends Character {
     public void ultimateSkill(Character target) {
 
         if (getStamina().spend(ultimateSkillStaminaCost)) {
-            int damage = attack * 3 + random.nextInt((int) (25 * 5.7));
+            int damage = attack * 3 + random.nextInt((int) (125.5));
 
             System.out.println(name + " uses " + skill3 + "!");
             System.out.println("Nagbubukas ang dagat ng mga yumao... hindi maiiwasan ang pagtawid!");

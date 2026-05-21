@@ -5,7 +5,7 @@ import characters.Character;
 public class Apolaki extends Character {
 
     public Apolaki() {
-        super("Apolaki", "Hero", 150, 25, 100,
+        super("Apolaki", "Hero", 3550, 243, 100,
                 0.95,0.80,0.50,
                 "Banal ng Digmaan",
                 "Bagsik ng Araw",
@@ -23,7 +23,7 @@ public class Apolaki extends Character {
     @Override
     public void basicAttack(Character target) {
 
-        int damage = attack + random.nextInt(10);
+        int damage = attack + random.nextInt(50);
 
         System.out.println("Umiinit ang hangin sa bawat galaw ni Apolaki!");
         System.out.println(name + " uses " + skill1 + "!");
@@ -36,7 +36,7 @@ public class Apolaki extends Character {
 
         if (getStamina().spend(specialSkillStaminaCost)) {
 
-            int damage = attack + random.nextInt(20);
+            int damage = attack + random.nextInt(100);
 
             burstStacks++;
             if (burstStacks > 5) burstStacks = 5;
@@ -54,7 +54,7 @@ public class Apolaki extends Character {
 
         if (getStamina().spend(ultimateSkillStaminaCost)) {
 
-            int damage = attack * 2 + random.nextInt(35);
+            int damage = attack * 2 + random.nextInt(175);
 
             int chance = burstStacks * 10;
 

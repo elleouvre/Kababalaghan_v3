@@ -4,7 +4,7 @@ import characters.Character;
 public class Aswang extends Character {
 
     public Aswang() {
-        super("Aswang", "Villain", 3000, 150, 100,
+        super("Aswang", "Villain", 3500, 150, 100,
                 0.85,0.80,0.75,
                 "Kagat ng Dilim",
                 "Anino Lurker",
