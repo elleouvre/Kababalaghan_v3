@@ -119,7 +119,7 @@ public class BattleSystem {
         displaySkills(attacker);
         System.out.print("\nChoose action: ");
         int action = getValidAction();
-        
+
         if (action == 0) {
             forceExit = true;
             return;
@@ -127,51 +127,61 @@ public class BattleSystem {
 
         switch (action) {
             case 1:
-                if (attacker.getStamina().getCurrent() >= attacker.getBasicAttackStaminaCost()) {
-                    attacker.getStamina().spend(attacker.getBasicAttackStaminaCost());
+                int basicCost = attacker.getBasicAttackStaminaCost();
+                if (attacker.getStamina().getCurrent() >= basicCost) {
+                    attacker.getStamina().spend(basicCost);
+                    System.out.println("Used " + basicCost + " stamina for " + attacker.getBasic());
+
                     if(checkHit(attacker.getAccuracy().getBasicAccuracy())) {
                         attacker.basicAttack(defender);
-                    }
-                    else{
-                        System.out.println(attacker.getName()+" misses their basic attack!");
+                    } else {
+                        System.out.println(attacker.getName() + " misses their basic attack! (Stamina still consumed: -" + basicCost + ")");
                     }
                 } else {
-                    System.out.println("Not enough stamina!");
+                    System.out.println("Not enough stamina! Need " + basicCost + ", have " + attacker.getStamina().getCurrent());
                 }
                 break;
+
             case 2:
-                if (attacker.getStamina().getCurrent() >= attacker.getSpecialSkillStaminaCost()) {
-                    attacker.getStamina().spend(attacker.getSpecialSkillStaminaCost());
+                int specialCost = attacker.getSpecialSkillStaminaCost();
+                if (attacker.getStamina().getCurrent() >= specialCost) {
+                    attacker.getStamina().spend(specialCost);
+                    System.out.println("Used " + specialCost + " stamina for " + attacker.getSpecial());
+
                     if(checkHit(attacker.getAccuracy().getSpecialAccuracy())) {
                         attacker.specialSkill(defender);
+                    } else {
+                        System.out.println(attacker.getName() + " misses their special skill! (Stamina still consumed: -" + specialCost + ")");
                     }
-                    else{
-                        System.out.println(attacker.getName()+" misses their special skill!");
-                    }
-                }else{
-                    System.out.println("Not enough stamina!");
+                } else {
+                    System.out.println("Not enough stamina! Need " + specialCost + ", have " + attacker.getStamina().getCurrent());
                 }
                 break;
+
             case 3:
-                if(attacker.getStamina().getCurrent() >= attacker.getUltimateSkillStaminaCost()){
-                    attacker.getStamina().spend(attacker.getUltimateSkillStaminaCost());
+                int ultimateCost = attacker.getUltimateSkillStaminaCost();
+                if (attacker.getStamina().getCurrent() >= ultimateCost) {
+                    attacker.getStamina().spend(ultimateCost);
+                    System.out.println("Used " + ultimateCost + " stamina for " + attacker.getUltimate());
 
                     if(checkHit(attacker.getAccuracy().getUltimateAccuracy())) {
                         attacker.ultimateSkill(defender);
+                    } else {
+                        System.out.println(attacker.getName() + " misses their ultimate skill! (Stamina still consumed: -" + ultimateCost + ")");
                     }
-                    else {
-                            System.out.println(attacker.getName() + " misses their ultimate skill!");
-                    }
-                }else{
-                    System.out.println("\n[WARNING] Not enough stamina! Need " + attacker.getUltimateSkillStaminaCost() + " stamina.");
+                } else {
+                    System.out.println("\n[WARNING] Not enough stamina! Need " + ultimateCost + " stamina.");
                     System.out.println("Performing basic attack instead!");
 
-                    if (attacker.getStamina().getCurrent() >= attacker.getBasicAttackStaminaCost()) {
-                        attacker.getStamina().spend(attacker.getBasicAttackStaminaCost());
+                    int basicFallbackCost = attacker.getBasicAttackStaminaCost();
+                    if (attacker.getStamina().getCurrent() >= basicFallbackCost) {
+                        attacker.getStamina().spend(basicFallbackCost);
+                        System.out.println("Used " + basicFallbackCost + " stamina for fallback " + attacker.getBasic());
+
                         if(checkHit(attacker.getAccuracy().getBasicAccuracy())) {
                             attacker.basicAttack(defender);
-                        }else{
-                            System.out.println("Basic attack also misses... Unlucky.. ");
+                        } else {
+                            System.out.println("Basic attack also misses... (Stamina: -" + basicFallbackCost + ")");
                         }
                     } else {
                         System.out.println("Not enough stamina for basic attack either! Turn wasted!");
@@ -209,57 +219,68 @@ public class BattleSystem {
 
         switch (action){
             case 1:
-                if(ai.getStamina().getCurrent() >= ai.getBasicAttackStaminaCost()){
-                    ai.getStamina().spend(ai.getBasicAttackStaminaCost());
+                int basicCost = ai.getBasicAttackStaminaCost();
+                if(ai.getStamina().getCurrent() >= basicCost){
+                    ai.getStamina().spend(basicCost);
+                    System.out.println(ai.getName() + " used " + basicCost + " stamina for " + ai.getBasic());
 
                     if(checkHit(ai.getAccuracy().getBasicAccuracy())) {
                         ai.basicAttack(player);
                     }
                     else{
-                        System.out.println(ai.getName()+" misses their basic attack!");
+                        System.out.println(ai.getName() + " misses their basic attack! (Stamina still consumed: -" + basicCost + ")");
                     }
                 }else{
-                    System.out.println("Not enough stamina!");
+                    System.out.println("Not enough stamina! Need " + basicCost + ", have " + ai.getStamina().getCurrent());
                 }
                 break;
+
             case 2:
-                if(ai.getStamina().getCurrent() >= ai.getSpecialSkillStaminaCost()){
-                    ai.getStamina().spend(ai.getSpecialSkillStaminaCost());
+                int specialCost = ai.getSpecialSkillStaminaCost();
+                if(ai.getStamina().getCurrent() >= specialCost){
+                    ai.getStamina().spend(specialCost);
+                    System.out.println(ai.getName() + " used " + specialCost + " stamina for " + ai.getSpecial());
 
                     if(checkHit(ai.getAccuracy().getSpecialAccuracy())) {
                         ai.specialSkill(player);
                     }
                     else{
-                        System.out.println(ai.getName()+" misses their special skill!");
+                        System.out.println(ai.getName() + " misses their special skill! (Stamina still consumed: -" + specialCost + ")");
                     }
                 }else{
-                    System.out.println("Not enough stamina!");
+                    System.out.println("Not enough stamina! Need " + specialCost + ", have " + ai.getStamina().getCurrent());
                 }
                 break;
+
             case 3:
-                if(ai.getStamina().getCurrent() >= ai.getUltimateSkillStaminaCost()){
-                    ai.getStamina().spend(ai.getUltimateSkillStaminaCost());
+                int ultimateCost = ai.getUltimateSkillStaminaCost();
+                if(ai.getStamina().getCurrent() >= ultimateCost){
+                    ai.getStamina().spend(ultimateCost);
+                    System.out.println(ai.getName() + " used " + ultimateCost + " stamina for " + ai.getUltimate());
 
                     if(checkHit(ai.getAccuracy().getUltimateAccuracy())){
                         ai.ultimateSkill(player);
                     }
                     else{
-                        System.out.println(ai.getName() + " misses their ultimate skill!");
+                        System.out.println(ai.getName() + " misses their ultimate skill! (Stamina still consumed: -" + ultimateCost + ")");
                     }
                 }else{
-                    System.out.println("\n[WARNING] Not enough stamina! Need " + ai.getUltimateSkillStaminaCost() + " stamina.");
+                    System.out.println("\n[WARNING] Not enough stamina! Need " + ultimateCost + " stamina.");
                     System.out.println("Performing basic attack instead!");
 
-                    if(ai.getStamina().getCurrent() >= ai.getBasicAttackStaminaCost()){
-                        ai.getStamina().spend(ai.getBasicAttackStaminaCost());
+                    int basicFallbackCost = ai.getBasicAttackStaminaCost();
+                    if(ai.getStamina().getCurrent() >= basicFallbackCost){
+                        ai.getStamina().spend(basicFallbackCost);
+                        System.out.println(ai.getName() + " used " + basicFallbackCost + " stamina for fallback " + ai.getBasic());
+
                         if(checkHit(ai.getAccuracy().getBasicAccuracy())) {
                             ai.basicAttack(player);
                         }
                         else{
-                            System.out.println("Basic attack also misses... Unlucky.. ");
+                            System.out.println("Basic attack also misses... (Stamina still consumed: -" + basicFallbackCost + ")");
                         }
                     } else {
-                        System.out.println("Not enough stamina for basic attack either!");
+                        System.out.println("Not enough stamina for basic attack either! Need " + basicFallbackCost + ", have " + ai.getStamina().getCurrent());
                     }
                 }
                 break;
@@ -325,6 +346,7 @@ public class BattleSystem {
     //Display Skills or Action - Lou
     private void displaySkills(Character character){
         System.out.println("\nAvailable Skills:");
+        System.out.println("Current Stamina: " + character.getStamina().getCurrent() + "/" + character.getStaminaMax());
         System.out.println("[1] (S1) " + character.getBasic() + " (Cost: " + character.getBasicAttackStaminaCost() + ")");
         System.out.println("[2] (S2) " + character.getSpecial() + " (Cost: " + character.getSpecialSkillStaminaCost() + ")");
         System.out.println("[3] (S3) " + character.getUltimate() + " (Cost: " + character.getUltimateSkillStaminaCost() + ")");
