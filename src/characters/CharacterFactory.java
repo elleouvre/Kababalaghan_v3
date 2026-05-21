@@ -5,6 +5,7 @@ import characters.villains.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class CharacterFactory {
 
@@ -35,7 +36,7 @@ public class CharacterFactory {
         return villains;
     }
 
-        public static void showAllCharacters() {
+    public static void showAllCharacters() {
             System.out.println("\n===========================================");
             System.out.println("              CHARACTERS");
             System.out.println("===========================================");
@@ -72,5 +73,23 @@ public class CharacterFactory {
                         villain.getStaminaRegenMax());
             }
             System.out.println("===========================================");
+    }
+
+    public static Character generateRandomEnemy(boolean isHero) {
+        ArrayList<Character> enemies;
+
+        if(isHero) {
+            enemies = CharacterFactory.getAllVillains();
+            System.out.println("\n[As a Hero, you will fight a Corrupted Villain!]");
+        } else {
+            enemies = CharacterFactory.getAllHeroes();
+            System.out.println("\n[As a Villain, you will fight a Corrupted Hero!]");
         }
+
+        Random rand = new Random();
+        Character enemy = enemies.get(rand.nextInt(enemies.size()));
+        System.out.println("[Your enemy is: " + enemy.getName() + "]");
+
+        return enemy;
+    }
 }

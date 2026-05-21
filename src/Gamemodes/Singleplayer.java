@@ -25,7 +25,7 @@ public class Singleplayer {
         Character player = Character.chooseCharacter(scanner, isHero);
 
         //Generates random enemy
-        Character enemy = generateRandomEnemy(isHero[0]);
+        Character enemy = characters.CharacterFactory.generateRandomEnemy(isHero[0]);
 
         battleSystem.startSingleplayer(player, enemy);
 
@@ -36,21 +36,5 @@ public class Singleplayer {
         scanner.nextLine();
     }
 
-    private Character generateRandomEnemy(boolean isHero) {
-        ArrayList<Character> enemies;
 
-        if(isHero) {
-            enemies = CharacterFactory.getAllVillains();
-            System.out.println("\n[As a Hero, you will fight a Villain!]");
-        } else {
-            enemies = CharacterFactory.getAllHeroes();
-            System.out.println("\n[As a Villain, you will fight a Hero!]");
-        }
-
-        Random rand = new Random();
-        Character enemy = enemies.get(rand.nextInt(enemies.size()));
-        System.out.println("[Your enemy is: " + enemy.getName() + "]");
-
-        return enemy;
-    }
 }
