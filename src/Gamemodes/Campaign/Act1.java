@@ -20,20 +20,21 @@ public class Act1 {
         displayIntro();
 
         //Get User and Randomized Enemy
-        Character player = chooseCampaignCharacter();
-        Character stage1Enemy = generateRandomHeroEnemy();
+        boolean[] getChara = new boolean[1];
+        Character player = Character.chooseCharacter(scanner, getChara);
+        Character randomOpponent = CharacterFactory.generateRandomEnemy(getChara[0]);
 
-        displayFight1(stage1Enemy);
+        displayFight1(randomOpponent);
 
         //startfight1
-        battleSystem.startSingleplayer(player, stage1Enemy);
+        battleSystem.startSingleplayer(player, randomOpponent);
             //if lose then ends
             if (!player.isAlive()) {
                 System.out.println("\n[GAME OVER] Yung mundo ay naging ka diliman...");
                 return;
             }
 
-        displayWin1(player, stage1Enemy);
+        displayWin1(player, randomOpponent);
 
         Character corruptedApolaki = new Apolaki();
 
@@ -49,58 +50,6 @@ public class Act1 {
         displayOutro();
     }
 
-    private Character chooseCampaignCharacter() {
-        System.out.println("\nChoose your side for the Campaign:");
-        System.out.println("1. Hero");
-        System.out.println("2. Villain");
-        System.out.print("Choice: ");
-
-        int side = scanner.nextInt();
-        scanner.nextLine();
-
-        if (side == 1) {
-            return selectCharacter(CharacterFactory.getAllHeroes(), "Hero");
-        } else if (side == 2) {
-            return selectCharacter(CharacterFactory.getAllVillains(), "Villain");
-        } else {
-            System.out.println("Invalid choice! Defaulting to Hero.");
-            return CharacterFactory.getAllHeroes().get(0);
-        }
-    }
-    private Character selectCharacter(ArrayList<Character> characters, String type) {
-        System.out.println("\nChoose your " + type + ":");
-        System.out.println("--------------------------------------");
-
-        for (int i = 0; i < characters.size(); i++) {
-            Character c = characters.get(i);
-            System.out.printf("%d. %-15s HP: %3d | ATK: %3d | STA: %3d%n",
-                    (i + 1), c.getName(), c.getMaxHp(), c.getAttack(), c.getStaminaMax());
-            System.out.printf("   Skills: %s, %s, %s%n",
-                    c.getBasic(), c.getSpecial(), c.getUltimate());
-        }
-
-        System.out.print("\nChoice: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-
-        if (choice < 1 || choice > characters.size()) {
-            System.out.println("Invalid choice! Defaulting to first character.");
-            return characters.get(0);
-        }
-
-        Character selected = characters.get(choice - 1);
-        System.out.println("\n[You chose: " + selected.getName() + "]");
-        return selected;
-    }
-    private Character generateRandomHeroEnemy() {
-        ArrayList<Character> randomHeroes = new ArrayList<>();
-        randomHeroes.add(new Kaptan());
-        randomHeroes.add(new Magwayen());
-        randomHeroes.add(new MariaMakiling());
-
-        Collections.shuffle(randomHeroes);
-        return randomHeroes.get(0);
-    }
     public void displayIntro() {
         System.out.println();
         System.out.println("         ARCADE CAMPAIGN: ACT 1            ");
@@ -131,10 +80,12 @@ public class Act1 {
             player.resetAll();
      }
      public void displayFight2() {
+        System.out.println("");
         System.out.println("STAGE 2: Nilamon ng Natuyong Sumpa ang Araw");
         System.out.println("Nagliliyab ang paligid sa galit at init ni Apolaki!");
         System.out.println("Apolaki: 'HINDI NIYO MAPIPIGILAN ANG KADILIMAN! UMALIS KAYO DITO!'");
         System.out.print("Press Enter to engage to save Apolaki!");
+        System.out.println("");
         scanner.nextLine();
      }
     public void displayWin2() {
@@ -147,6 +98,7 @@ public class Act1 {
         scanner.nextLine();
     }
     public void displayOutro(){
+        System.out.println("");
         System.out.println("          !!! WARNING !!!                  ");
         System.out.println("Tumingala ka sa kalangitan kasama si Apolaki.");
         System.out.println("Ang gabi ay unti-unting binabalot ng kawalan.");

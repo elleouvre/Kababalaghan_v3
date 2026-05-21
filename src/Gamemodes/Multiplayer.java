@@ -29,10 +29,12 @@ public class Multiplayer {
             displayScore();
 
             System.out.println("\n[PLAYER 1'S TURN]");
-            Character player1 = chooseCharacter("Player 1");
+            boolean[] player1IsHero = new boolean[1];
+            Character player1 = Character.chooseCharacter(scanner, player1IsHero);
 
             System.out.println("\n[PLAYER 2'S TURN]");
-            Character player2 = chooseCharacter("Player 2");
+            boolean[] player2IsHero = new boolean[1];
+            Character player2 = Character.chooseCharacter(scanner, player2IsHero);
 
             //coin flip to decide who goes first
             boolean player1GoesFirst = coinFlip();
@@ -95,58 +97,6 @@ public class Multiplayer {
         return player1Wins;
     }
 
-    private Character chooseCharacter(String playerName) {
-        System.out.println("\n" + playerName + ", choose your side:");
-        System.out.println("1. Hero");
-        System.out.println("2. Villain");
-        System.out.print("Choice: ");
-
-        int side = scanner.nextInt();
-        scanner.nextLine();
-
-        if(side == 1) {
-            ArrayList<Character> heroes = CharacterFactory.getAllHeroes();
-            return selectCharacter(heroes, playerName);
-        } else if (side == 2) {
-            ArrayList<Character> villains = CharacterFactory.getAllVillains();
-            return selectCharacter(villains, playerName);
-        } else {
-            System.out.println("Invalid choice! Defaulting to Hero.");
-            return CharacterFactory.getAllHeroes().getFirst();
-        }
-    }
-
-    private Character selectCharacter(ArrayList<Character> characters, String playerName) {
-        System.out.println("\n" + playerName + ", choose your character:");
-        System.out.println("--------------------------------------");
-
-        for (int i = 0; i < characters.size(); i++) {
-            Character c = characters.get(i);
-            System.out.printf("%d. %-15s HP: %3d | ATK: %3d | STA: %3d%n",
-                    (i + 1),
-                    c.getName(),
-                    c.getMaxHp(),
-                    c.getAttack(),
-                    c.getStaminaMax());
-            System.out.printf("   Skills: %s, %s, %s%n",
-                    c.getBasic(),
-                    c.getSpecial(),
-                    c.getUltimate());
-        }
-
-        System.out.print("\nChoice: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-
-        if (choice < 1 || choice > characters.size()) {
-            System.out.println("Invalid choice! Defaulting to first character.");
-            return characters.get(0);
-        }
-
-        Character selected = characters.get(choice - 1);
-        System.out.println("\n[" + playerName + " chose: " + selected.getName() + "]");
-        return selected;
-    }
 
     private void displayScore() {
         System.out.println("\n======================================");
