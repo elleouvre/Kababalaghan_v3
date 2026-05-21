@@ -6,8 +6,8 @@ public class Tikbalang extends Character {
     private Random random = new Random();
 
     public Tikbalang() {
-        super("Tikbalang", "Villain", 120, 30, 100,
-                0.88,0.85,0.82,
+        super("Tikbalang", "Villain", 2640, 275, 110,
+                0.90,0.85,0.82,
                 "Hoof Stomp",
                 "Labyrinth of the Forest",
                 "Gingagayuma (Bewitched)");
@@ -22,7 +22,7 @@ public class Tikbalang extends Character {
     @Override
     public void basicAttack(Character target) {
         if (getStamina().spend(basicAttackStaminaCost)) {
-            int damage = attack + random.nextInt(15);
+            int damage = attack + random.nextInt(75);
             System.out.println(name + " uses " + skill1 + "!");
             System.out.println("Isang malakas na sipa mula sa mga bakal!");
             target.takeDamage(damage);
@@ -32,7 +32,7 @@ public class Tikbalang extends Character {
     @Override
     public void specialSkill(Character target) {
         if (getStamina().spend(specialSkillStaminaCost)) {
-            int damage = attack + 10 + random.nextInt(10);
+            int damage = attack + 10 + random.nextInt(50);
             System.out.println(name + " uses " + skill2 + "!");
             System.out.println("Nagsisimulang umikot ang mga landas sa kagubatan. Ang kalaban ay disoriented!");
             target.takeDamage(damage);
@@ -45,7 +45,7 @@ public class Tikbalang extends Character {
     @Override
     public void ultimateSkill(Character target) {
         if (getStamina().spend(ultimateSkillStaminaCost)) {
-            int damage = (attack * 4) + random.nextInt(20);
+            int damage = (attack * 4) + random.nextInt(114);
             System.out.println(name + " uses " + skill3 + "!");
             System.out.println("Isang makapal na usok ng tabako ang pumupuno sa hangin! Ang Tikbalang ay tumatama mula sa mga anino!");
             target.takeDamage(damage);

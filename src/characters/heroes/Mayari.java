@@ -6,8 +6,8 @@ public class Mayari extends Character {
     private Random random = new Random();
 
     public Mayari() {
-        super("Mayari", "Hero", 140, 28, 100,
-                0.90, 0.88, 0.84,
+        super("Mayari", "Hero", 2850, 235, 100,
+                0.88, 0.84, 0.82,
                 "Tumatagos ang Liwanag ng Buwan",
                 "Saplot ng One-Eyed Queen",
                 "Dekreto ng Celestial Divide");
@@ -21,13 +21,13 @@ public class Mayari extends Character {
     @Override
     public void basicAttack(Character target) {
         if (getStamina().spend(basicAttackStaminaCost)) {
-            int damage = attack + random.nextInt(15);
+            int damage = attack + random.nextInt(75);
             System.out.println(name + " uses " + skill1 + "!");
             System.out.println("Itinutok ni Mayari ang kanyang sibat! 'Hindi ka itinatago ng mga anino.'");
 
             if (random.nextBoolean()) {
                 System.out.println("Kritikal na Hit! Ang Full Moon ay nagbibigay kapangyarihan sa strike!");
-                damage += 10;
+                damage += 5;
             }
             target.takeDamage(damage);
         }
@@ -36,7 +36,7 @@ public class Mayari extends Character {
     @Override
     public void specialSkill(Character target) {
         if (getStamina().spend(specialSkillStaminaCost)) {
-            int damage = attack * 2 + random.nextInt(15);
+            int damage = attack * 2 + random.nextInt(75);
             System.out.println(name + " uses " + skill2 + " !");
             System.out.println("Ang talim ng gasuklay ni Mayari ay tumatawid sa larangan ng digmaan!");
             target.takeDamage(damage);
@@ -51,7 +51,7 @@ public class Mayari extends Character {
     @Override
     public void ultimateSkill(Character target) {
         if (getStamina().spend(ultimateSkillStaminaCost)) {
-            int damage = attack * 3 + 20 + random.nextInt(15);
+            int damage = attack * 3 + random.nextInt(85.5);
             System.out.println(name + " uses " + skill3 + " !");
             System.out.println("Nahati ang langit! 'Ako ang tunay na panginoon ng langit!'");
 
