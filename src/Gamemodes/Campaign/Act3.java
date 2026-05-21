@@ -4,6 +4,8 @@ import characters.Character;
 import characters.CharacterFactory;
 import characters.bosses.Bakunawa;
 import Gamemodes.BattleSystem;
+import util.Colors;
+
 import java.util.*;
 
 public class Act3 {
@@ -15,12 +17,14 @@ public class Act3 {
         this.battleSystem = new BattleSystem(sc);
     }
 
-    public void start(){
+    public void start(Character player){
         displayIntro();
 
-        boolean[] getChara = new boolean[1];
-        Character player = Character.chooseCharacter(sc, getChara);
-        Character randomOpponent = CharacterFactory.generateRandomEnemy(getChara[0]);
+        //boolean[] getChara = new boolean[1];
+        //Character player = Character.chooseCharacter(sc, getChara);
+        //Character randomOpponent = CharacterFactory.generateRandomEnemy(getChara[0]);
+
+        Character randomOpponent = CharacterFactory.generateRandomEnemy(false);
 
         displayFight1(randomOpponent);
         battleSystem.startSingleplayer(player, randomOpponent);
@@ -98,9 +102,9 @@ public class Act3 {
 
     public void displayOutro(){
         System.out.println("");
-        System.out.println("===========================================");
-        System.out.println("              ACT 3 COMPLETED!             ");
-        System.out.println("===========================================");
+        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Colors.CYAN + "║            ACT 3 COMPLETED!                 ║" + Colors.RESET);
+        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════════╝" + Colors.RESET);
         System.out.println("Nagtagumpay ka sa pagpuksa ng korapsyon.");
         System.out.println("Ang KABABALAGHAN ay muling nanahimik...");
         System.out.println("===========================================");

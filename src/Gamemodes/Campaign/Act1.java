@@ -5,6 +5,8 @@ import characters.heroes.*;
 import characters.villains.*;
 import characters.CharacterFactory;
 import Gamemodes.BattleSystem;
+import util.Colors;
+
 import java.util.*;
 
 
@@ -16,8 +18,9 @@ public class Act1 {
         this.scanner = scanner;
         this.battleSystem = new BattleSystem(scanner);
     }
-    public void start() {
+    public Character start() {
         displayIntro();
+
 
         //Get User and Randomized Enemy
         boolean[] getChara = new boolean[1];
@@ -31,7 +34,7 @@ public class Act1 {
             //if lose then ends
             if (!player.isAlive()) {
                 System.out.println("\n[GAME OVER] Yung mundo ay naging ka diliman...");
-                return;
+                return null;
             }
 
         displayWin1(player, randomOpponent);
@@ -44,18 +47,21 @@ public class Act1 {
             //if lose then ends
             if (!player.isAlive()) {
                 System.out.println("\n[GAME OVER] Nilamon ka ng bagsik ni Apolaki.");
-                return;
+                return null;
             }
         displayWin2();
         displayOutro();
+        return player;
     }
 
     public void displayIntro() {
         System.out.println();
-        System.out.println("         ARCADE CAMPAIGN: ACT 1            ");
-        System.out.println("         PAGKUKULAM SA KORAPSYON           ");
-        System.out.println("Ang mga Hari ng Lupa at Langit ay nawalan ng kontrol");
-        System.out.println("GOAL: TULONGIN MO ANG MGA HEROES AT ILIGTAS MO SILA!");
+        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println("║          ARCADE CAMPAIGN: ACT 1            ║");
+        System.out.println("║          PAGKUKULAM SA KORAPSYON           ║");
+        System.out.println("║        Ang mga Hari ng Lupa at Langit ay nawalan ng kontrol║");
+        System.out.println("║               GOAL: TULONGIN MO ANG MGA HEROES AT ILIGTAS MO SILA!║");
+        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════════╝" + Colors.RESET);
         System.out.println();
         System.out.print("Press Enter to start and choose your Character..");
         scanner.nextLine();
@@ -105,8 +111,8 @@ public class Act1 {
         System.out.println("Habang nakikipaglaban kayo, ang mga buwan ay unti-unting ninanakaw!");
         System.out.println("Ang mga pitong(7) nga mga buwan ni Mayari ay nawawala!");
         System.out.println("");
-        System.out.println("===========================================");
-        System.out.println("            ACT 1 COMPLETED!               ");
-        System.out.println("===========================================");
+        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Colors.CYAN + "║            ACT 1 COMPLETED!                 ║" + Colors.RESET);
+        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════════╝" + Colors.RESET);
     }
 }

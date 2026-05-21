@@ -1,8 +1,12 @@
 package Gamemodes.Campaign;
 
 import characters.Character;
+import characters.heroes.*;
+import characters.villains.*;
 import characters.CharacterFactory;
 import Gamemodes.BattleSystem;
+import util.Colors;
+
 import java.util.*;
 
 public class Act2 {
@@ -10,149 +14,143 @@ public class Act2 {
     private BattleSystem battleSystem;
     private Random rand = new Random();
 
-
-    private int hoursLeft = 24;
-    private int moonsRetrieved = 0;
-    private boolean[] domainsExplored = new boolean[6];
+    // Track moons collected
+    private int moonsCollected = 0;
+    private final int TOTAL_MOONS = 3;  // 3 boss fights = 3 moons
 
     public Act2(Scanner scanner) {
         this.scanner = scanner;
         this.battleSystem = new BattleSystem(scanner);
     }
 
-
-    public boolean start(Character player) {
+    public void start(Character player) {
         displayIntro();
 
-        while (hoursLeft > 0 && player.isAlive() && moonsRetrieved < 6 && !allDomainExplored()) {
-            displayMenu();
+        // Reset moon count
+        moonsCollected = 0;
 
-            int domainIndex = getDomain();
-            if (domainIndex == -1) continue;
+        // STAGE 1: First Moon - Aswang
+        displayFight1();
+        Character aswang = new Aswang();
+        battleSystem.startSingleplayer(player, aswang);
 
-
-            processExplorationTime();
-            displayExplore(domainIndex);
-
-            // Ambush Checker Domain 2 & 5
-            if (!ifAmbush(domainIndex, player)) {
-                return false;
-            }
-            //getMoon
-            executeScavengeLogic(domainIndex);
+        if (!player.isAlive()) {
+            System.out.println("\n[GAME OVER] Ang unang buwan ay nanatiling nakatago sa dilim...");
+            return;
         }
-        return displayOutro(player);
-    }
+        displayWin1(player, aswang);
+        player.resetAll();
 
+        // STAGE 2: Second Moon - Manananggal
+        displayFight2();
+        Character manananggal = new Mananananggal();
+        battleSystem.startSingleplayer(player, manananggal);
 
-    private int getDomain() {
-        System.out.print("Piliin ang kweba (1-6): ");
-        try {
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-
-            int targetIndex = choice - 1;
-            if (choice >= 1 && choice <= 6 && !domainsExplored[targetIndex]) {
-                return targetIndex;
-            }
-            System.out.println("Invalid choice o nagamit na ang kwebang iyan!");
-        } catch (Exception e) {
-            System.out.println("Pumili lamang ng tamang numero.");
-            scanner.nextLine();
+        if (!player.isAlive()) {
+            System.out.println("\n[GAME OVER] Ang pangalawang buwan ay nalunod sa dugo...");
+            return;
         }
-        return -1;
-    }
+        displayWin2(player, manananggal);
+        player.resetAll();
 
-    private void processExplorationTime() {
-        int cost = rand.nextInt(3) + 1; // 1-3 Hours
-        hoursLeft -= cost;
-        System.out.println("\nNaglakad ka ng malalim. Lumipas ang " + cost + " oras.");
-    }
+        // STAGE 3: Final Moon - Tikbalang (Guardian)
+        displayFight3();
+        Character tikbalang = new Tikbalang();
+        battleSystem.startSingleplayer(player, tikbalang);
 
-    private boolean ifAmbush(int caveIndex, Character player) {
-        if (caveIndex == 1 || caveIndex == 4) {
-            System.out.println("\nWARNING: Mapanganib ang domain na ito! Sinusuri ang paligid...");
-
-            if (rand.nextBoolean()) {
-                System.out.println("AMBUSH! May Villain patungo sayo!");
-                Character ambushEnemy = CharacterFactory.generateRandomEnemy(false);
-                System.out.print("Press Enter to start the Battle. ");
-                scanner.nextLine();
-
-                battleSystem.startSingleplayer(player, ambushEnemy);
-                player.resetAll();
-            } else {
-                System.out.println("Ligtas! Walang kalaban na nakaabang.");
-            }
-            if (!player.isAlive()) return false;
+        if (!player.isAlive()) {
+            System.out.println("\n[GAME OVER] Hindi mo nabawi ang huling buwan...");
+            return;
         }
-        return true;
-    }
 
-    private void executeScavengeLogic(int index) {
-        domainsExplored[index] = true;
-
-        System.out.println("\nMay nakita kang piraso ng Buwan ni Mayari!");
-        System.out.print("Press Enter to get to the moon ");
-        scanner.nextLine();
-
-        moonsRetrieved++;
-        System.out.println("[SUCCESS] Nakuha mo ang 1 garantisadong buwan!");
-
-        if (index != 1 && index != 3) {
-            if (rand.nextBoolean()) {
-                moonsRetrieved++;
-                System.out.println("💎 BONUS! May nakatago pang extra moon piece dito! (+1 Moon)");
-            }
-        } else {
-            System.out.println("[INFO] Tuyo ang kwebang ito. Walang nakatagong extra pools dito.");
-        }
-    }
-
-    private boolean allDomainExplored() {
-        for (boolean e : domainsExplored) if (!e) return false;
-        return true;
+        displayWin3();
+        displayOutro();
     }
 
     public void displayIntro() {
-        System.out.println("\n               ARCADE CAMPAIGN: ACT 2                    ");
-        System.out.println("             --- ANG PAGNANAKAW NG BUWAN ---            ");
-        System.out.println("\nMayroon kang 24 na oras bago maglaho ang gabi.");
-        System.out.print("Press Enter upang simulan ang pag-explore... ");
+        System.out.println("\n         ARCADE CAMPAIGN: ACT 2            ");
+        System.out.println("         ANG PAGBABALIK NG BUWAN           ");
+        System.out.println("Matapos iligtas si Apolaki, tumulong ka ngayon kay Mayari.");
+        System.out.println("GOAL: BAWIIN ANG MGA NINAKAW NA BUWAN NI MAYARI!");
+        System.out.println();
+        System.out.print("Press Enter upang hanapin ang mga buwan...");
         scanner.nextLine();
     }
 
-    public void displayMenu() {
-        System.out.println();
-        System.out.println("ORAS: " + hoursLeft + " Oras na Natitira | BUWAN: " + moonsRetrieved + "/6");
-        System.out.println();
-        System.out.println(" 1. Pugad sa Kalaliman (Aswang's Lair) " + (domainsExplored[0] ? "             [✔ DONE]" : "            [OPEN]"));
-        System.out.println(" 2. Pinagsumpaang Balete (Kapre's Canopy) " + (domainsExplored[1] ? "          [✔ DONE]" : "         [OPEN]"));
-        System.out.println(" 3. Putol na Kalangitan (Manananggal's Roost) " + (domainsExplored[2] ? "      [✔ DONE]" : "     [OPEN]"));
-        System.out.println(" 4. Lawa ng Nagbabagang Kaluluwa (Santelmo's Pit) " + (domainsExplored[3] ? "  [✔ DONE]" : " [OPEN]"));
-        System.out.println(" 5. Gubat ng Naligaw na Landas (Tikbalang's Maze) " + (domainsExplored[4] ? "  [✔ DONE]" : " [OPEN]"));
-        System.out.println(" 6. Sinaunang Libingan ng mga Sinaunang Datu " + (domainsExplored[5] ? "       [✔ DONE]" : "      [OPEN]"));
+    public void displayFight1() {
+        System.out.println("\n═══════════════════════════════════════════");
+        System.out.println("        UNANG BUWAN: PUGAD NG ASWANG");
+        System.out.println("═══════════════════════════════════════════");
+        System.out.println("Ang unang buwan ay nakikita sa pugad ng Aswang!");
+        System.out.println("Aswang: 'ANG BUWAN NA ITO AY SA AKIN! WALANG MAKAHAHABLA NITO!'");
+        System.out.print("Press Enter to retrieve the first moon...");
+        scanner.nextLine();
     }
 
-    public void displayExplore(int index) {
-        System.out.print("Exploring Domain " + (index + 1));
-        for (int i = 0; i < 3; i++) {
-            //add delay text
-            System.out.print(".");
-        }
-        System.out.println();
+    public void displayWin1(Character player, Character enemy) {
+        moonsCollected++;
+        System.out.println("\n✨ " + enemy.getName() + " ay tumakas sa liwanag!");
+        System.out.println("Nabawi mo ang unang buwan ni Mayari! (" + moonsCollected + "/" + TOTAL_MOONS + ")");
+        System.out.println("Aswang: 'SUSUNOD KA... MAGIGING DILIM ANG IYONG KAPALARAN!'");
+        System.out.print("Press Enter to continue...");
+        scanner.nextLine();
+        player.resetAll();
     }
 
-    public boolean displayOutro(Character player) {
-        if (player.isAlive()) {
-            System.out.println("\n                  ACT 2 COMPLETED!                       ");
-            System.out.println("Nakalabas ka nang buhay kasama ang " + moonsRetrieved + " na buwan.");
-            System.out.println("Ngunit isang malaking anino ang lumulubog sa dagat...");
-            System.out.print("Press Enter para magpatuloy sa Act 3 Finale... ");
-            scanner.nextLine();
-            return true;
-        }
-        System.out.println("\n[GAME OVER] Dumidilim ang pananaw mo.");
-        return false;
+    public void displayFight2() {
+        System.out.println("\n═══════════════════════════════════════════");
+        System.out.println("        PANGALAWANG BUWAN: KALANGITAN");
+        System.out.println("═══════════════════════════════════════════");
+        System.out.println("Ang pangalawang buwan ay nakasabit sa himpapawid!");
+        System.out.println("Manananggal: 'HINDI KO IBIBIGAY ANG BUWAN NA ITO!'");
+        System.out.print("Press Enter to retrieve the second moon...");
+        scanner.nextLine();
+    }
+
+    public void displayWin2(Character player, Character enemy) {
+        moonsCollected++;
+        System.out.println("\n✨ " + enemy.getName() + " ay bumagsak sa lupa!");
+        System.out.println("Nabawi mo ang pangalawang buwan! (" + moonsCollected + "/" + TOTAL_MOONS + ")");
+        System.out.println("Manananggal: 'MAY HIGIT PANG MAKAPANGYARIHAN SA AKIN... MAG-INGAT KA!'");
+        System.out.print("Press Enter to continue...");
+        scanner.nextLine();
+        player.resetAll();
+    }
+
+    public void displayFight3() {
+        System.out.println("\n═══════════════════════════════════════════");
+        System.out.println("        HULING BUWAN: GUBAT NG TIKBALANG");
+        System.out.println("═══════════════════════════════════════════");
+        System.out.println("Ang huling buwan ay nasa pinakagitna ng gubat!");
+        System.out.println("Tikbalang: 'ANG HULING BUWAN NA ITO AY SA AKING MGA KAMAY!'");
+        System.out.println("Tikbalang: 'KAILANGAN MONG PATUNAYAN ANG IYONG LAKAS!'");
+        System.out.print("Press Enter to face the final guardian...");
+        scanner.nextLine();
+    }
+
+    public void displayWin3() {
+        moonsCollected++;
+        System.out.println("\n✨ Tikbalang ay lumuhod sa harap mo!");
+        System.out.println("Nabawi mo ang huling buwan! (" + moonsCollected + "/" + TOTAL_MOONS + ")");
+        System.out.println("Tikbalang: 'MARUNONG KANG LUMABAN... ITO NA ANG HULING BUWAN.'");
+        System.out.print("Press Enter to complete Act 2...");
+        scanner.nextLine();
+    }
+
+    public void displayOutro() {
+        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Colors.CYAN + "║            ACT 2 COMPLETED!                 ║" + Colors.RESET);
+        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════════╝" + Colors.RESET);
+        System.out.println("Nagawa mong mabawi ang lahat ng " + moonsCollected + " ninakaw na buwan!");
+        System.out.println("Si Mayari ay nagpapasalamat sa iyong katapangan.");
+        System.out.println("");
+        System.out.println("Mayari: 'SALAMAT SA PAGLILIGTAS SA AKING MGA BUWAN...'");
+        System.out.println("Mayari: 'NGUNIT HINDI PA TAPOS ANG LABAN. MAS MALAKING KADILIMAN ANG PAPARATING.'");
+        System.out.println("");
+        System.out.println("Ang kalangitan ay nagsisimula nang gumuho...");
+        System.out.println("Isang malaking anino ang unti-unting lumalapit...");
+        System.out.println("");
+        System.out.print("Press Enter to wait for Act 3...");
+        scanner.nextLine();
     }
 }
