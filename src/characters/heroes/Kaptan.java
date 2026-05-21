@@ -8,7 +8,7 @@ public class Kaptan extends Character{
 
     public Kaptan(){
         super("Kaptan", "Hero", 3600, 220, 100,
-                0.95,0.80,0.65,
+                0.95,0.87,0.82,
                 "KiDLAT",
                 "BAGYOH!",
                 "Hampas-Langit!");
@@ -16,6 +16,7 @@ public class Kaptan extends Character{
         this.basicAttackStaminaCost = 0;
         this.specialSkillStaminaCost = 20;
         this.ultimateSkillStaminaCost = 60;
+
         getStamina().setRegenRange(20, 35);
     }
 

@@ -4,14 +4,15 @@ import characters.Character;
 public class Aswang extends Character {
 
     public Aswang() {
-        super("Aswang", "Villain", 3500, 150, 100,
-                0.85,0.80,0.75,
+        super("Aswang", "Villain", 3500, 258, 100,
+                0.93,0.84,0.80,
                 "Kagat ng Dilim",
                 "Anino Lurker",
                 "Sigaw ng Kadiliman");
         this.basicAttackStaminaCost = 0;
         this.specialSkillStaminaCost = 20;
         this.ultimateSkillStaminaCost = 45;
+
         getStamina().setRegenRange(10, 20);
     }
 

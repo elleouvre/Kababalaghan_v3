@@ -6,7 +6,7 @@ public class Apolaki extends Character {
 
     public Apolaki() {
         super("Apolaki", "Hero", 3550, 243, 100,
-                0.95,0.80,0.50,
+                0.95,0.89,0.82,
                 "Banal ng Digmaan",
                 "Bagsik ng Araw",
                 "Paghampas ng Bathalang Mandirigma!");
@@ -15,6 +15,7 @@ public class Apolaki extends Character {
         this.specialSkillStaminaCost = 15;
         this.ultimateSkillStaminaCost = 50;
 
+        getStamina().setRegenRange(20, 35);
     }
 
     // burst mechanic

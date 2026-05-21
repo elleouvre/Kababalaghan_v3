@@ -5,8 +5,8 @@ import characters.Character;
 public class Mananananggal extends Character {
 
     public Mananananggal() {
-        super("Manananggal", "Villain", 3120, 289, 150,
-                0.85,1,0.65,
+        super("Manananggal", "Villain", 3000, 289, 150,
+                0.95,1,0.80,
                 "Kalas ng Laman",
                 "Hapdi ng Paglipad",
                 "Pagtipon ng Hating Katawan!");
@@ -15,6 +15,7 @@ public class Mananananggal extends Character {
         this.specialSkillStaminaCost = 0;
         this.ultimateSkillStaminaCost = 60;
 
+        getStamina().setRegenRange(20, 35);
     }
 
     // stance(if flying do more dmg,take more dmg)

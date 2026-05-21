@@ -3,7 +3,7 @@ import characters.Character;
 
 public class MariaMakiling extends Character {
     public MariaMakiling() {
-        super("Maria Makiling", "Hero", 3000, 150, 110,
+        super("Maria Makiling", "Hero", 3000, 255, 110,
                 0.80,0.90,0.70,
                 "Hampas ng Baging",
                 "Lunas ng Kalikasan",

@@ -8,7 +8,7 @@ public class Santelmo extends Character{
     private int heatLevel = 0;
     public Santelmo(){
         super("Santelmo", "Villain", 3000, 320, 100,
-                0.95,0.80,0.65,
+                0.95,0.89,0.80,
                 "SpARK!",
                 "BlaZe",
                 "FiREBALL!");
@@ -17,6 +17,7 @@ public class Santelmo extends Character{
         this.specialSkillStaminaCost = 15;
         this.ultimateSkillStaminaCost = 50;
 
+        getStamina().setRegenRange(20, 35);
     }
 
     //spark
