@@ -11,12 +11,11 @@ public class Bakunawa extends Character {
                 "Poot ng Karagatan",
                 "Lagim ng Lahong Buwan");
 
-        // Bosses typically have higher costs or different stamina mechanics
         this.basicAttackStaminaCost = 0;
         this.specialSkillStaminaCost = 30;
         this.ultimateSkillStaminaCost = 80;
         
-        getStamina().setRegenRange(20, 40); // boss recovers more stamina
+        getStamina().setRegenRange(20, 40);
     }
 
     @Override
