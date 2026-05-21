@@ -44,7 +44,7 @@ public class StaminaSystem {
 
     public void reset(){
         current = max;
-    }
+    } // Reset to max value
 
     public int getCurrent() { return current; }
     public int getMax() { return max; }
