@@ -37,7 +37,7 @@ public class Multiplayer {
             Character player2 = Character.chooseCharacter(scanner, player2IsHero);
 
             //coin flip to decide who goes first
-            boolean player1GoesFirst = coinFlip();
+            boolean player1GoesFirst = coinFlip(player1.getName(), player2.getName());
 
             Character winner = battleSystem.startMultiplayer(player1, player2, player1GoesFirst);
             if(winner == player1){
@@ -57,7 +57,7 @@ public class Multiplayer {
     }
 
     //determines which player goes first
-    private boolean coinFlip() {
+    private boolean coinFlip(String player1Name, String player2Name) {
         System.out.println("\n===========================================");
         System.out.println("             COIN FLIP!");
         System.out.println("===========================================");
@@ -80,21 +80,19 @@ public class Multiplayer {
         String playerCall = (call == 1) ? "Heads" : "Tails";
 
         //flip the coin
-        boolean landedHeads = new Random().nextBoolean();
-        String result = landedHeads ? "Heads" : "Tails";
+        boolean result = new Random().nextBoolean();
+        String winner = result ? player1Name : player2Name;
 
         System.out.println("\nThe coin is in the air...");
-        System.out.println("It landed on... " + result + "!");
+        System.out.println("It landed on... " + winner + "!");
 
-        boolean player1Wins = (call == 1 && landedHeads) || (call == 2 && !landedHeads);
-
-        if(player1Wins) {
-            System.out.println("Player 1 called " + playerCall + " — CORRECT! Player 1 goes first!");
+        if(result) {
+            System.out.println("Player 1 called " + playerCall + " — CORRECT! " + player1Name + " goes first!");
         } else {
-            System.out.println("Player 1 called " + playerCall + " — WRONG! Player 2 goes first!");
+            System.out.println("Player 1 called " + playerCall + " — WRONG! " + player2Name + " goes first!");
         }
 
-        return player1Wins;
+        return result;
     }
 
 
