@@ -54,12 +54,12 @@ public class Act1 {
     }
     public void displayIntro() {
         System.out.println();
-        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════════╗" + Colors.RESET);
-        System.out.println("║          ARCADE CAMPAIGN: ACT 1            ║");
-        System.out.println("║          PAGKUKULAM SA KORAPSYON           ║");
-        System.out.println("║        Ang mga Hari ng Lupa at Langit ay nawalan ng kontrol║");
-        System.out.println("║               GOAL: TULONGIN MO ANG MGA HEROES AT ILIGTAS MO SILA!║");
-        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════════╝" + Colors.RESET);
+        System.out.println(Colors.GOLD + "\n╔═════════════════════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Utils.colorizeActWan("║                  ARCADE CAMPAIGN: ACT 1                         ║"));
+        System.out.println(Utils.colorizeActWan("║                  PAGKUKULAM SA KORAPSYON                        ║"));
+        System.out.println(Utils.colorizeActWan("║     Ang mga Hari ng Lupa at Langit ay nawalan ng kontrol        ║"));
+        System.out.println(Utils.colorizeActWan("║     GOAL: TULONGIN MO ANG MGA HEROES AT ILIGTAS MO SILA!        ║"));
+        System.out.println(Colors.GOLD + "╚═════════════════════════════════════════════════════════════════╝" + Colors.RESET);
         System.out.println();
         System.out.print("Press Enter to start...");
         scanner.nextLine();

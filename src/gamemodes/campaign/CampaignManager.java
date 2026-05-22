@@ -77,10 +77,10 @@ public class CampaignManager {
     }
 
     private boolean runAct1() {
-        System.out.println(Colors.PURPLE + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
-        System.out.println(Colors.YELLOW + "║                    ACT 1                          ║" + Colors.RESET);
-        System.out.println(Colors.CYAN + "║           Pagkukulam sa Korapsyon                 ║" + Colors.RESET);
-        System.out.println(Colors.PURPLE + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
+        System.out.println(Colors.GOLD + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Utils.colorizeActWan("║                    ACT 1                          ║"));
+        System.out.println(Utils.colorizeActWan("║           Pagkukulam sa Korapsyon                 ║"));
+        System.out.println(Colors.GOLD + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
 
         // Create a new player character for Act 1
         boolean[] isHero = new boolean[1];
@@ -91,10 +91,10 @@ public class CampaignManager {
     }
 
     private boolean runAct2() {
-        System.out.println(Colors.PURPLE + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
-        System.out.println(Colors.YELLOW + "║                    ACT 2                          ║" + Colors.RESET);
-        System.out.println(Colors.CYAN + "║           Ang Pagbabalik ng Buwan                  ║" + Colors.RESET);
-        System.out.println(Colors.PURPLE + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
+        System.out.println(Colors.GOLD + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Utils.colorizeActToo("║                    ACT 2                          ║"));
+        System.out.println(Utils.colorizeActToo("║           Ang Pagbabalik ng Buwan                  ║"));
+        System.out.println(Colors.GOLD + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
 
         if (savedPlayer == null) {
             System.out.println(Colors.RED + "\n[ERROR] Walang nakitang karakter! Nagre-restart ng Act 1." + Colors.RESET);
@@ -109,8 +109,8 @@ public class CampaignManager {
 
     private boolean runAct3() {
         System.out.println(Colors.PURPLE + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
-        System.out.println(Colors.YELLOW + "║                    ACT 3                          ║" + Colors.RESET);
-        System.out.println(Colors.CYAN + "║           Ang Huling Pagliligtas                   ║" + Colors.RESET);
+        System.out.println(Utils.colorizeActTree("║                    ACT 3                          ║"));
+        System.out.println(Utils.colorizeActTree("║           Ang Huling Pagliligtas                   ║"));
         System.out.println(Colors.PURPLE + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
 
         if (savedPlayer == null) {
@@ -152,27 +152,27 @@ public class CampaignManager {
     }
 
     private void displayCampaignBanner() {
-        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════════════════════╗" + Colors.RESET);
-        System.out.println(Colors.YELLOW + "║                    KABABALAGHAN: THE COMPLETE CAMPAIGN            ║" + Colors.RESET);
-        System.out.println(Colors.CYAN + "║                         The Full Story                            ║" + Colors.RESET);
-        System.out.println(Colors.PURPLE + "║                                                                   ║" + Colors.RESET);
-        System.out.println(Colors.CYAN + "║   ACT 1: Pagkukulam sa Korapsyon                                  ║" + Colors.RESET);
-        System.out.println(Colors.CYAN + "║   ACT 2: Ang Pagbabalik ng Buwan                                  ║" + Colors.RESET);
-        System.out.println(Colors.CYAN + "║   ACT 3: Ang Huling Pagliligtas                                   ║" + Colors.RESET);
-        System.out.println(Colors.PURPLE + "║                                                                   ║" + Colors.RESET);
-        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════════════════════╝" + Colors.RESET);
+        System.out.println(Colors.BLUE + "\n╔═══════════════════════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Colors.BLUE + "║                KABABALAGHAN: THE COMPLETE CAMPAIGN                ║" + Colors.RESET);
+        System.out.println(Colors.BLUE + "║                         The Full Story                            ║" + Colors.RESET);
+        System.out.println(Colors.BLUE + "║                                                                   ║" + Colors.RESET);
+        System.out.println(Utils.colorizeBorders("║        ACT 1: Pagkukulam sa Korapsyon                             ║"));
+        System.out.println(Utils.colorizeBorders("║        ACT 2: Ang Pagbabalik ng Buwan                             ║"));
+        System.out.println(Utils.colorizeBorders( "║        ACT 3: Ang Huling Pagliligtas                              ║" ));
+        System.out.println(Colors.BLUE + "║                                                                   ║" + Colors.RESET);
+        System.out.println(Colors.BLUE + "╚═══════════════════════════════════════════════════════════════════╝" + Colors.RESET);
     }
 
     private void displayCompletion() {
         System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════════════════════╗" + Colors.RESET);
-        System.out.println(Colors.YELLOW + "║                    CAMPAIGN COMPLETED!                             ║" + Colors.RESET);
+        System.out.println(Utils.colorizeCompletion("║                    CAMPAIGN COMPLETED!                             ║"));
         System.out.println(Colors.CYAN + "║                                                                       ║" + Colors.RESET);
-        System.out.println(Colors.CYAN + "║     Congratulations! Nakumpleto mo ang buong campaign!               ║" + Colors.RESET);
+        System.out.println(Utils.colorizeCompletion("║     Congratulations! Nakumpleto mo ang buong campaign!               ║"));
         System.out.println(Colors.CYAN + "║                                                                       ║" + Colors.RESET);
-        System.out.println(Colors.PURPLE + "║     Naibalik mo ang liwanag sa mundo ng KABABALAGHAN.               ║" + Colors.RESET);
-        System.out.println(Colors.PURPLE + "║     Ang mga buwan ay muling nagniningning sa kalangitan.           ║" + Colors.RESET);
+        System.out.println(Utils.colorizeCompletion("║     Naibalik mo ang liwanag sa mundo ng KABABALAGHAN.               ║"));
+        System.out.println(Utils.colorizeCompletion("║     Ang mga buwan ay muling nagniningning sa kalangitan.           ║"));
         System.out.println(Colors.CYAN + "║                                                                       ║" + Colors.RESET);
-        System.out.println(Colors.YELLOW + "║              Salamat sa paglalaro ng KABABALAGHAN!                   ║" + Colors.RESET);
+        System.out.println(Utils.colorizeCompletion("║              Salamat sa paglalaro ng KABABALAGHAN!                   ║"));
         System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════════════════════╝" + Colors.RESET);
     }
-}
+}X

@@ -40,13 +40,13 @@ public class Main {
         String choice = "";
 
         while(!choice.equalsIgnoreCase("X")) {
-            System.out.println(Colors.GREEN + "\n╔════════════════════════════════════════════╗" + Colors.RESET);
+            System.out.println(Colors.BLACK + "\n╔════════════════════════════════════════════╗" + Colors.RESET);
             System.out.println(Colors.CYAN + "║               GAME MODES:                  ║" + Colors.RESET);
             System.out.println(Colors.CYAN + "║ [1] Arcade Campaign                        ║" + Colors.RESET);
             System.out.println(Colors.CYAN + "║ [2] Singleplayer (VS Computer)             ║" + Colors.RESET);
             System.out.println(Colors.CYAN + "║ [3] Multiplayer (PVP)                      ║" + Colors.RESET);
             System.out.println(Colors.CYAN + "║ [X] Back to Main Menu                      ║" + Colors.RESET);
-            System.out.println(Colors.GREEN + "╚════════════════════════════════════════════╝" + Colors.RESET);
+            System.out.println(Colors.BLACK + "╚════════════════════════════════════════════╝" + Colors.RESET);
             System.out.print("Choose mode: ");
             choice = sc.nextLine().trim();
 
@@ -96,7 +96,7 @@ public class Main {
         System.out.println(Utils.colorizeBlocks("╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n"));
 
         System.out.println(Colors.PURPLE + "                                                      [1] Start");
-        System.out.println(Colors.PURPLE + "                                                      [2] View Characters");
+        System.out.println(Colors.BLUE + "                                                      [2] View Characters");
         System.out.println(Colors.LIGHT_BLUE + "                                                      [X] Quit Game" + Colors.RESET);
 
     }

@@ -2,6 +2,7 @@ package characters;
 
 import characters.heroes.*;
 import characters.villains.*;
+import util.Colors;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +19,7 @@ public class CharacterFactory {
         heroes.add(new MariaMakiling());
         heroes.add(new Mayari());
         //to add more
-       //Collections.shuffle(heroes);
+        Collections.shuffle(heroes);
         return heroes;
     }
 
@@ -32,17 +33,17 @@ public class CharacterFactory {
         villains.add(new Tikbalang());
         //to add more
 
-        //Collections.shuffle(villains);
+        Collections.shuffle(villains);
         return villains;
     }
 
     public static void showAllCharacters() {
-            System.out.println("\n===========================================");
-            System.out.println("              CHARACTERS");
-            System.out.println("===========================================");
+        System.out.println(Colors.PURPLE + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Colors.MOON_WHITE+ "║                   CHARACTERS:                     ║" + Colors.RESET);
+        System.out.println(Colors.PURPLE + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
 
-            System.out.println("\n[ HEROES ]");
-            System.out.println("-------------------------------------------");
+            System.out.println(Colors.BLUE + "                \n╠  HEROES  ╣" + Colors.RESET);
+            System.out.println(Colors.BLUE + "════════════════════════════════════════════════════════════" + Colors.RESET);
             ArrayList<Character> heroes = getAllHeroes();
             for (int i = 0; i < heroes.size(); i++) {
                 Character hero = heroes.get(i);
@@ -57,8 +58,8 @@ public class CharacterFactory {
                         hero.getStaminaRegenMax());
             }
 
-            System.out.println("\n[ VILLAINS ]");
-            System.out.println("-------------------------------------------");
+        System.out.println(Colors.RED + "                \n╠  VILLAINS  ╣" + Colors.RESET);
+        System.out.println(Colors.RED + "════════════════════════════════════════════════════════════" + Colors.RESET);
             ArrayList<Character> villains = getAllVillains();
             for (int i = 0; i < villains.size(); i++) {
                 Character villain = villains.get(i);
@@ -72,7 +73,7 @@ public class CharacterFactory {
                         villain.getStaminaRegenMin(),
                         villain.getStaminaRegenMax());
             }
-            System.out.println("===========================================");
+        System.out.println(Colors.PURPLE + "════════════════════════════════════════════════════════════" + Colors.RESET);
     }
 
     public static Character generateRandomEnemy(boolean isHero) {
