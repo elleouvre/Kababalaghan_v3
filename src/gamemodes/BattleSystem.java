@@ -1,4 +1,4 @@
-package Gamemodes;
+package gamemodes;
 
 import characters.Character;
 import characters.StaminaSystem;

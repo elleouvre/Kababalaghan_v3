@@ -1,7 +1,6 @@
-package Gamemodes;
+package gamemodes;
 
 import characters.Character;
-import characters.CharacterFactory;
 import util.Colors;
 
 import java.util.*;

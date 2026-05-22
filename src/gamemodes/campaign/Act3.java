@@ -1,9 +1,9 @@
-package Gamemodes.Campaign;
+package gamemodes.campaign;
 
 import characters.Character;
 import characters.CharacterFactory;
 import characters.bosses.Bakunawa;
-import Gamemodes.BattleSystem;
+import gamemodes.BattleSystem;
 import util.Utils;
 import util.Colors;
 

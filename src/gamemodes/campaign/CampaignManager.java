@@ -1,4 +1,4 @@
-package Gamemodes.Campaign;
+package gamemodes.campaign;
 
 import characters.Character;
 import util.Colors;
@@ -148,7 +148,7 @@ public class CampaignManager {
     }
 
     private boolean askToContinue(String actName) {
-        System.out.println(Colors.GREEN + "\n✓ NAKUMULETO MO ANG ACT 1!" + Colors.RESET);
+        System.out.println(Colors.GREEN + "\n✓ NAKUMPLETO MO ANG NAKARAANG ACT!" + Colors.RESET);
         Utils.delay(900);
         System.out.print(Colors.YELLOW + "Gusto mo bang magpatuloy sa " + actName + "? (1=Oo / 2=Hindi): " + Colors.RESET);
         Utils.delay(900);

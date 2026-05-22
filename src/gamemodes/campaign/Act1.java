@@ -1,10 +1,9 @@
-package Gamemodes.Campaign;
+package gamemodes.campaign;
 
 import characters.Character;
 import characters.heroes.*;
-import characters.villains.*;
 import characters.CharacterFactory;
-import Gamemodes.BattleSystem;
+import gamemodes.BattleSystem;
 import util.Utils;
 import util.Colors;
 
