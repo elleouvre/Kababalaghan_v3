@@ -18,28 +18,20 @@ public class Act1 {
         this.scanner = scanner;
         this.battleSystem = new BattleSystem(scanner);
     }
-    public Character start() {
+    public boolean start(Character player) {
         displayIntro();
 
-
-        //Get User and Randomized Enemy
-        boolean[] getChara = new boolean[1];
-        Character player = Character.chooseCharacter(scanner, getChara);
-        Character randomOpponent = CharacterFactory.generateRandomEnemy(getChara[0]);
+        Character randomOpponent = CharacterFactory.generateRandomEnemy(true); // Assuming player is a hero
 
         displayFight1(randomOpponent);
 
-        //startfight1
         boolean battle1Won = battleSystem.startSingleplayer(player, randomOpponent);
         if (!battle1Won) {
-            System.out.println("\nReturning to menu...");
-            return null;
+            return false; // Player exited
         }
         
-        //if lose then ends
         if (!player.isAlive()) {
-            System.out.println("\n[GAME OVER] Yung mundo ay naging ka diliman...");
-            return null;
+            return false; // Player died
         }
 
         displayWin1(player, randomOpponent);
@@ -47,21 +39,18 @@ public class Act1 {
         Character corruptedApolaki = new Apolaki();
 
         displayFight2();
-        //startfight2
         boolean battle2Won = battleSystem.startSingleplayer(player, corruptedApolaki);
         if (!battle2Won) {
-            System.out.println("\nReturning to menu...");
-            return null;
+            return false; // Player exited
         }
         
-        //if lose then ends
         if (!player.isAlive()) {
-            System.out.println("\n[GAME OVER] Nilamon ka ng bagsik ni Apolaki.");
-            return null;
+            return false; // Player died
         }
+        
         displayWin2();
         displayOutro();
-        return player;
+        return true; // Act completed successfully
     }
     public void displayIntro() {
         System.out.println();
@@ -72,7 +61,7 @@ public class Act1 {
         System.out.println("║               GOAL: TULONGIN MO ANG MGA HEROES AT ILIGTAS MO SILA!║");
         System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════════╝" + Colors.RESET);
         System.out.println();
-        System.out.print("Press Enter to start and choose your Character..");
+        System.out.print("Press Enter to start...");
         scanner.nextLine();
     }
     public void displayFight1(Character stage1Enemy) {
@@ -102,8 +91,7 @@ public class Act1 {
         System.out.print("Press Enter to continue and face the final threat...");
         Utils.delay(1500);
         scanner.nextLine();
-        //clean stats
-        player.resetAll();
+        player.resetAll(); // Stats reset
     }
     public void displayFight2() {
         System.out.println("");

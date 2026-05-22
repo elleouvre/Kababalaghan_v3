@@ -18,21 +18,18 @@ public class Act3 {
         this.battleSystem = new BattleSystem(sc);
     }
 
-    public void start(Character player){
+    public boolean start(Character player){
         displayIntro();
 
         Character randomOpponent = CharacterFactory.generateRandomEnemy(false);
 
         displayFight1(randomOpponent);
         boolean battle1Won = battleSystem.startSingleplayer(player, randomOpponent);
-        if (!battle1Won) {
-            System.out.println("\nReturning to menu...");
-            return;
-        }
+        if (!battle1Won) { return false; } // Player exited
         
         if (!player.isAlive()) {
             System.out.println("\n[GAME OVER] Nilamon ng dilim ang huling pag-asa...");
-            return;
+            return false; // Player died
         }
 
         displayWin1(player, randomOpponent);
@@ -42,18 +39,16 @@ public class Act3 {
 
         displayFight2();
         boolean battle2Won = battleSystem.startSingleplayer(player, finalBoss);
-        if (!battle2Won) {
-            System.out.println("\nReturning to menu...");
-            return;
-        }
+        if (!battle2Won) { return false; } // Player exited
 
         if (!player.isAlive()) {
             System.out.println("\n[GAME OVER] Naglaho ang mga buwan nang tuluyan.");
-            return;
+            return false; // Player died
         }
 
         displayWin2();
         displayOutro();
+        return true; // Act completed successfully
     }
 
     public void displayIntro() {
@@ -68,7 +63,7 @@ public class Act3 {
         Utils.delay(1000);
         System.out.println();
 
-        System.out.print("Press [ENTER] to start and choose your Character..");
+        System.out.print("Press [ENTER] to start...");
         Utils.delay(1500);
         sc.nextLine();
     }
@@ -94,7 +89,7 @@ public class Act3 {
         System.out.print("Press [ENTER] to face the devourer of moons...");
         Utils.delay(1500);
         sc.nextLine();
-        player.resetAll(); // reset player stats
+        player.resetAll();
     }
 
     public void displayFight2() {
