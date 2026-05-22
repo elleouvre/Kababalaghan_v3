@@ -1,14 +1,15 @@
 package characters.heroes;
+
 import characters.Character;
+import util.Colors;
 
-
-public class Kaptan extends Character{
-    // kaptan specific
+public class Kaptan extends Character {
+    // kaptan specific mechanic
     private int stormCharge = 0;
 
-    public Kaptan(){
+    public Kaptan() {
         super("Kaptan", "Hero", 3600, 220, 100,
-                0.95,0.87,0.82,
+                0.95, 0.87, 0.82,
                 "KiDLAT",
                 "BAGYOH!",
                 "Hampas-Langit!");
@@ -21,34 +22,38 @@ public class Kaptan extends Character{
     }
 
     @Override
-    public void basicAttack(Character target){
+    public void basicAttack(Character target) {
+
+        System.out.println(Colors.CYAN + "Umaatake ang KIDLAT!" + Colors.RESET);
+
         int damage = attack + random.nextInt(75);
         stormCharge++;
 
-        System.out.println("Umaatake ang KIDLAT!");
-        System.out.println("Kaptan gathers static energy in the air! (Storm Charges: " + stormCharge + ")");
+        System.out.println(Colors.YELLOW + "Kaptan gathers static energy in the air! (Storm Charges: " + stormCharge + ")" + Colors.RESET);
         target.takeDamage(damage);
     }
 
     @Override
-    public void specialSkill(Character target){
-       if (getStamina().spend(basicAttackStaminaCost)){
-           int damage = attack + random.nextInt(75);
-           stormCharge++;
-           System.out.print("Pinaulanan ka ng KIDLAT!");
-           target.takeDamage(damage);
-       }
+    public void specialSkill(Character target) {
+        System.out.println(Colors.CYAN + "Pinaulanan ka ng KIDLAT!" + Colors.RESET);
+        System.out.println(Colors.YELLOW + name + " uses " + skill2 + "!" + Colors.RESET);
+
+        int damage = attack + random.nextInt(75);
+        stormCharge++;
+
+        target.takeDamage(damage);
     }
 
     @Override
-    public void ultimateSkill(Character target){
-        if(getStamina().spend(ultimateSkillStaminaCost)){
-            int damage = attack + random.nextInt(90);
-            // logic dire
-            System.out.print(name + "uses HAMPAS LANGIT!");
-            target.takeDamage(damage);
-            // reset stormcharge after use
-            stormCharge = 0;
-        }
+    public void ultimateSkill(Character target) {
+        System.out.println(Colors.YELLOW + name + " uses " + skill3 + "!" + Colors.RESET);
+        System.out.println(Colors.RED + "Isang nagngangalit na hampas mula sa kalangitan!" + Colors.RESET);
+
+
+        int damage = attack + random.nextInt(90);
+
+
+        stormCharge = 0;
+        target.takeDamage(damage);
     }
 }
