@@ -31,12 +31,17 @@ public class Act1 {
         displayFight1(randomOpponent);
 
         //startfight1
-        battleSystem.startSingleplayer(player, randomOpponent);
-            //if lose then ends
-            if (!player.isAlive()) {
-                System.out.println("\n[GAME OVER] Yung mundo ay naging ka diliman...");
-                return null;
-            }
+        boolean battle1Won = battleSystem.startSingleplayer(player, randomOpponent);
+        if (!battle1Won) {
+            System.out.println("\nReturning to menu...");
+            return null;
+        }
+        
+        //if lose then ends
+        if (!player.isAlive()) {
+            System.out.println("\n[GAME OVER] Yung mundo ay naging ka diliman...");
+            return null;
+        }
 
         displayWin1(player, randomOpponent);
 
@@ -44,12 +49,17 @@ public class Act1 {
 
         displayFight2();
         //startfight2
-        battleSystem.startSingleplayer(player, corruptedApolaki);
-            //if lose then ends
-            if (!player.isAlive()) {
-                System.out.println("\n[GAME OVER] Nilamon ka ng bagsik ni Apolaki.");
-                return null;
-            }
+        boolean battle2Won = battleSystem.startSingleplayer(player, corruptedApolaki);
+        if (!battle2Won) {
+            System.out.println("\nReturning to menu...");
+            return null;
+        }
+        
+        //if lose then ends
+        if (!player.isAlive()) {
+            System.out.println("\n[GAME OVER] Nilamon ka ng bagsik ni Apolaki.");
+            return null;
+        }
         displayWin2();
         displayOutro();
         return player;

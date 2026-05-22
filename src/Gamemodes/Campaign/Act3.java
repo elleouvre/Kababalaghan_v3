@@ -21,14 +21,15 @@ public class Act3 {
     public void start(Character player){
         displayIntro();
 
-        //boolean[] getChara = new boolean[1];
-        //Character player = Character.chooseCharacter(sc, getChara);
-        //Character randomOpponent = CharacterFactory.generateRandomEnemy(getChara[0]);
-
         Character randomOpponent = CharacterFactory.generateRandomEnemy(false);
 
         displayFight1(randomOpponent);
-        battleSystem.startSingleplayer(player, randomOpponent);
+        boolean battle1Won = battleSystem.startSingleplayer(player, randomOpponent);
+        if (!battle1Won) {
+            System.out.println("\nReturning to menu...");
+            return;
+        }
+        
         if (!player.isAlive()) {
             System.out.println("\n[GAME OVER] Nilamon ng dilim ang huling pag-asa...");
             return;
@@ -40,7 +41,12 @@ public class Act3 {
         Character finalBoss = new Bakunawa();
 
         displayFight2();
-        battleSystem.startSingleplayer(player, finalBoss);
+        boolean battle2Won = battleSystem.startSingleplayer(player, finalBoss);
+        if (!battle2Won) {
+            System.out.println("\nReturning to menu...");
+            return;
+        }
+
         if (!player.isAlive()) {
             System.out.println("\n[GAME OVER] Naglaho ang mga buwan nang tuluyan.");
             return;

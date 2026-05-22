@@ -33,7 +33,11 @@ public class Act2 {
         // STAGE 1: First Moon - Aswang
         displayFight1();
         Character aswang = new Aswang();
-        battleSystem.startSingleplayer(player, aswang);
+        boolean battle1Won = battleSystem.startSingleplayer(player, aswang);
+        if (!battle1Won) {
+            System.out.println("\nReturning to menu...");
+            return;
+        }
 
         if (!player.isAlive()) {
             System.out.println("\n[GAME OVER] Ang unang buwan ay nanatiling nakatago sa dilim...");
@@ -45,7 +49,11 @@ public class Act2 {
         // STAGE 2: Second Moon - Manananggal
         displayFight2();
         Character manananggal = new Mananananggal();
-        battleSystem.startSingleplayer(player, manananggal);
+        boolean battle2Won = battleSystem.startSingleplayer(player, manananggal);
+        if (!battle2Won) {
+            System.out.println("\nReturning to menu...");
+            return;
+        }
 
         if (!player.isAlive()) {
             System.out.println("\n[GAME OVER] Ang pangalawang buwan ay nalunod sa dugo...");
@@ -57,7 +65,11 @@ public class Act2 {
         // STAGE 3: Final Moon - Tikbalang (Guardian)
         displayFight3();
         Character tikbalang = new Tikbalang();
-        battleSystem.startSingleplayer(player, tikbalang);
+        boolean battle3Won = battleSystem.startSingleplayer(player, tikbalang);
+        if (!battle3Won) {
+            System.out.println("\nReturning to menu...");
+            return;
+        }
 
         if (!player.isAlive()) {
             System.out.println("\n[GAME OVER] Hindi mo nabawi ang huling buwan...");
