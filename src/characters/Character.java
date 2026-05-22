@@ -73,12 +73,28 @@ public abstract class Character {
     }
 
     public static Character chooseCharacter(Scanner scanner, boolean[] isHero) {
-        System.out.println("\nChoose your side:");
-        System.out.println("1. Hero");
-        System.out.println("2. Villain");
-        System.out.print("Choice: ");
-        int side = scanner.nextInt();
-        scanner.nextLine();
+        int side = 0;
+        boolean validSide = false;
+        
+        while (!validSide) {
+            System.out.println("\nChoose your side:");
+            System.out.println("1. Hero");
+            System.out.println("2. Villain");
+            System.out.print("Choice: ");
+            
+            try {
+                side = scanner.nextInt();
+                scanner.nextLine();
+                if (side == 1 || side == 2) {
+                    validSide = true;
+                } else {
+                    System.out.println("Invalid choice! Please enter 1 or 2.");
+                }
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // Clear the invalid input
+            }
+        }
 
         ArrayList<Character> characters;
         String type;
@@ -94,7 +110,7 @@ public abstract class Character {
                 type = "Villain";
                 isHero[0] = false;
                 break;
-            default:
+            default: // Should not be reached due to validation, but kept for safety
                 System.out.println("Invalid choice! Defaulting to Hero.");
                 isHero[0] = true;
                 return getAllHeroes().get(0);
@@ -111,20 +127,28 @@ public abstract class Character {
                     c.getBasic(), c.getSpecial(), c.getUltimate());
         }
 
-        System.out.print("\nChoice: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = 0;
+        boolean validChoice = false;
+        
+        while (!validChoice) {
+            System.out.print("\nChoice: ");
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+                validChoice = true;
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // Clear the invalid input
+            }
+        }
 
         Character selected;
 
         if (choice >= 1 && choice <= characters.size()) {
             selected = characters.get(choice - 1);
         } else {
-            selected = characters.get(0);
-        }
-
-        if(choice < 1 || choice > characters.size()) {
             System.out.println("Invalid choice! Defaulting to first character.");
+            selected = characters.get(0);
         }
 
         System.out.println("\n[You chose: " + selected.getName() + "]");
