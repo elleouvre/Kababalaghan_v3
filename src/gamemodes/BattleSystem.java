@@ -15,7 +15,7 @@ public class BattleSystem {
 
 
     //For Singleplayer (Player vs AI) - Lou
-    public boolean startSingleplayer(Character player, Character ai){
+    public void startSingleplayer(Character player, Character ai){
         displayBattleIntro();
         System.out.println("[ PLAYER VS AI BATTLE ]");
         System.out.println(player.getName() + " VS " + ai.getName());
@@ -60,10 +60,8 @@ public class BattleSystem {
         }
         if (!forceExit) {
             displayBattleResult();
-            return true;
         } else {
             System.out.println("\n[ BATTLE ABORTED ]");
-            return false;
         }
     }
 
@@ -109,11 +107,10 @@ public class BattleSystem {
 
         if (!forceExit) {
             displayBattleResult();
-            return player1.isAlive() ? player1 : player2;
         } else {
              System.out.println("\n[ BATTLE ABORTED ]");
-             return null;
         }
+        return player1.isAlive() ? player1 : player2;
     }
 
     //Player turn logic for both singleplayer and multiplayer - Bea

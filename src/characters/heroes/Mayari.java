@@ -1,12 +1,12 @@
 package characters.heroes;
+
 import characters.Character;
-import java.util.Random;
+import util.Colors;
 
 public class Mayari extends Character {
-    private Random random = new Random();
 
     public Mayari() {
-        super("Mayari", "Hero", 3550, 288, 100,
+        super("Mayari", "Hero", 3550, 255, 100,
                 0.92, 0.87, 0.82,
                 "Tumatagos ang Liwanag ng Buwan",
                 "Saplot ng One-Eyed Queen",
@@ -20,47 +20,40 @@ public class Mayari extends Character {
 
     @Override
     public void basicAttack(Character target) {
-        if (getStamina().spend(basicAttackStaminaCost)) {
-            int damage = attack + random.nextInt(75);
-            System.out.println(name + " uses " + skill1 + "!");
-            System.out.println("Itinutok ni Mayari ang kanyang sibat! 'Hindi ka itinatago ng mga anino.'");
+        System.out.println(Colors.CYAN + "Itinutok ni Mayari ang kanyang sibat! 'Hindi ka itinatago ng mga anino.'" + Colors.RESET);
+        System.out.println(Colors.YELLOW + name + " uses " + skill1 + "!" + Colors.RESET);
 
-            if (random.nextBoolean()) {
-                System.out.println("Kritikal na Hit! Ang Full Moon ay nagbibigay kapangyarihan sa strike!");
-                damage += 5;
-            }
-            target.takeDamage(damage);
+        int damage = attack + random.nextInt(75);
+        if (random.nextBoolean()) {
+            System.out.println(Colors.RED + "Kritikal na Hit! Ang Full Moon ay nagbibigay kapangyarihan sa strike! (+35 DMG)" + Colors.RESET);
+            damage += 35;
         }
+        target.takeDamage(damage);
     }
 
     @Override
     public void specialSkill(Character target) {
-        if (getStamina().spend(specialSkillStaminaCost)) {
-            int damage = attack * 2 + random.nextInt(75);
-            System.out.println(name + " uses " + skill2 + " !");
-            System.out.println("Ang talim ng gasuklay ni Mayari ay tumatawid sa larangan ng digmaan!");
-            target.takeDamage(damage);
+        System.out.println(Colors.YELLOW + name + " uses " + skill2 + "!" + Colors.RESET);
+        System.out.println(Colors.CYAN + "Ang talim ng gasuklay ni Mayari ay tumatawid sa larangan ng digmaan!" + Colors.RESET);
 
-            // Simple buff
-            int healAmount = 15;
-            this.hp = Math.min(maxHp, this.hp + healAmount);
-            System.out.println("Nagbabalik ang liwanag ng buwan " + healAmount + " HP kay " + name + "!");
-        }
+        int damage = attack * 2 + random.nextInt(75);
+        target.takeDamage(damage);
+
+        int healAmount = 150;
+        this.hp = Math.min(maxHp, this.hp + healAmount);
+        System.out.println(Colors.GREEN + "Nagbabalik ang liwanag ng buwan ng " + healAmount + " HP kay " + name + "!" + Colors.RESET);
     }
 
     @Override
     public void ultimateSkill(Character target) {
-        if (getStamina().spend(ultimateSkillStaminaCost)) {
-            int damage = attack * 3 + random.nextInt(95);
-            System.out.println(name + " uses " + skill3 + " !");
-            System.out.println("Nahati ang langit! 'Ako ang tunay na panginoon ng langit!'");
+        System.out.println(Colors.YELLOW + name + " uses " + skill3 + "!" + Colors.RESET);
+        System.out.println(Colors.RED + "Nahati ang langit! 'Ako ang tunay na panginoon ng langit!'" + Colors.RESET);
 
-            target.takeDamage(damage);
+        int damage = attack * 3 + random.nextInt(125);
+        target.takeDamage(damage);
 
-            // Heal/shield effect
-            int healAmount = 30;
-            this.hp = Math.min(maxHp, this.hp + healAmount);
-            System.out.println("Nag-restore ang isang Silver Shield " + healAmount + " HP to " + name + "!");
-        }
+        int healAmount = 300;
+        this.hp = Math.min(maxHp, this.hp + healAmount);
+        System.out.println(Colors.GREEN + "Nag-restore ang isang Silver Shield ng " + healAmount + " HP kay " + name + "!" + Colors.RESET);
     }
 }

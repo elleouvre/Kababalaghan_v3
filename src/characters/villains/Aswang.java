@@ -1,68 +1,46 @@
 package characters.villains;
+
 import characters.Character;
+import util.Colors;
 
 public class Aswang extends Character {
 
     public Aswang() {
-        super("Aswang", "Villain", 3500, 258, 100,
-                0.93,0.84,0.80,
+        super("Aswang", "Villain", 3300, 265, 100,
+                0.93, 0.84, 0.80,
                 "Kagat ng Dilim",
                 "Anino Lurker",
                 "Sigaw ng Kadiliman");
         this.basicAttackStaminaCost = 0;
         this.specialSkillStaminaCost = 20;
         this.ultimateSkillStaminaCost = 45;
-
-        getStamina().setRegenRange(10, 20);
+        getStamina().setRegenRange(10, 25);
     }
 
     @Override
     public void basicAttack(Character target){
-        if(getStamina().spend(basicAttackStaminaCost)){
+        System.out.println(Colors.YELLOW + name + " uses " + skill1 + "!" + Colors.RESET);
+        System.out.println(Colors.CYAN + "Sumuko ka sa gutom ng dilim!" + Colors.RESET);
 
-            System.out.println(name + " uses " + skill1 + "!");
-            if(random.nextDouble() >= getAccuracy().getBasicAccuracy()) {
-                System.out.println(name + "'s attack missed in the darkness!");
-                return;
-            }
-
-            int damage = attack + random.nextInt(40);
-            System.out.println("Sumuko ka sa gutom ng dilim!");
-            target.takeDamage(damage);
-        }
+        int damage = attack + random.nextInt(65);
+        target.takeDamage(damage);
     }
 
     @Override
     public void specialSkill(Character target){
-        if(getStamina().spend(specialSkillStaminaCost)){
-            System.out.println(name + " uses " + skill2 + "!");
+        System.out.println(Colors.YELLOW + name + " uses " + skill2 + "!" + Colors.RESET);
+        System.out.println(Colors.CYAN + "Hindi mo ako makikita sa dilim! Struck from the shadows!" + Colors.RESET);
 
-            if(random.nextDouble() > getAccuracy().getSpecialAccuracy()){
-
-                System.out.println("Hindi mo ako makikita sa dilim!");
-            }
-
-            int damage = (int)(attack * 2 * 5.7) + random.nextInt(85);
-            System.out.println("Hindi mo ako makikita sa dilim!");
-            target.takeDamage(damage);
-            System.out.println(target.getName() + " is struck from the shadows!");
-        }
+        int damage = (attack * 2) + random.nextInt(110);
+        target.takeDamage(damage);
     }
 
     @Override
     public void ultimateSkill(Character target){
-        if(getStamina().spend(ultimateSkillStaminaCost)){
-            System.out.println(name + " uses " + skill3 + "!");
+        System.out.println(Colors.RED + name + " uses " + skill3 + "!" + Colors.RESET);
+        System.out.println(Colors.RED + "Lulunukin kayo ng kadiliman! A massive wave of darkness engulfs the battlefield!" + Colors.RESET);
 
-            if(random.nextDouble() >= getAccuracy().getUltimateAccuracy()) {
-                System.out.println("The darkness consumed the attack! It missed!");
-                return;
-            }
-
-            int damage = (int)(attack * 3 * 5.7) + random.nextInt(25);
-            System.out.println("Lulunukin kayo ng kadiliman!");
-            target.takeDamage(damage);
-            System.out.println("A massive wave of darkness engulfs the battlefield!");
-        }
+        int damage = (attack * 3) + random.nextInt(150);
+        target.takeDamage(damage);
     }
 }
