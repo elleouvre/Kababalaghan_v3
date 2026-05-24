@@ -11,18 +11,11 @@ public class Utils {
 
     }
 
+    //displayMenu
     public static String colorizeBlocks(String line) {
         return line
-                .replace("█", Colors.BLACK + "█" + Colors.RESET)
-                .replace("▓", Colors.BLACK + "▓" + Colors.RESET)
-                .replace("▒", Colors.BLACK + "▒" + Colors.RESET)
-                .replace("░", Colors.BLACK + "░" + Colors.RESET)
-                .replace("▀", Colors.BLACK + "▀" + Colors.RESET)
-                .replace("▄", Colors.BLACK + "▄" + Colors.RESET)
-                .replace("▐▌", Colors.BLACK + "▐▌" + Colors.RESET)
-
-                .replace("✠", Colors.MOON_SILVER + "✠" + Colors.RESET)
-                .replace("—", Colors.MOON_GREY + "—" + Colors.RESET)
+                .replace("✠", Colors.BLACK + "✠" + Colors.RESET)
+                .replace("—", Colors.BLACK + "—" + Colors.RESET)
 
                 .replace("╔", Colors.SILVER + "╔" + Colors.RESET)
                 .replace("╗", Colors.SILVER + "╗" + Colors.RESET)
@@ -31,6 +24,21 @@ public class Utils {
                 .replace("═", Colors.SILVER + "═" + Colors.RESET)
                 .replace("║", Colors.SILVER + "║" + Colors.RESET);
     }
+    public static String colorizeMoon(String line) {
+        return line
+                .replace("@", Colors.MOON_WHITE + "@" + Colors.RESET)
+                .replace("#", Colors.MOON_SILVER + "#" + Colors.RESET)
+                .replace("%", Colors.MOON_SILVER + "%" + Colors.RESET)
+                .replace("*", Colors.MOON_SILVER + "*" + Colors.RESET)
+                .replace("+", Colors.MOON_WHITE + "+" + Colors.RESET)
+                .replace("=", Colors.MOON_WHITE + "=" + Colors.RESET)
+                .replace(":", Colors.MOON_GREY + ":" + Colors.RESET)
+                .replace(".", Colors.MOON_GREY + "." + Colors.RESET)
+                .replace("-", Colors.MOON_GREY + "-" + Colors.RESET)
+                .replace("║", Colors.SILVER + "║" + Colors.RESET);
+    }
+
+
     public static String colorizeBorders(String line){
         return line
                 .replace("║", Colors.BLUE + "║" + Colors.RESET)
@@ -79,19 +87,5 @@ public class Utils {
                 .replace("Naibalik mo ang liwanag sa mundo ng KABABALAGHAN.",Colors.YELLOW + "Naibalik mo ang liwanag sa mundo ng KABABALAGHAN." + Colors.RESET)
                 .replace("Ang mga buwan ay muling nagniningning sa kalangitan.",Colors.YELLOW + "Ang mga buwan ay muling nagniningning sa kalangitan." + Colors.RESET)
                 .replace("Salamat sa paglalaro ng KABABALAGHAN!",Colors.YELLOW + "Salamat sa paglalaro ng KABABALAGHAN!" + Colors.RESET);
-    }
-
-    public static String colorizeMoon(String line) {
-        return line
-                .replace("@", Colors.MOON_WHITE + "@" + Colors.RESET)
-                .replace("#", Colors.MOON_SILVER + "#" + Colors.RESET)
-                .replace("%", Colors.MOON_SILVER + "%" + Colors.RESET)
-                .replace("*", Colors.MOON_SILVER + "*" + Colors.RESET)
-                .replace("+", Colors.MOON_WHITE + "+" + Colors.RESET)
-                .replace("=", Colors.MOON_WHITE + "=" + Colors.RESET)
-                .replace(":", Colors.MOON_GREY + ":" + Colors.RESET)
-                .replace(".", Colors.MOON_GREY + "." + Colors.RESET)
-                .replace("-", Colors.MOON_GREY + "-" + Colors.RESET)
-                .replace("║", Colors.SILVER + "║" + Colors.RESET);
     }
 }
