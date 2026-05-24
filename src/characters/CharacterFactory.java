@@ -38,9 +38,13 @@ public class CharacterFactory {
     }
 
     public static void showAllCharacters() {
-        System.out.println(Colors.PURPLE + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
-        System.out.println(Colors.MOON_WHITE+ "║                   CHARACTERS:                     ║" + Colors.RESET);
-        System.out.println(Colors.PURPLE + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println(Colors.PURPLE + "                                       ╔═══════════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Colors.MOON_WHITE+ "                                       ║                   CHARACTERS:                     ║" + Colors.RESET);
+        System.out.println(Colors.PURPLE + "                                       ╚═══════════════════════════════════════════════════╝" + Colors.RESET);
 
             System.out.println(Colors.BLUE + "                \n╠  HEROES  ╣" + Colors.RESET);
             System.out.println(Colors.BLUE + "════════════════════════════════════════════════════════════" + Colors.RESET);
