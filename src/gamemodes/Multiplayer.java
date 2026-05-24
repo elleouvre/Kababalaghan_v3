@@ -20,6 +20,9 @@ public class Multiplayer {
         //display multiplayer mode display
         System.out.println();
         System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
         System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
         System.out.println(Colors.CYAN + "║               MULTIPLAYER MODE                    ║" + Colors.RESET);
         System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
@@ -98,7 +101,7 @@ public class Multiplayer {
 
     private void displayScore() {
         System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
-        System.out.printf("║     SCORE:  Player 1 [%d]  -  [%d] Player 2                ║", player1Wins, player2Wins);
+        System.out.printf("║     SCORE:  Player 1 [%d]  -  [%d] Player 2         ║\n", player1Wins, player2Wins);
         System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
         //System.out.println("\n======================================");
         //System.out.printf("SCORE:  Player 1 [%d]  -  [%d] Player 2%n", player1Wins, player2Wins);

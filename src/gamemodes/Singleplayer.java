@@ -17,6 +17,9 @@ public class Singleplayer {
     public void start() {
         System.out.println();
         System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
         System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
         System.out.println(Colors.CYAN + "║               SINGLEPLAYER MODE                   ║" + Colors.RESET);
         System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
