@@ -2,6 +2,7 @@ package gamemodes;
 
 import characters.Character;
 import util.Colors;
+import util.Utils;
 
 import java.util.*;
 
@@ -20,9 +21,9 @@ public class Singleplayer {
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
-        System.out.println(Colors.CYAN + "║               SINGLEPLAYER MODE                   ║" + Colors.RESET);
-        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
+        System.out.println(Utils.colorizeSingp("\n╔═══════════════════════════════════════════════════╗"));
+        System.out.println(Utils.colorizeSingp("║               SINGLEPLAYER MODE                   ║"));
+        System.out.println(Utils.colorizeSingp("╚═══════════════════════════════════════════════════╝"));
 
         //Choose your character (true = Hero, false = Villain)
         boolean[] isHero = new boolean[1];
@@ -36,7 +37,7 @@ public class Singleplayer {
         player.resetAll();
         enemy.resetAll();
 
-        System.out.println("\nPress Enter to return to menu...");
+        System.out.println(Utils.colorizeSingp("\nPress Enter to return to menu..."));
         scanner.nextLine();
     }
 

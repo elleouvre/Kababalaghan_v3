@@ -2,6 +2,7 @@ package gamemodes;
 
 import characters.Character;
 import util.Colors;
+import util.Utils;
 
 import java.util.*;
 
@@ -23,9 +24,9 @@ public class Multiplayer {
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════╗" + Colors.RESET);
-        System.out.println(Colors.CYAN + "║               MULTIPLAYER MODE                    ║" + Colors.RESET);
-        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
+        System.out.println(Utils.colorizeMulti("\n╔═══════════════════════════════════════════════════╗"));
+        System.out.println(Utils.colorizeMulti("║               MULTIPLAYER MODE                    ║"));
+        System.out.println(Utils.colorizeMulti("╚═══════════════════════════════════════════════════╝"));
 
         boolean playing = true;
         while(playing){
