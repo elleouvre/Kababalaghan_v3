@@ -38,6 +38,43 @@ public class Utils {
                 .replace("║", Colors.SILVER + "║" + Colors.RESET);
     }
 
+    public static String colorizeMenu(String line){
+        return line
+                .replace("║", Colors.CYAN + "║" + Colors.RESET)
+                .replace("══", Colors.CYAN + "══" + Colors.RESET)
+                .replace("╔", Colors.CYAN + "╔" + Colors.RESET)
+                .replace("╗", Colors.CYAN + "╗" + Colors.RESET)
+                .replace("╚", Colors.CYAN + "╚" + Colors.RESET)
+                .replace("╝", Colors.CYAN + "╝" + Colors.RESET)
+                .replace("GAME MODES:", Colors.BLUE + "GAME MODES:" + Colors.RESET)
+                .replace("[1] Arcade Campaign", Colors.PURPLE + "[1] Arcade Campaign" + Colors.RESET)
+                .replace("[2] Singleplayer (VS Computer) ", Colors.PURPLE + "[2] Singleplayer (VS Computer) " + Colors.RESET)
+                .replace("[3] Multiplayer (PVP)", Colors.PURPLE + "[3] Multiplayer (PVP)" + Colors.RESET)
+                .replace("[X] Back to Main Menu", Colors.RED + "[X] Back to Main Menu" + Colors.RESET)
+                .replace("Choose mode:", Colors.WHITE+ "Choose mode:" + Colors.RESET);
+    }
+
+    public static String colorizeSingp(String line) {
+        return line
+                .replace("║", Colors.CYAN + "║" + Colors.RESET)
+                .replace("══", Colors.CYAN + "══" + Colors.RESET)
+                .replace("╔", Colors.CYAN + "╔" + Colors.RESET)
+                .replace("╗", Colors.CYAN + "╗" + Colors.RESET)
+                .replace("╚", Colors.CYAN + "╚" + Colors.RESET)
+                .replace("╝", Colors.CYAN + "╝" + Colors.RESET)
+                .replace("SINGLEPLAYER MODE", Colors.CYAN + "SINGLEPLAYER MODE" + Colors.RESET)
+                .replace("Press Enter to return to menu...", Colors.CYAN + "Press Enter to return to menu..." + Colors.RESET);
+    }
+
+    public static String colorizeMulti(String line) {
+        return line
+                .replace("║", Colors.CYAN + "║" + Colors.RESET)
+                .replace("══", Colors.CYAN + "══" + Colors.RESET)
+                .replace("╔", Colors.CYAN + "╔" + Colors.RESET)
+                .replace("╗", Colors.CYAN + "╗" + Colors.RESET)
+                .replace("╚", Colors.CYAN + "╚" + Colors.RESET)
+                .replace("╝", Colors.CYAN + "╝" + Colors.RESET);
+    }
 
     public static String colorizeBorders(String line){
         return line
