@@ -12,7 +12,7 @@ import java.util.*;
 public class Act3 {
     private Scanner sc;
     private BattleSystem battleSystem;
-    
+
     public Act3(Scanner sc){
         this.sc = sc;
         this.battleSystem = new BattleSystem(sc);
@@ -26,7 +26,7 @@ public class Act3 {
         displayFight1(randomOpponent);
         boolean battle1Won = battleSystem.startSingleplayer(player, randomOpponent);
         if (!battle1Won) { return false; } // Player exited
-        
+
         if (!player.isAlive()) {
             System.out.println("\n[GAME OVER] Nilamon ng dilim ang huling pag-asa...");
             return false; // Player died
@@ -128,9 +128,9 @@ public class Act3 {
 
     public void displayOutro(){
         System.out.println("");
-        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════════╗" + Colors.RESET);
-        System.out.println(Colors.CYAN + "║            ACT 3 COMPLETED!                 ║" + Colors.RESET);
-        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════════╝" + Colors.RESET);
+        System.out.println(Colors.CYAN + "\n                                           ╔════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Colors.CYAN + Colors.BOLD + Colors.ITALIC + "                                           ║            ACT 3 COMPLETED!                ║" + Colors.RESET);
+        System.out.println(Colors.CYAN + "                                           ╚════════════════════════════════════════════╝" + Colors.RESET);
         System.out.println("Nagtagumpay ka sa pagpuksa ng korapsyon.");
         Utils.delay(900);
         System.out.println("Ang KABABALAGHAN ay muling nanahimik...");

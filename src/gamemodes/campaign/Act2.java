@@ -165,9 +165,9 @@ public class Act2 {
     }
 
     public void displayOutro() {
-        System.out.println(Colors.GREEN + "\n╔═══════════════════════════════════════════════════════╗" + Colors.RESET);
-        System.out.println(Colors.CYAN + "║            ACT 2 COMPLETED!                 ║" + Colors.RESET);
-        System.out.println(Colors.GREEN + "╚═══════════════════════════════════════════════════════╝" + Colors.RESET);
+        System.out.println(Colors.CYAN + "\n                                           ╔════════════════════════════════════════════╗" + Colors.RESET);
+        System.out.println(Colors.CYAN + Colors.BOLD + Colors.ITALIC + "                                           ║            ACT 2 COMPLETED!                ║" + Colors.RESET);
+        System.out.println(Colors.CYAN + "                                           ╚════════════════════════════════════════════╝" + Colors.RESET);
         System.out.println("Nagawa mong mabawi ang lahat ng " + moonsCollected + " ninakaw na buwan!");
         Utils.delay(900);
         System.out.println("Si Mayari ay nagpapasalamat sa iyong katapangan.");
