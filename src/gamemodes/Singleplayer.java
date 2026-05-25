@@ -1,8 +1,7 @@
 package gamemodes;
 
 import characters.Character;
-import util.Colors;
-import util.Utils;
+import util.*;
 
 import java.util.*;
 
@@ -21,15 +20,15 @@ public class Singleplayer {
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println(Utils.colorizeSingp("\n╔═══════════════════════════════════════════════════╗"));
-        System.out.println(Utils.colorizeSingp("║               SINGLEPLAYER MODE                   ║"));
-        System.out.println(Utils.colorizeSingp("╚═══════════════════════════════════════════════════╝"));
+        System.out.println(Utils.colorizeSingp("\n                                           ╔════════════════════════════════════════════╗"));
+        System.out.println(Utils.colorizeSingp("                                           ║ " + Colors.CYAN + Colors.BOLD + Colors.ITALIC + "             SINGLEPLAYER MODE             " + Colors.RESET + "║"));
+        System.out.println(Utils.colorizeSingp("                                           ╚════════════════════════════════════════════╝"));
 
-        //Choose your character (true = Hero, false = Villain)
+        System.out.println(Colors.LIGHT_GREY + "                                           Choose your character..." + Colors.RESET);
         boolean[] isHero = new boolean[1];
         Character player = Character.chooseCharacter(scanner, isHero);
 
-        //Generates random enemy
+        System.out.println(Colors.LIGHT_GREY + "                                           Generating enemy..." + Colors.RESET);
         Character enemy = characters.CharacterFactory.generateRandomEnemy(isHero[0]);
 
         battleSystem.startSingleplayer(player, enemy);
@@ -37,9 +36,7 @@ public class Singleplayer {
         player.resetAll();
         enemy.resetAll();
 
-        System.out.println(Utils.colorizeSingp("\nPress Enter to return to menu..."));
+        System.out.println(Utils.colorizeSingp(Colors.LIGHT_GREY + "\n                                           Press Enter to return to menu..." + Colors.RESET));
         scanner.nextLine();
     }
-
-
 }
