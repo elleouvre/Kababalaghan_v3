@@ -14,8 +14,8 @@ public class Utils {
     //displayMenu
     public static String colorizeBlocks(String line) {
         return line
-                .replace("✠", Colors.BLACK + "✠" + Colors.RESET)
-                .replace("—", Colors.BLACK + "—" + Colors.RESET)
+                .replace("✠", Colors.WHITE + "✠" + Colors.RESET)
+                .replace("—", Colors.MOON_GREY + "—" + Colors.RESET)
 
                 .replace("╔", Colors.SILVER + "╔" + Colors.RESET)
                 .replace("╗", Colors.SILVER + "╗" + Colors.RESET)
@@ -40,16 +40,16 @@ public class Utils {
 
     public static String colorizeMenu(String line){
         return line
-                .replace("║", Colors.CYAN + "║" + Colors.RESET)
-                .replace("══", Colors.CYAN + "══" + Colors.RESET)
-                .replace("╔", Colors.CYAN + "╔" + Colors.RESET)
-                .replace("╗", Colors.CYAN + "╗" + Colors.RESET)
-                .replace("╚", Colors.CYAN + "╚" + Colors.RESET)
-                .replace("╝", Colors.CYAN + "╝" + Colors.RESET)
-                .replace("GAME MODES:", Colors.BLUE + "GAME MODES:" + Colors.RESET)
-                .replace("[1] Arcade Campaign", Colors.PURPLE + "[1] Arcade Campaign" + Colors.RESET)
-                .replace("[2] Singleplayer (VS Computer) ", Colors.PURPLE + "[2] Singleplayer (VS Computer) " + Colors.RESET)
-                .replace("[3] Multiplayer (PVP)", Colors.PURPLE + "[3] Multiplayer (PVP)" + Colors.RESET)
+                .replace("║", Colors.MOON_GREY + "║" + Colors.RESET)
+                .replace("══", Colors.MOON_GREY + "══" + Colors.RESET)
+                .replace("╔", Colors.MOON_GREY + "╔" + Colors.RESET)
+                .replace("╗", Colors.MOON_GREY + "╗" + Colors.RESET)
+                .replace("╚", Colors.MOON_GREY + "╚" + Colors.RESET)
+                .replace("╝", Colors.MOON_GREY + "╝" + Colors.RESET)
+                .replace("GAME MODES:", Colors.MOON_SILVER +Colors.BOLD+ "GAME MODES:" + Colors.RESET)
+                .replace("[1] Arcade Campaign", Colors.LIGHT_GREY+Colors.ITALIC + "[1] Arcade Campaign" + Colors.RESET)
+                .replace("[2] Singleplayer (VS Computer) ", Colors.LIGHT_GREY+Colors.ITALIC + "[2] Singleplayer (VS Computer) " + Colors.RESET)
+                .replace("[3] Multiplayer (PVP)", Colors.LIGHT_GREY+Colors.ITALIC  + "[3] Multiplayer (PVP)" + Colors.RESET)
                 .replace("[X] Back to Main Menu", Colors.RED + "[X] Back to Main Menu" + Colors.RESET)
                 .replace("Choose mode:", Colors.WHITE+ "Choose mode:" + Colors.RESET);
     }

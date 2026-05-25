@@ -28,12 +28,20 @@ public class Colors {
     public static final String SALMON     = "\u001B[38;2;250;128;114m";
     public static final String TURQUOISE  = "\u001B[38;2;64;224;208m";
     public static final String VIOLET     = "\u001B[38;2;238;130;238m";
+    public static final String LIGHT_GREY = "\u001B[97m";
+    public static final String PALE_GREY = "\u001B[37;1m";
 
     //border
     public static final String SILVER       = "\u001B[38;5;102m";
+
 
     //moon (for game intro display)
     public static final String MOON_WHITE  = "\u001B[38;5;255m";
     public static final String MOON_SILVER = "\u001B[38;5;188m";
     public static final String MOON_GREY   = "\u001B[38;5;102m";
+
+    //Styles
+    public static final String ITALIC = "\u001B[3m";
+    public static final String BOLD = "\u001B[1m";
+
 }

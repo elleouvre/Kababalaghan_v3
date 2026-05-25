@@ -26,7 +26,7 @@ public class GameMenu {
                     break;
                 case "2":
                     CharacterFactory.showAllCharacters();
-                    System.out.println("\nPress [ENTER] to return to the main menu...");
+                    System.out.println("\n                                                Press [ENTER] to return to the main menu...");
                     scanner.nextLine();
                     break;
                 case "X":
@@ -38,7 +38,7 @@ public class GameMenu {
                     Utils.delay(900);
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("                                             Invalid choice. Please try again.");
                     break;
             }
         }
@@ -48,15 +48,20 @@ public class GameMenu {
         String choice = "";
 
         while (!choice.equalsIgnoreCase("X")) {
+            System.out.println(Colors.CYAN + "\n                                           ╔════════════════════════════════════════════╗" + Colors.RESET);
+            System.out.println(Colors.CYAN + Colors.BOLD + Colors.ITALIC + "                                           ║            ACT 1 COMPLETED!                ║" + Colors.RESET);
+            System.out.println(Colors.CYAN + "                                           ╚════════════════════════════════════════════╝" + Colors.RESET);
+
+
             System.out.println();
             System.out.println(Utils.colorizeMenu("                                           ╔════════════════════════════════════════════╗"));
             System.out.println(Utils.colorizeMenu("                                           ║               GAME MODES:                  ║"));
-            System.out.println(Utils.colorizeMenu("                                           ║ [1] Arcade Campaign                        ║"));
-            System.out.println(Utils.colorizeMenu("                                           ║ [2] Singleplayer (VS Computer)             ║"));
-            System.out.println(Utils.colorizeMenu("                                           ║ [3] Multiplayer (PVP)                      ║"));
-            System.out.println(Utils.colorizeMenu("                                           ║ [X] Back to Main Menu                      ║"));
+            System.out.println(Utils.colorizeMenu("                                           ║        [1] Arcade Campaign                 ║"));
+            System.out.println(Utils.colorizeMenu("                                           ║        [2] Singleplayer (VS Computer)      ║"));
+            System.out.println(Utils.colorizeMenu("                                           ║        [3] Multiplayer (PVP)               ║"));
+            System.out.println(Utils.colorizeMenu("                                           ║        [X] Back to Main Menu               ║"));
             System.out.println(Utils.colorizeMenu("                                           ╚════════════════════════════════════════════╝"));
-            System.out.print(Utils.colorizeMenu("                                             Choose mode: "));
+            System.out.print(Utils.colorizeMenu("                                                         Choose mode: "));
             choice = scanner.nextLine().trim();
 
             switch (choice.toUpperCase()) {
@@ -81,6 +86,10 @@ public class GameMenu {
     private void showDisplayMenu() {
         System.out.println(Utils.colorizeBlocks("╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗"));
         System.out.println(Utils.colorizeBlocks("║                                                                                                                                      ║"));
+        System.out.println(Utils.colorizeBlocks("║                                                         4DK Presents...                                                              ║"));
+        System.out.println(Utils.colorizeBlocks("║                                                                                                                                      ║"));
+        System.out.println(Utils.colorizeBlocks("║                                                                                                                                      ║"));
+        System.out.println(Utils.colorizeBlocks("║                                                                                                                                      ║"));
         System.out.println(Utils.colorizeMoon("║                                                           =@@@@@@@@@@@=                                                              ║"));
         System.out.println(Utils.colorizeMoon("║                                                    .:+@@@@#::::::::::-#@@@@+:.                                                       ║"));
         System.out.println(Utils.colorizeMoon("║                                                 =+*%%*:-::-=-=---::--:::::-*%%*+                                                     ║"));
@@ -98,12 +107,15 @@ public class GameMenu {
         System.out.println(Utils.colorizeBlocks("║               ░ ░░ ░  ░   ▒    ░    ░   ░   ▒    ░    ░   ░   ▒     ░ ░    ░   ▒   ░ ░   ░  ░  ░░ ░  ░   ▒      ░   ░ ░              ║"));
         System.out.println(Utils.colorizeBlocks("║               ░  ░        ░  ░ ░            ░  ░ ░            ░  ░    ░  ░     ░  ░      ░  ░  ░  ░      ░  ░         ░              ║"));
         System.out.println(Utils.colorizeBlocks("║               ░                 ░                                                                                                    ║"));
-        System.out.println(Utils.colorizeBlocks("║                       ✠ ——— ✠ ——— ✠ ——— ✠ DESCEND INTO LEGEND.  FIGHT FOR YOUR FATE. ✠ ——— ✠ ——— ✠ ——— ✠                             ║"));
+        System.out.println(Utils.colorizeBlocks("║                       ✠ ——— ✠ ——— ✠ ——— ✠ DESCEND INTO LEGEND.  FIGHT FOR YOUR FATE. ✠ ——— ✠ ——— ✠ ——— ✠                          ║"));
         System.out.println(Utils.colorizeBlocks("║                                                                                                                                      ║"));
         System.out.println(Utils.colorizeBlocks("╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n"));
 
-        System.out.println(Colors.PURPLE + "                                                         [1] Start");
-        System.out.println(Colors.BLUE + "                                                         [2] View Characters");
-        System.out.println(Colors.LIGHT_BLUE + "                                                         [X] Quit Game" + Colors.RESET);
+        System.out.println(Colors.PALE_GREY+("                                           ╔════════════════════════════════════════════╗"));
+        System.out.println(Colors.PALE_GREY+("                                           ║"+Colors.MOON_WHITE+Colors.BOLD+"             KABABALAGHAN MENU              "+Colors.RESET+Colors.PALE_GREY+"║"+Colors.RESET));
+        System.out.println(Colors.PALE_GREY+("                                           ║"+Colors.MOON_SILVER+Colors.BOLD+"        [1]"+Colors.ITALIC+" Start                           "+Colors.PALE_GREY+"║"+Colors.RESET));
+        System.out.println(Colors.PALE_GREY+("                                           ║"+Colors.MOON_SILVER+Colors.BOLD+"        [2]"+Colors.ITALIC+" View Characters                 "+Colors.PALE_GREY+"║"+Colors.RESET));
+        System.out.println(Colors.PALE_GREY+("                                           ║"+Colors.RED+"        [X]"+Colors.ITALIC+" Quit Game                       "+Colors.PALE_GREY+"║"+Colors.RESET));
+        System.out.println(Colors.PALE_GREY+("                                           ╚════════════════════════════════════════════╝"));
     }
 }
