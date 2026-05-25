@@ -1,5 +1,7 @@
 package characters;
 
+import util.Colors;
+
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -51,10 +53,10 @@ public abstract class Character {
     public void takeDamage(int damage){
         this.hp -= damage;
         if (hp < 0) hp = 0;// constraint
-        System.out.println(name + " has taken " + damage + " damage! HP: " + hp + "/" + maxHp);
+        System.out.println("                                           "+name + " has taken " + damage + " damage! HP: " + hp + "/" + maxHp);
         if (this.hp <= 0){ // check if dead
             isAlive = false;
-            System.out.println(name + " has died!");
+            System.out.println("                                           "+name + " has died!");
         }
     }
     //Reset Methods for new battles
@@ -77,10 +79,10 @@ public abstract class Character {
         boolean validSide = false;
         
         while (!validSide) {
-            System.out.println("\nChoose your side:");
-            System.out.println("1. Hero");
-            System.out.println("2. Villain");
-            System.out.print("Choice: ");
+            System.out.println(Colors.CYAN+"\n                                           Choose your side:");
+            System.out.println(Colors.CYAN+"                                           1. Hero");
+            System.out.println(Colors.CYAN+"                                           2. Villain");
+            System.out.print(Colors.MOON_GREY+"                                           Choice: ");
             
             try {
                 side = scanner.nextInt();
@@ -88,10 +90,10 @@ public abstract class Character {
                 if (side == 1 || side == 2) {
                     validSide = true;
                 } else {
-                    System.out.println("Invalid choice! Please enter 1 or 2.");
+                    System.out.println("                                           Invalid choice! Please enter 1 or 2.");
                 }
             } catch (java.util.InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a number.");
+                System.out.println("                                           Invalid input. Please enter a number.");
                 scanner.nextLine(); // Clear the invalid input
             }
         }
@@ -111,19 +113,19 @@ public abstract class Character {
                 isHero[0] = false;
                 break;
             default: // Should not be reached due to validation, but kept for safety
-                System.out.println("Invalid choice! Defaulting to Hero.");
+                System.out.println("                                           Invalid choice! Defaulting to Hero.");
                 isHero[0] = true;
                 return getAllHeroes().get(0);
         }
 
-        System.out.println("\nChoose your " + type + ":");
-        System.out.println("--------------------------------------");
+        System.out.println(Colors.CYAN+"\n                                           Choose your " + type + ":");
+        System.out.println(Colors.CYAN+"                                           --------------------------------------");
 
         for(int i = 0; i < characters.size(); i++) {
             Character c = characters.get(i);
-            System.out.printf("%d. %-15s HP: %3d | ATK: %3d | STA: %3d%n",
+            System.out.printf(Colors.MOON_WHITE+Colors.ITALIC+Colors.BOLD+"                                           %d. %-15s HP: %3d | ATK: %3d | STA: %3d%n",
                     (i + 1), c.getName(), c.getMaxHp(), c.getAttack(), c.getStaminaMax());
-            System.out.printf("   Skills: %s, %s, %s%n",
+            System.out.printf(Colors.BLUE+"                                              Skills: %s, %s, %s%n",
                     c.getBasic(), c.getSpecial(), c.getUltimate());
         }
 
@@ -131,13 +133,13 @@ public abstract class Character {
         boolean validChoice = false;
         
         while (!validChoice) {
-            System.out.print("\nChoice: ");
+            System.out.print(Colors.MOON_GREY+"\n                                           Choice: ");
             try {
                 choice = scanner.nextInt();
                 scanner.nextLine();
                 validChoice = true;
             } catch (java.util.InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a number.");
+                System.out.println(Colors.RED+"                                           Invalid input. Please enter a number.");
                 scanner.nextLine(); // Clear the invalid input
             }
         }
@@ -147,11 +149,11 @@ public abstract class Character {
         if (choice >= 1 && choice <= characters.size()) {
             selected = characters.get(choice - 1);
         } else {
-            System.out.println("Invalid choice! Defaulting to first character.");
+            System.out.println(Colors.RED+"                                           Invalid choice! Defaulting to first character.");
             selected = characters.get(0);
         }
 
-        System.out.println("\n[You chose: " + selected.getName() + "]");
+        System.out.println(Colors.CYAN+"\n                                           [You chose: " + selected.getName() + "]");
         return selected;
     }
 
