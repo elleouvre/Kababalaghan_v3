@@ -19,7 +19,7 @@ public class CharacterFactory {
         heroes.add(new MariaMakiling());
         heroes.add(new Mayari());
         //to add more
-        Collections.shuffle(heroes);
+        //Collections.shuffle(heroes);
         return heroes;
     }
 
@@ -33,7 +33,7 @@ public class CharacterFactory {
         villains.add(new Tikbalang());
         //to add more
 
-        Collections.shuffle(villains);
+        //Collections.shuffle(villains);
         return villains;
     }
 
