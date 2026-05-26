@@ -78,8 +78,16 @@ public class BattleSystem {
             }
         }
 
+        //displays victory/defeat screen
         if (!forceExit) {
             displayBattleResult();
+
+            if(player.isAlive()) {
+                displayVictory(player);
+            } else {
+                displayDefeat(player);
+            }
+
             return true;
         } else {
             System.out.println(Colors.RED + "\n                                           [ BATTLE ABORTED ]" + Colors.RESET);
@@ -141,6 +149,13 @@ public class BattleSystem {
 
         if (!forceExit) {
             displayBattleResult();
+
+            if(player1.isAlive()) {
+                displayVictory(player1);
+            } else {
+                displayVictory(player2);
+            }
+
         } else {
             System.out.println(Colors.RED + "\n                                           [ BATTLE ABORTED ]" + Colors.RESET);
         }
@@ -196,12 +211,12 @@ public class BattleSystem {
                 int ultimateCost = attacker.getUltimateSkillStaminaCost();
                 if (attacker.getStamina().getCurrent() >= ultimateCost) {
                     attacker.getStamina().spend(ultimateCost);
-                    System.out.println(Colors.BLUE + "                                           Used " + ultimateCost + " stamina for " + attacker.getUltimate() + Colors.RESET);
+                    System.out.println(Colors.BLUE + "                                          Used " + ultimateCost + " stamina for " + attacker.getUltimate() + Colors.RESET);
 
                     if(checkHit(attacker.getAccuracy().getUltimateAccuracy())) {
                         attacker.ultimateSkill(defender);
                     } else {
-                        System.out.println(Colors.RED + "                                           " + attacker.getName() + " misses their ultimate skill! (Stamina still consumed: -" + ultimateCost + ")" + Colors.RESET);
+                        System.out.println(Colors.RED + "                                          " + attacker.getName() + " misses their ultimate skill! (Stamina still consumed: -" + ultimateCost + ")" + Colors.RESET);
                     }
                 } else {
                     System.out.println(Colors.RED + "\n                                           [WARNING] Not enough stamina! Need " + ultimateCost + " stamina." + Colors.RESET);
@@ -242,7 +257,7 @@ public class BattleSystem {
                     System.out.print(Colors.RED + "                                           Invalid choice! Please enter [1], [2], [3], or [X]: " + Colors.RESET);
                 }
             } catch (NumberFormatException e) {
-                System.out.print(Colors.RED + "                                           Please enter a valid number [1], [2], [3], or [X] to exit: " + Colors.RESET);
+                System.out.print(Colors.RED + "\n                                           Please enter a valid number [1], [2], [3], or [X] to exit: " + Colors.RESET);
             }
         }
     }
@@ -256,13 +271,13 @@ public class BattleSystem {
                 int basicCost = ai.getBasicAttackStaminaCost();
                 if(ai.getStamina().getCurrent() >= basicCost){
                     ai.getStamina().spend(basicCost);
-                    System.out.println(Colors.BLUE + "                                          " + ai.getName() + " used " + basicCost + " stamina for " + ai.getBasic() + Colors.RESET);
+                    System.out.println(Colors.BLUE + "                                           " + ai.getName() + " used " + basicCost + " stamina for " + ai.getBasic() + Colors.RESET);
 
                     if(checkHit(ai.getAccuracy().getBasicAccuracy())) {
                         ai.basicAttack(player);
                     }
                     else{
-                        System.out.println(Colors.RED + "                                           " + ai.getName() + " misses their basic attack! (Stamina still consumed: -" + basicCost + ")" + Colors.RESET);
+                        System.out.println(Colors.RED + "                                          " + ai.getName() + " misses their basic attack! (Stamina still consumed: -" + basicCost + ")" + Colors.RESET);
                     }
                 }else{
                     System.out.println(Colors.RED + "                                           Not enough stamina! Need " + basicCost + ", have " + ai.getStamina().getCurrent() + Colors.RESET);
@@ -273,7 +288,7 @@ public class BattleSystem {
                 int specialCost = ai.getSpecialSkillStaminaCost();
                 if(ai.getStamina().getCurrent() >= specialCost){
                     ai.getStamina().spend(specialCost);
-                    System.out.println(Colors.BLUE + "                                             " + ai.getName() + " used " + specialCost + " stamina for " + ai.getSpecial() + Colors.RESET);
+                    System.out.println(Colors.BLUE + "                                           " + ai.getName() + " used " + specialCost + " stamina for " + ai.getSpecial() + Colors.RESET);
 
                     if(checkHit(ai.getAccuracy().getSpecialAccuracy())) {
                         ai.specialSkill(player);
@@ -305,7 +320,7 @@ public class BattleSystem {
                     int basicFallbackCost = ai.getBasicAttackStaminaCost();
                     if(ai.getStamina().getCurrent() >= basicFallbackCost){
                         ai.getStamina().spend(basicFallbackCost);
-                        System.out.println(Colors.BLUE +"                                            " + ai.getName() + " used " + basicFallbackCost + " stamina for fallback " + ai.getBasic() + Colors.RESET);
+                        System.out.println(Colors.BLUE +"                                           " + ai.getName() + " used " + basicFallbackCost + " stamina for fallback " + ai.getBasic() + Colors.RESET);
 
                         if(checkHit(ai.getAccuracy().getBasicAccuracy())) {
                             ai.basicAttack(player);
@@ -378,6 +393,32 @@ public class BattleSystem {
         System.out.println(Colors.CYAN + Colors.BOLD + Colors.ITALIC + "\n                                           ======================================" + Colors.RESET);
         System.out.println(Colors.CYAN + Colors.BOLD + Colors.ITALIC + "                                                    BATTLE FINISHED" + Colors.RESET);
         System.out.println(Colors.CYAN + Colors.BOLD + Colors.ITALIC + "                                           ======================================" + Colors.RESET);
+    }
+
+    public void displayVictory(Character winner) {
+        System.out.println(Colors.GOLD + "\n");
+        System.out.println("                                     ██╗   ██╗██╗ ██████╗████████╗ ██████╗ ██████╗ ██╗   ██╗██╗");
+        System.out.println("                                     ██║   ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝██║");
+        System.out.println("                                     ██║   ██║██║██║        ██║   ██║   ██║██████╔╝ ╚████╔╝ ██║");
+        System.out.println("                                     ╚██╗ ██╔╝██║██║        ██║   ██║   ██║██╔══██╗  ╚██╔╝  ╚═╝");
+        System.out.println("                                      ╚████╔╝ ██║╚██████╗   ██║   ╚██████╔╝██║  ██║   ██║   ██╗");
+        System.out.println("                                       ╚═══╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝" + Colors.RESET);
+        System.out.println(Colors.GREEN + "\n                                                    ✦ ✦ ✦  " + winner.getName().toUpperCase() + " WINS!  ✦ ✦ ✦" + Colors.RESET);
+        System.out.println(Colors.MOON_WHITE + "                                                       Remaining HP: " + winner.getHp() + "/" + winner.getMaxHp() + Colors.RESET);
+        System.out.println(Colors.GOLD + "                                       ══════════════════════════════════════════════════════" + Colors.RESET);
+    }
+
+    public void displayDefeat(Character loser) {
+        System.out.println(Colors.RED + "\n\n\n");
+        System.out.println("                                           ██████╗ ███████╗███████╗███████╗ █████╗ ████████╗");
+        System.out.println("                                           ██╔══██╗██╔════╝██╔════╝██╔════╝██╔══██╗╚══██╔══╝");
+        System.out.println("                                           ██║  ██║█████╗  █████╗  █████╗  ███████║   ██║   ");
+        System.out.println("                                           ██║  ██║██╔══╝  ██╔══╝  ██╔══╝  ██╔══██║   ██║   ");
+        System.out.println("                                           ██████╔╝███████╗██║     ███████╗██║  ██║   ██║   ");
+        System.out.println("                                           ╚═════╝ ╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   " + Colors.RESET);
+        System.out.println(Colors.MAROON + "\n                                                 ✦ ✦ ✦  " + loser.getName().toUpperCase() + " HAS FALLEN...  ✦ ✦ ✦" + Colors.RESET);
+        System.out.println(Colors.MOON_GREY + "                                                       Better luck next time..." + Colors.RESET);
+        System.out.println(Colors.RED + "                                       ══════════════════════════════════════════════════════" + Colors.RESET);
     }
 
     //Display Skills or Action - Lou
