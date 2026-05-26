@@ -25,8 +25,8 @@ public class Apolaki extends Character {
     @Override
     public void basicAttack(Character target) {
 
-        System.out.println(Colors.CYAN + "Umiinit ang hangin sa bawat galaw ni Apolaki!" + Colors.RESET);
-        System.out.println(Colors.YELLOW + name + " uses " + skill1 + "!" + Colors.RESET);
+        System.out.println("                                           " + Colors.CYAN + "Umiinit ang hangin sa bawat galaw ni Apolaki!" + Colors.RESET);
+        System.out.println("                                           " + Colors.YELLOW + name + " uses " + skill1 + "!" + Colors.RESET);
 
         int damage = attack + random.nextInt(50);
         target.takeDamage(damage);
@@ -39,8 +39,8 @@ public class Apolaki extends Character {
         burstStacks++;
         if (burstStacks > 5) burstStacks = 5;
 
-        System.out.println(Colors.YELLOW + name + " uses " + skill2 + "!" + Colors.RESET);
-        System.out.println(Colors.CYAN + "Lumalakas ang init ng digmaan! [" + (burstStacks * 20) + "% charge]" + Colors.RESET);
+        System.out.println("                                           " + Colors.YELLOW + name + " uses " + skill2 + "!" + Colors.RESET);
+        System.out.println("                                           " + Colors.CYAN + "Lumalakas ang init ng digmaan! [" + (burstStacks * 20) + "% charge]" + Colors.RESET);
 
         target.takeDamage(damage);
     }
@@ -50,12 +50,12 @@ public class Apolaki extends Character {
         int damage = attack * 2 + random.nextInt(175);
         int chance = burstStacks * 20;
 
-        System.out.println(Colors.YELLOW + name + " uses " + skill3 + "!" + Colors.RESET);
-        System.out.println(Colors.CYAN + "Ang mundo ay yayanig sa ilalim ng hatol ng walang hanggang sinag!" + Colors.RESET);
+        System.out.println("                                           " + Colors.YELLOW + name + " uses " + skill3 + "!" + Colors.RESET);
+        System.out.println("                                           " + Colors.CYAN + "Ang mundo ay yayanig sa ilalim ng hatol ng walang hanggang sinag!" + Colors.RESET);
 
         if (random.nextInt(100) < chance) {
             damage *= 2;
-            System.out.println(Colors.RED + "🔥 BURST x2! PAGHUKOM NI APOLAKI!" + Colors.RESET);
+            System.out.println("                                           " + Colors.RED + "🔥 BURST x2! PAGHUKOM NI APOLAKI!" + Colors.RESET);
         }
 
         burstStacks = 0;

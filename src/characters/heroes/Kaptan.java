@@ -24,19 +24,19 @@ public class Kaptan extends Character {
     @Override
     public void basicAttack(Character target) {
 
-        System.out.println(Colors.CYAN + "Umaatake ang KIDLAT!" + Colors.RESET);
+        System.out.println("                                           " + Colors.CYAN + "Umaatake ang KIDLAT!" + Colors.RESET);
 
         int damage = attack + random.nextInt(75);
         stormCharge++;
 
-        System.out.println(Colors.YELLOW + "Kaptan gathers static energy in the air! (Storm Charges: " + stormCharge + ")" + Colors.RESET);
+        System.out.println("                                           " + Colors.YELLOW + "Kaptan gathers static energy in the air! (Storm Charges: " + stormCharge + ")" + Colors.RESET);
         target.takeDamage(damage);
     }
 
     @Override
     public void specialSkill(Character target) {
-        System.out.println(Colors.CYAN + "Pinaulanan ka ng KIDLAT!" + Colors.RESET);
-        System.out.println(Colors.YELLOW + name + " uses " + skill2 + "!" + Colors.RESET);
+        System.out.println("                                           " + Colors.CYAN + "Pinaulanan ka ng KIDLAT!" + Colors.RESET);
+        System.out.println("                                           " + Colors.YELLOW + name + " uses " + skill2 + "!" + Colors.RESET);
 
         int damage = attack + random.nextInt(75);
         stormCharge++;
@@ -46,8 +46,8 @@ public class Kaptan extends Character {
 
     @Override
     public void ultimateSkill(Character target) {
-        System.out.println(Colors.YELLOW + name + " uses " + skill3 + "!" + Colors.RESET);
-        System.out.println(Colors.RED + "Isang nagngangalit na hampas mula sa kalangitan!" + Colors.RESET);
+        System.out.println("                                           " + Colors.YELLOW + name + " uses " + skill3 + "!" + Colors.RESET);
+        System.out.println("                                           " + Colors.RED + "Isang nagngangalit na hampas mula sa kalangitan!" + Colors.RESET);
 
 
         int damage = attack + random.nextInt(90);
