@@ -48,11 +48,6 @@ public class GameMenu {
         String choice = "";
 
         while (!choice.equalsIgnoreCase("X")) {
-            System.out.println(Colors.CYAN + "\n                                           ╔════════════════════════════════════════════╗" + Colors.RESET);
-            System.out.println(Colors.CYAN + Colors.BOLD + Colors.ITALIC + "                                           ║            ACT 1 COMPLETED!                ║" + Colors.RESET);
-            System.out.println(Colors.CYAN + "                                           ╚════════════════════════════════════════════╝" + Colors.RESET);
-
-
             System.out.println();
             System.out.println(Utils.colorizeMenu("                                           ╔════════════════════════════════════════════╗"));
             System.out.println(Utils.colorizeMenu("                                           ║               GAME MODES:                  ║"));
@@ -75,10 +70,10 @@ public class GameMenu {
                     new Multiplayer(scanner).start();
                     break;
                 case "X":
-                    System.out.println("                                             Returning to main menu...");
+                    System.out.println("\n                                             Returning to main menu...");
                     break;
                 default:
-                    System.out.println("                                             Invalid choice! Please try again.");
+                    System.out.println("\n                                             Invalid choice! Please try again.");
             }
         }
     }
