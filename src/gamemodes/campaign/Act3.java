@@ -28,6 +28,7 @@ public class Act3 {
         if (!battle1Won) { return false; } // Player exited
 
         if (!player.isAlive()) {
+            battleSystem.displayDefeat(player);
             System.out.println("\n[GAME OVER] Nilamon ng dilim ang huling pag-asa...");
             return false; // Player died
         }
@@ -42,6 +43,7 @@ public class Act3 {
         if (!battle2Won) { return false; } // Player exited
 
         if (!player.isAlive()) {
+            battleSystem.displayDefeat(player);
             System.out.println("\n[GAME OVER] Naglaho ang mga buwan nang tuluyan.");
             return false; // Player died
         }

@@ -32,8 +32,10 @@ public class Act2 {
         displayFight1();
         Character aswang = new Aswang();
         boolean battle1Won = battleSystem.startSingleplayer(player, aswang);
+
         if (!battle1Won) { return false; } // Player exited
         if (!player.isAlive()) {
+            battleSystem.displayDefeat(player);
             System.out.println("\n[GAME OVER] Ang unang buwan ay nanatiling nakatago sa dilim...");
             return false; // Player died
         }
@@ -44,8 +46,10 @@ public class Act2 {
         displayFight2();
         Character manananggal = new Mananananggal();
         boolean battle2Won = battleSystem.startSingleplayer(player, manananggal);
+
         if (!battle2Won) { return false; } // Player exited
         if (!player.isAlive()) {
+            battleSystem.displayDefeat(player);
             System.out.println("\n[GAME OVER] Ang pangalawang buwan ay nalunod sa dugo...");
             return false; // Player died
         }
@@ -56,14 +60,16 @@ public class Act2 {
         displayFight3();
         Character tikbalang = new Tikbalang();
         boolean battle3Won = battleSystem.startSingleplayer(player, tikbalang);
+
         if (!battle3Won) { return false; } // Player exited
         if (!player.isAlive()) {
+            battleSystem.displayDefeat(player);
             System.out.println("\n[GAME OVER] Hindi mo nabawi ang huling buwan...");
             return false; // Player died
         }
-
         displayWin3();
         displayOutro();
+
         return true; // Act completed successfully
     }
 

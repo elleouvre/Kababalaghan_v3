@@ -29,8 +29,8 @@ public class Act1 {
         if (!battle1Won) {
             return false;
         }
-
         if (!player.isAlive()) {
+            battleSystem.displayDefeat(player);
             return false;
         }
 
@@ -43,8 +43,8 @@ public class Act1 {
         if (!battle2Won) {
             return false;
         }
-
         if (!player.isAlive()) {
+            battleSystem.displayDefeat(player);
             return false;
         }
 
