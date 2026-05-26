@@ -1,16 +1,20 @@
 package gamemodes.campaign;
 
 import characters.Character;
+import gamemodes.BattleSystem;
 import util.Colors;
 import util.Utils;
 import java.util.Scanner;
 
 public class CampaignManager {
     private Scanner scanner;
+    private BattleSystem battleSystem;
     private Character savedPlayer = null;
+
 
     public CampaignManager(Scanner scanner) {
         this.scanner = scanner;
+        this.battleSystem = new BattleSystem(scanner);
     }
 
     public void startFullCampaign() {
@@ -171,6 +175,8 @@ public class CampaignManager {
     }
 
     private void displayCompletion() {
+        battleSystem.displayVictory(savedPlayer);
+
         System.out.println(Colors.GREEN + "\n                            ╔═══════════════════════════════════════════════════════════════════╗" + Colors.RESET);
         System.out.println(Utils.colorizeCompletion("                            ║                    CAMPAIGN COMPLETED!                             ║"));
         System.out.println(Colors.CYAN + "                            ║                                                                       ║" + Colors.RESET);
